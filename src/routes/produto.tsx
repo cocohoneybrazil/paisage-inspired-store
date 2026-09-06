@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Check, ChevronLeft, ChevronRight, ShoppingBag, Truck } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
