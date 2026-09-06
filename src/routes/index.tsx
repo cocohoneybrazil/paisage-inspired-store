@@ -55,6 +55,15 @@ function Home() {
         <img src={single.url} alt="Frasco Coco Honey Bronze" loading="lazy" className="min-h-[65svh] h-full w-full bg-secondary object-cover" />
       </section>
     </main>
+    <section style={{ backgroundColor: "var(--script-blue)" }} className="text-background">
+      <div className="mx-auto max-w-[1600px] px-6 py-20 md:px-12 md:py-28">
+        <p className="header-label text-background/80">O QUE A COCO HONEY DESPERTA</p>
+        <h2 className="mt-6 max-w-4xl font-serif text-5xl italic leading-[0.95] md:text-8xl">Desejo e poder, com saúde e proteção</h2>
+        <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-12">
+          {[["AUTOESTIMA", "Aumente sua autoestima com um bronze que valoriza sua pele e sua presença desde a primeira aplicação."], ["20 MINUTOS", "Bronzeado saudável em 20 minutos de sol. Ativadores naturais aceleram a melanina sem agredir a pele."], ["NATURAL", "Fórmula natural, vegana e sem parabenos. Cuidado real para quem ama pele, sol e ingredientes transparentes."]].map(([title, text]) => <div key={title} className="border-t border-background/30 pt-6"><h3 className="text-2xl font-semibold uppercase md:text-3xl">{title}</h3><p className="mt-4 text-base leading-relaxed text-background/85">{text}</p></div>)}
+        </div>
+      </div>
+    </section>
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex items-baseline gap-1.5 whitespace-nowrap text-xs font-semibold">{active.comparePrice ? <span className="text-[10px] font-normal text-muted-foreground line-through">{active.comparePrice}</span> : null}{active.price}</p><Button variant="silver" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={() => buyNow()}><ShoppingBag />Comprar</Button></div></div>
     <Footer />
   </div>;
