@@ -5,7 +5,8 @@ import { z } from "zod";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
-import { brazilianStates, formatPrice, parsePrice, shippingFor, useCart } from "@/lib/cart";
+import { addons } from "@/lib/products";
+import { brazilianStates, formatPrice, parsePrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -150,7 +151,7 @@ function CheckoutPage() {
 
           {step === 1 ? (
             <section className="mt-10 grid gap-5 sm:grid-cols-6">
-              <div className="sm:col-span-2"><Field label="CEP" error={errors["zip"]}><input className={field} inputMode="numeric" value={address.zip} maxLength={9} onChange={(event) => setAddress({ ...address, zip: event.target.value })} /></Field></div>
+              <div className="sm:col-span-2"><Field label="CEP" error={errors["zip"]}><input className={field} inputMode="numeric" value={address.zip} maxLength={9} onChange={(event) => { const zip = event.target.value; const state = stateForZip(zip); setAddress({ ...address, zip, ...(state ? { state } : {}) }); }} /></Field></div>
               <div className="sm:col-span-4"><Field label="RUA" error={errors["street"]}><input className={field} value={address.street} maxLength={120} onChange={(event) => setAddress({ ...address, street: event.target.value })} /></Field></div>
               <div className="sm:col-span-2"><Field label="NÚMERO" error={errors["number"]}><input className={field} value={address.number} maxLength={10} onChange={(event) => setAddress({ ...address, number: event.target.value })} /></Field></div>
               <div className="sm:col-span-4"><Field label="COMPLEMENTO (OPCIONAL)"><input className={field} value={address.complement} maxLength={60} onChange={(event) => setAddress({ ...address, complement: event.target.value })} /></Field></div>
@@ -182,7 +183,25 @@ function CheckoutPage() {
 
           {step === 2 ? (
             <section className="mt-10">
-              <div className="divide-y divide-foreground/15 border-y border-foreground/15">
+              <div>
+                <p className={labelClass}>COMPLETE SEU PEDIDO</p>
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  {addons.map((addon) => {
+                    const inCart = cart.items.some((item) => item.pack.slug === addon.slug);
+                    return (
+                      <div key={addon.slug} className={`rounded-lg border p-3 transition-colors ${inCart ? "border-foreground" : "border-foreground/25"}`}>
+                        <img src={addon.image} alt={addon.name} className="aspect-square w-full rounded-md bg-secondary object-cover" />
+                        <p className="mt-3 text-sm font-semibold uppercase">{addon.name}</p>
+                        <p className="mt-1 text-xs text-muted-foreground">{addon.quantity} · {addon.price}</p>
+                        <Button variant={inCart ? "outline" : "silver"} className="mt-3 h-10 w-full rounded-lg text-[10px] font-semibold uppercase" onClick={() => (inCart ? cart.remove(addon.slug) : cart.add(addon.slug))}>
+                          {inCart ? "Remover" : "Adicionar"}
+                        </Button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="mt-10 divide-y divide-foreground/15 border-y border-foreground/15">
                 {payments.map((item) => (
                   <label key={item.id} className="flex cursor-pointer items-start gap-4 py-5">
                     <input type="radio" name="payment" className="mt-1 accent-foreground" checked={payment === item.id} onChange={() => setPayment(item.id)} />
