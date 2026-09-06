@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowDown, ShoppingBag, X } from "lucide-react";
+import { ArrowDown, Check, ShoppingBag, X } from "lucide-react";
 import infusion from "@/assets/coco-infusion.png.asset.json";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 import single from "@/assets/coco-honey-bronze-single.png.asset.json";
@@ -73,6 +73,27 @@ function Home() {
         <h2 className="mt-6 max-w-4xl font-serif text-5xl italic leading-[0.95] md:text-8xl">Desejo e poder, com saúde e proteção</h2>
         <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-12">
           {[["AUTOESTIMA", "Aumente sua autoestima com um bronze que valoriza sua pele e sua presença desde a primeira aplicação."], ["20 MINUTOS", "Bronzeado saudável em 20 minutos de sol. Ativadores naturais aceleram a melanina sem agredir a pele."], ["NATURAL", "Fórmula natural, vegana e sem parabenos. Cuidado real para quem ama pele, sol e ingredientes transparentes."]].map(([title, text]) => <div key={title} className="border-t border-foreground/15 pt-6"><h3 className="text-2xl font-semibold uppercase md:text-3xl">{title}</h3><p className="mt-4 text-base leading-relaxed text-muted-foreground">{text}</p></div>)}
+        </div>
+      </div>
+    </section>
+    <section className="border-t border-foreground/15 bg-background">
+      <div className="mx-auto max-w-[1600px] px-6 py-20 md:px-12 md:py-28">
+        <p className="header-label text-muted-foreground">POR QUE COCO HONEY BRONZE</p>
+        <h2 className="mt-6 max-w-4xl text-5xl font-semibold uppercase leading-none md:text-7xl">A escolha consciente</h2>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">Estudos dermatológicos apontam que filtros químicos como oxibenzona e derivados de petróleo podem irritar e ressecar a pele. Comparativo com a composição comum de bronzeadores tradicionais — sem citar marcas.</p>
+        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-foreground/15 bg-foreground/15 md:grid-cols-2">
+          <div className="bg-background p-6 md:p-10">
+            <div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full bg-foreground text-background"><Check className="h-4 w-4" /></span><h3 className="header-brand">COCO HONEY BRAZIL</h3></div>
+            <ul className="mt-8 divide-y divide-foreground/15">
+              {[["BASE", "Óleos vegetais de coco e pêssegos"], ["FILTROS", "Sem oxibenzona nem octinoxato"], ["CONSERVANTES", "Sem parabenos"], ["ORIGEM", "100% natural e vegano"], ["HIDRATAÇÃO", "Vitamina E + manteiga de cupuaçu"], ["BRONZE", "Uniforme e duradouro"], ["TESTES", "Dermatologicamente testado"]].map(([label, text]) => <li key={label} className="py-5"><p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p><p className="mt-1.5 text-lg font-semibold">{text}</p></li>)}
+            </ul>
+          </div>
+          <div className="bg-secondary/60 p-6 md:p-10">
+            <div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full border border-foreground/25 text-muted-foreground"><X className="h-4 w-4" /></span><h3 className="header-brand text-muted-foreground">OUTROS BRONZEADORES</h3></div>
+            <ul className="mt-8 divide-y divide-foreground/10">
+              {[["BASE", "Óleo mineral e compostos de petróleo"], ["FILTROS", "Oxibenzona e derivados"], ["CONSERVANTES", "Parabenos e conservantes sintéticos"], ["ORIGEM", "Ingredientes de origem animal"], ["HIDRATAÇÃO", "Resseca a pele depois do sol"], ["BRONZE", "Irregular, marca manchas"], ["TESTES", "Testado em animais"]].map(([label, text]) => <li key={label} className="py-5"><p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p><p className="mt-1.5 text-lg text-muted-foreground line-through decoration-foreground/40">{text}</p></li>)}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
