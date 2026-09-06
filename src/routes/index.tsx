@@ -34,7 +34,7 @@ function Home() {
         <a href="#packs" aria-label="Conhecer os packs" className="absolute bottom-7 left-1/2 -translate-x-1/2 text-foreground"><ArrowDown className="h-6 w-6" /></a>
       </section>
       <section id="packs" className="mx-auto max-w-[1600px] px-5 py-20 md:px-8 md:py-28">
-        <div className="mb-10 flex items-end justify-between gap-6"><div><p className="header-label text-muted-foreground">BEST SELLERS</p><h2 className="mt-3 text-5xl font-semibold uppercase md:text-7xl">Escolha seu pack</h2></div><Link to="/produto" className="hidden text-xs font-semibold uppercase underline underline-offset-4 sm:block">Ver detalhes</Link></div>
+        <div className="mb-10 flex items-end justify-between gap-6"><div><p className="header-label text-muted-foreground">BEST SELLERS</p><h2 className="mt-3 text-5xl font-semibold uppercase md:text-7xl">Escolha seu pack</h2></div><Link to="/produto" search={{ pack: "pack-003" }} className="hidden text-xs font-semibold uppercase underline underline-offset-4 sm:block">Ver detalhes</Link></div>
         <ProductCarousel />
       </section>
       <section className="grid border-y border-foreground/15 lg:grid-cols-2">

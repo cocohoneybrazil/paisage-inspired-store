@@ -8,7 +8,7 @@ import { packs } from "@/lib/products";
 import script from "@/assets/secret-ingredient-script.png.asset.json";
 
 export const Route = createFileRoute("/produto")({
-  validateSearch: (search: Record<string, unknown>) => ({ pack: typeof search.pack === "string" ? search.pack : "pack-003" }),
+  validateSearch: (search: Record<string, unknown>) => ({ pack: typeof search["pack"] === "string" ? search["pack"] : "pack-003" }),
   head: () => ({ meta: [
     { title: "Coco Honey Bronze — Packs e detalhes" },
     { name: "description", content: "Escolha seu pack de Coco Honey Bronze e conheça fórmula, ingredientes e ritual de uso." },
@@ -26,7 +26,8 @@ function ProductPage() {
   const initial = packs.some((pack) => pack.slug === search.pack) ? search.pack : "pack-003";
   const [selected, setSelected] = useState(initial);
   const [bagCount, setBagCount] = useState(0);
-  const active = useMemo(() => packs.find((pack) => pack.slug === selected) ?? packs[2], [selected]);
+  const active = useMemo(() => packs.find((pack) => pack.slug === selected) ?? packs[0], [selected]);
+  if (!active) return null;
   const add = () => setBagCount((count) => count + 1);
   return <div className="min-h-screen pb-24 md:pb-0"><Header bagCount={bagCount} />
     <main>
