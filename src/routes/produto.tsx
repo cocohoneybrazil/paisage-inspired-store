@@ -1,12 +1,38 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Check, ShoppingBag } from "lucide-react";
+import { Check, ShoppingBag, Truck } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { packs } from "@/lib/products";
-import { useCart } from "@/lib/cart";
+import { formatPrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
+
+function ShippingQuote({ slug }: { slug: string }) {
+  const [zip, setZip] = useState("");
+  const [result, setResult] = useState<ReturnType<typeof shippingFor> | "invalid" | null>(null);
+  const quote = () => {
+    const state = stateForZip(zip);
+    const pack = packs.find((item) => item.slug === slug);
+    setResult(state && pack ? shippingFor(state, [{ pack, qty: 1 }]) : "invalid");
+  };
+  return (
+    <div className="mt-8 border-t border-foreground/15 pt-6">
+      <p className="header-label flex items-center gap-2 text-muted-foreground"><Truck className="h-3.5 w-3.5" />CONSULTE O FRETE</p>
+      <div className="mt-3 flex gap-2">
+        <input inputMode="numeric" maxLength={9} placeholder="Seu CEP" value={zip} onChange={(event) => setZip(event.target.value)} onKeyDown={(event) => event.key === "Enter" && quote()} className="h-11 w-full max-w-40 rounded-lg border border-foreground/25 bg-transparent px-3 text-sm outline-none focus:border-foreground" />
+        <Button variant="outline" className="h-11 rounded-lg px-5 text-xs font-semibold uppercase" onClick={quote}>Calcular</Button>
+      </div>
+      {result === "invalid" ? <p className="mt-3 text-xs text-destructive">CEP inválido. Confira os 8 dígitos.</p> : null}
+      {result && result !== "invalid" ? (
+        <div className="mt-3 flex items-center justify-between rounded-lg border border-foreground/25 px-4 py-3 text-sm">
+          <span>{result.label} · <span className="text-muted-foreground">{result.days}</span></span>
+          <span className="font-semibold">{result.price === 0 ? "GRÁTIS" : formatPrice(result.price)}</span>
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/produto")({
   validateSearch: (search: Record<string, unknown>) => ({ pack: typeof search["pack"] === "string" ? search["pack"] : "pack-003" }),
@@ -49,6 +75,7 @@ function ProductPage() {
           <div className="mt-8 grid grid-cols-3 gap-2">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} className="h-auto rounded-lg px-2 py-3" onClick={() => setSelected(pack.slug)}><span><span className="block text-xs font-semibold">PACK {pack.shortName}</span><span className="mt-1 block text-[10px] font-normal">{pack.price}</span></span></Button>)}</div>
           <div className="mt-8 flex items-end justify-between"><div>{active.comparePrice ? <p className="text-sm text-muted-foreground line-through">{active.comparePrice}</p> : null}<p className="text-3xl font-semibold">{active.price}</p></div>{active.badge ? <span className="header-label">{active.badge}</span> : null}</div>
           <Button variant="silver" className="mt-6 h-14 w-full rounded-lg text-xs font-semibold uppercase" onClick={add}><ShoppingBag />Adicionar à sacola</Button>
+          <ShippingQuote slug={selected} />
           <div className="mt-8 grid grid-cols-2 gap-3 text-xs">{["Natural", "Vegano", "Cruelty free", "Sem conservantes"].map((item) => <span key={item} className="flex items-center gap-2 border-t border-foreground/15 pt-3"><Check className="h-3 w-3" />{item}</span>)}</div>
         </div></div>
       </section>
