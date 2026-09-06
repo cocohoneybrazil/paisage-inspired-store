@@ -80,7 +80,7 @@ function Home() {
       <div className="mx-auto max-w-[1600px] px-6 py-20 md:px-12 md:py-28">
         <p className="header-label text-muted-foreground">POR QUE COCO HONEY BRONZE</p>
         <h2 className="mt-6 max-w-4xl text-5xl font-semibold uppercase leading-none md:text-7xl">A escolha consciente</h2>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">Estudos dermatol\u00f3gicos apontam que filtros qu\u00edmicos como oxibenzona e derivados de petr\u00f3leo podem irritar e ressecar a pele. Comparativo com a composi\u00e7\u00e3o comum de bronzeadores tradicionais \u2014 sem citar marcas.</p>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">Estudos dermatológicos apontam que filtros químicos como oxibenzona e derivados de petróleo podem irritar e ressecar a pele. Comparativo com a composição comum de bronzeadores tradicionais — sem citar marcas.</p>
         <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-foreground/15 bg-foreground/15 md:grid-cols-2">
           <div className="bg-background p-6 md:p-10">
             <div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full bg-foreground text-background"><Check className="h-4 w-4" /></span><h3 className="header-brand">COCO HONEY BRAZIL</h3></div>
