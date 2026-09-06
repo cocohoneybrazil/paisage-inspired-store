@@ -1,10 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { Check, ShoppingBag, Truck } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import { Check, ChevronLeft, ChevronRight, ShoppingBag, Truck } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
-import { packs } from "@/lib/products";
+import { addons, packs } from "@/lib/products";
 import { formatPrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 
@@ -57,6 +57,29 @@ const ingredients: { name: string; tagline: string; benefits: string[] }[] = [
 const ritual = ["Esfolie e hidrate a pele previamente para uma aplicação mais uniforme.", "Agite o frasco antes de usar para manter o brilho uniforme.", "Faça uma concha com a mão, borrife o óleo nela e espalhe uniformemente para evitar respingos no beachwear.", "Reaplique o óleo após períodos prolongados na água ou de suor intenso."];
 const tips = ["Consuma alimentos ricos em betacaroteno, como cenoura, couve e acerola, dentro de uma alimentação equilibrada.", "Evite os horários de radiação mais intensa e reduza o tempo de exposição direta.", "Após o uso, mantenha o frasco em local fresco e escuro, longe da luz solar direta.", "Se o óleo cair diretamente sobre uma peça, enxágue com água e sabão."];
 
+function ToteCarousel() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [selected, setSelected] = useState<string | null>(null);
+  const move = (direction: number) => ref.current?.scrollBy({ left: direction * (ref.current.clientWidth * 0.82), behavior: "smooth" });
+  return <div>
+    <div ref={ref} className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {addons.map((bag) => <button key={bag.slug} onClick={() => setSelected(bag.slug)} className={`group w-[82%] shrink-0 snap-start text-left sm:w-[48%] lg:w-[32%] ${selected === bag.slug ? "ring-1 ring-foreground" : ""}`}>
+        <div className="overflow-hidden bg-secondary"><img src={bag.image} alt={bag.name} className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" /></div>
+        <div className="mt-4">
+          <h3 className="text-sm font-semibold uppercase">{bag.name}</h3>
+          <p className="mt-1 text-xs text-muted-foreground">{bag.quantity}</p>
+          <p className="mt-2 text-sm font-semibold">{bag.price}</p>
+        </div>
+      </button>)}
+    </div>
+    <div className="mt-6 flex gap-2"><Button variant="outline" size="icon" onClick={() => move(-1)} aria-label="Produto anterior"><ChevronLeft /></Button><Button variant="outline" size="icon" onClick={() => move(1)} aria-label="Próximo produto"><ChevronRight /></Button></div>
+    {selected ? <div className="mt-8 border-t border-foreground/15 pt-5">
+      <p className="header-label text-muted-foreground">DETALHES DA BOLSA</p>
+      <p className="mt-2 max-w-xl text-sm leading-relaxed">100% algodão · 54cm x 63cm · bolso interno</p>
+    </div> : null}
+  </div>;
+}
+
 function ProductPage() {
   const search = Route.useSearch();
   const initial = packs.some((pack) => pack.slug === search.pack) ? search.pack : "pack-003";
@@ -79,6 +102,7 @@ function ProductPage() {
           <div className="mt-8 grid grid-cols-2 gap-3 text-xs">{["Natural", "Vegano", "Cruelty free", "Sem conservantes"].map((item) => <span key={item} className="flex items-center gap-2 border-t border-foreground/15 pt-3"><Check className="h-3 w-3" />{item}</span>)}</div>
         </div></div>
       </section>
+      <section className="mx-auto max-w-[1500px] px-6 py-20 md:px-8"><p className="header-label text-muted-foreground">COMPLETE O LOOK</p><h2 className="mt-4 text-5xl font-semibold uppercase md:text-7xl">Tote Bags</h2><div className="mt-12"><ToteCarousel /></div></section>
       <section className="mx-auto max-w-[1500px] px-6 py-20 md:px-8"><p className="header-label text-muted-foreground">A FÓRMULA</p><h2 className="mt-4 text-5xl font-semibold uppercase md:text-7xl">Ingredientes</h2><div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">{ingredients.map((item) => <div key={item.name} className="border-t border-foreground/20 pt-5"><h3 className="font-semibold uppercase">{item.name}</h3><p className="header-label mt-2 text-muted-foreground">{item.tagline}</p><ul className="mt-4 space-y-3">{item.benefits.map((benefit) => <li key={benefit} className="text-sm leading-relaxed text-muted-foreground">{benefit}</li>)}</ul></div>)}</div></section>
       <section className="border-y border-foreground/15 bg-foreground text-background"><div className="mx-auto max-w-[1500px] px-6 py-20 md:px-8"><p className="header-label opacity-60">RITUAL COCO</p><h2 className="mt-4 text-5xl font-semibold uppercase md:text-7xl">Sol com cuidado</h2><ol className="mt-12 grid gap-8 md:grid-cols-2">{ritual.map((step, index) => <li key={step} className="flex gap-5 border-t border-background/30 pt-5"><span className="font-serif text-3xl italic">0{index + 1}</span><p className="text-sm opacity-75">{step}</p></li>)}</ol></div></section>
       <section className="mx-auto max-w-[1500px] px-6 py-20 md:px-8"><p className="header-label text-muted-foreground">DICAS COCO</p><h2 className="mt-4 text-5xl font-semibold uppercase md:text-7xl">Antes e depois do sol</h2><div className="mt-12 grid gap-8 md:grid-cols-2">{tips.map((tip, index) => <div key={tip} className="border-t border-foreground/20 pt-5"><span className="header-label text-muted-foreground">0{index + 1}</span><p className="mt-4 text-sm leading-relaxed">{tip}</p></div>)}</div></section>
