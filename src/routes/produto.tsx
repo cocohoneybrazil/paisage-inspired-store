@@ -1,10 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Check, ShoppingBag } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { packs } from "@/lib/products";
+import { useCart } from "@/lib/cart";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 
 export const Route = createFileRoute("/produto")({
@@ -34,11 +35,13 @@ function ProductPage() {
   const search = Route.useSearch();
   const initial = packs.some((pack) => pack.slug === search.pack) ? search.pack : "pack-003";
   const [selected, setSelected] = useState(initial);
-  const [bagCount, setBagCount] = useState(0);
+  const navigate = useNavigate();
+  const cart = useCart();
   const active = useMemo(() => packs.find((pack) => pack.slug === selected) ?? packs[0], [selected]);
   if (!active) return null;
-  const add = () => setBagCount((count) => count + 1);
-  return <div className="min-h-screen pb-24 md:pb-0"><Header bagCount={bagCount} />
+  const add = () => cart.add(selected);
+  const buyNow = () => { cart.add(selected); navigate({ to: "/checkout" }); };
+  return <div className="min-h-screen pb-24 md:pb-0"><Header bagCount={cart.count} onBagOpen={() => navigate({ to: "/checkout" })} />
     <main>
       <section className="grid border-b border-foreground/15 lg:grid-cols-[1.08fr_.92fr]">
         <div className="bg-secondary"><img src={active.image} alt={active.name} className="aspect-square h-full w-full object-cover" /></div>
@@ -54,7 +57,7 @@ function ProductPage() {
       <section className="mx-auto max-w-[1500px] px-6 py-20 md:px-8"><p className="header-label text-muted-foreground">DICAS COCO</p><h2 className="mt-4 text-5xl font-semibold uppercase md:text-7xl">Antes e depois do sol</h2><div className="mt-12 grid gap-8 md:grid-cols-2">{tips.map((tip, index) => <div key={tip} className="border-t border-foreground/20 pt-5"><span className="header-label text-muted-foreground">0{index + 1}</span><p className="mt-4 text-sm leading-relaxed">{tip}</p></div>)}</div></section>
       <section className="mx-auto max-w-[1500px] px-6 py-20 md:px-8"><p className="header-label text-muted-foreground">PERGUNTAS FREQUENTES</p><div className="mt-8 divide-y divide-foreground/15 border-y border-foreground/15">{[["Possui fator de proteção solar?", "Não. É um acelerador de bronzeado sem FPS."], ["É resistente à água e ao suor?", "Sim, mas recomendamos reaplicar após períodos prolongados na água."], ["É autobronzeador?", "Não. É um acelerador que atua durante a exposição solar."]].map(([question, answer]) => <details key={question} className="group py-5"><summary className="cursor-pointer list-none font-semibold uppercase">{question}</summary><p className="mt-3 max-w-2xl text-sm text-muted-foreground">{answer}</p></details>)}</div></section>
     </main>
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex items-baseline gap-1.5 whitespace-nowrap text-xs font-semibold">{active.comparePrice ? <span className="text-[10px] font-normal text-muted-foreground line-through">{active.comparePrice}</span> : null}{active.price}</p><Button variant="silver" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={add}><ShoppingBag />Comprar</Button></div></div>
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex items-baseline gap-1.5 whitespace-nowrap text-xs font-semibold">{active.comparePrice ? <span className="text-[10px] font-normal text-muted-foreground line-through">{active.comparePrice}</span> : null}{active.price}</p><Button variant="silver" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={buyNow}><ShoppingBag />Comprar</Button></div></div>
     <Footer />
   </div>;
 }
