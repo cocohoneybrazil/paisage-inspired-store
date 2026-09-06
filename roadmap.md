@@ -5,4 +5,4 @@
 - [x] Adicionar descrição e compra na página inicial
 - [x] Incorporar composição, ritual e dicas do PDF
 - [x] Aplicar fundo branco sólido ao cabeçalho e ao menu
-- [ ] Verificar em computador e celular
+- [x] Verificar em computador e celular
