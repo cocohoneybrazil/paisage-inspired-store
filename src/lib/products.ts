@@ -14,6 +14,7 @@ export type Pack = {
   comparePrice?: string;
   badge?: string;
   image: string;
+  hoverImage?: string;
 };
 
 export const packs: Pack[] = [
