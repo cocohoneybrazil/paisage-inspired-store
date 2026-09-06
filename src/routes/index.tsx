@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowDown, ShoppingBag, X } from "lucide-react";
 import infusion from "@/assets/coco-infusion.png.asset.json";
-import script from "@/assets/secret-ingredient-script.png.asset.json";
+import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 import single from "@/assets/coco-honey-bronze-single.png.asset.json";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";

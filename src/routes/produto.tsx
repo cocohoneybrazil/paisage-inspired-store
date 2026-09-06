@@ -5,7 +5,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { packs } from "@/lib/products";
-import script from "@/assets/secret-ingredient-script.png.asset.json";
+import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 
 export const Route = createFileRoute("/produto")({
   validateSearch: (search: Record<string, unknown>) => ({ pack: typeof search["pack"] === "string" ? search["pack"] : "pack-003" }),
