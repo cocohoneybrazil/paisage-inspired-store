@@ -2,6 +2,7 @@ import single from "@/assets/coco-honey-bronze-single.png.asset.json";
 import duo from "@/assets/coco-honey-bronze-duo.png.asset.json";
 import trio from "@/assets/coco-honey-bronze-pack-3.png.asset.json";
 import toteCoco from "@/assets/tote-bag-coco.png.asset.json";
+import toteCocoLifestyle from "@/assets/tote-bag-coco-lifestyle.png.asset.json";
 import toteBrazil from "@/assets/tote-bag-brazil.png.asset.json";
 
 export type Pack = {
