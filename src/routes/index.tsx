@@ -52,6 +52,7 @@ function Home() {
         <img src={single.url} alt="Frasco Coco Honey Bronze" loading="lazy" className="min-h-[65svh] h-full w-full bg-secondary object-cover" />
       </section>
     </main>
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto whitespace-nowrap text-xs font-semibold">{active.price}</p><Button variant="silver" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={add}><ShoppingBag />Comprar</Button></div></div>
     <Footer />
   </div>;
 }
