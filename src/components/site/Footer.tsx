@@ -6,7 +6,7 @@ export function Footer() {
         <p className="mt-2 text-muted-foreground">CNPJ 53.172.892/0001-74</p>
         <p className="mt-1 text-muted-foreground">© 2026 COCO HONEY BRAZIL®</p>
       </div>
-      <div className="flex flex-wrap gap-x-7 gap-y-3"><a href="https://www.cocohoneybrazil.com.br/policies/privacy-policy" target="_blank" rel="noreferrer">Política de privacidade</a><a href="https://www.cocohoneybrazil.com.br/policies/refund-policy" target="_blank" rel="noreferrer">Política de reembolso</a><a href="https://www.instagram.com/cocohoneybrazil/" target="_blank" rel="noreferrer">Instagram</a></div>
+      <div className="flex flex-wrap gap-x-7 gap-y-3"><a href="https://www.cocohoneybrazil.com.br/policies/privacy-policy" target="_blank" rel="noreferrer">Política de privacidade</a><a href="https://www.cocohoneybrazil.com.br/policies/refund-policy" target="_blank" rel="noreferrer">Política de reembolso</a><a href="https://wa.me/5547992031609" target="_blank" rel="noreferrer">Contato</a><a href="https://www.instagram.com/cocohoneybrazil/" target="_blank" rel="noreferrer">Instagram</a></div>
     </div>
   </footer>;
 }
