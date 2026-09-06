@@ -3,7 +3,7 @@ import { Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const nav = [{ to: "/produto", label: "SHOP" }, { to: "/blog", label: "JOURNAL" }] as const;
+const nav = [{ to: "/", label: "HOME" }, { to: "/produto", label: "SHOP" }, { to: "/blog", label: "JOURNAL" }] as const;
 
 export function Header({ bagCount = 0, onBagOpen }: { bagCount?: number; onBagOpen?: () => void }) {
   const [open, setOpen] = useState(false);
