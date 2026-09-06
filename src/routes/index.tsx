@@ -85,13 +85,13 @@ function Home() {
           <div className="bg-background p-6 md:p-10">
             <div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full bg-foreground text-background"><Check className="h-4 w-4" /></span><h3 className="header-brand">COCO HONEY BRAZIL</h3></div>
             <ul className="mt-8 divide-y divide-foreground/15">
-              {[["BASE", "\u00d3leos vegetais de coco e p\u00eassegos"], ["FILTROS", "Sem oxibenzona nem octinoxato"], ["CONSERVANTES", "Sem parabenos"], ["ORIGEM", "100% natural e vegano"], ["HIDRATA\u00c7\u00c3O", "Vitamina E + manteiga de cupua\u00e7u"], ["BRONZE", "Uniforme e duradouro"], ["TESTES", "Dermatologicamente testado"]].map(([label, text]) => <li key={label} className="py-5"><p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p><p className="mt-1.5 text-lg font-semibold">{text}</p></li>)}
+              {[["BASE", "Óleos vegetais de coco e pêssegos"], ["FILTROS", "Sem oxibenzona nem octinoxato"], ["CONSERVANTES", "Sem parabenos"], ["ORIGEM", "100% natural e vegano"], ["HIDRATAÇÃO", "Vitamina E + manteiga de cupuaçu"], ["BRONZE", "Uniforme e duradouro"], ["TESTES", "Dermatologicamente testado"]].map(([label, text]) => <li key={label} className="py-5"><p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p><p className="mt-1.5 text-lg font-semibold">{text}</p></li>)}
             </ul>
           </div>
           <div className="bg-secondary/60 p-6 md:p-10">
             <div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full border border-foreground/25 text-muted-foreground"><X className="h-4 w-4" /></span><h3 className="header-brand text-muted-foreground">OUTROS BRONZEADORES</h3></div>
             <ul className="mt-8 divide-y divide-foreground/10">
-              {[["BASE", "\u00d3leo mineral e compostos de petr\u00f3leo"], ["FILTROS", "Oxibenzona e derivados"], ["CONSERVANTES", "Parabenos e conservantes sint\u00e9ticos"], ["ORIGEM", "Ingredientes de origem animal"], ["HIDRATA\u00c7\u00c3O", "Resseca a pele depois do sol"], ["BRONZE", "Irregular, marca manchas"], ["TESTES", "Testado em animais"]].map(([label, text]) => <li key={label} className="py-5"><p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p><p className="mt-1.5 text-lg text-muted-foreground line-through decoration-foreground/40">{text}</p></li>)}
+              {[["BASE", "Óleo mineral e compostos de petróleo"], ["FILTROS", "Oxibenzona e derivados"], ["CONSERVANTES", "Parabenos e conservantes sintéticos"], ["ORIGEM", "Ingredientes de origem animal"], ["HIDRATAÇÃO", "Resseca a pele depois do sol"], ["BRONZE", "Irregular, marca manchas"], ["TESTES", "Testado em animais"]].map(([label, text]) => <li key={label} className="py-5"><p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p><p className="mt-1.5 text-lg text-muted-foreground line-through decoration-foreground/40">{text}</p></li>)}
             </ul>
           </div>
         </div>
