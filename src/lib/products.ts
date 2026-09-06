@@ -24,6 +24,6 @@ export const packs: Pack[] = [
 ];
 
 export const addons: Pack[] = [
-  { slug: "tote-bag-coco", shortName: "TOTE", name: "Tote Bag Coco", quantity: "Marrom · algodão", price: "R$ 129,00", image: toteCoco.url },
+  { slug: "tote-bag-coco", shortName: "TOTE", name: "Tote Bag Coco", quantity: "Marrom · algodão", price: "R$ 129,00", image: toteCoco.url, hoverImage: toteCocoLifestyle.url },
   { slug: "tote-bag-brazil", shortName: "TOTE", name: "Tote Bag Brazil", quantity: "Verde e amarela · algodão", price: "R$ 129,00", image: toteBrazil.url },
 ];
