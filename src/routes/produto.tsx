@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMemo, useRef, useState } from "react";
 import { Check, ChevronLeft, ChevronRight, ShoppingBag, Truck } from "lucide-react";
 import { Header } from "@/components/site/Header";
@@ -59,11 +59,10 @@ const tips = ["Consuma alimentos ricos em betacaroteno, como cenoura, couve e ac
 
 function ToteCarousel() {
   const ref = useRef<HTMLDivElement>(null);
-  const [selected, setSelected] = useState<string | null>(null);
   const move = (direction: number) => ref.current?.scrollBy({ left: direction * (ref.current.clientWidth * 0.82), behavior: "smooth" });
   return <div>
     <div ref={ref} className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      {addons.map((bag) => <button key={bag.slug} onClick={() => setSelected(bag.slug)} className={`group w-[82%] shrink-0 snap-start text-left sm:w-[48%] lg:w-[32%] ${selected === bag.slug ? "ring-1 ring-foreground" : ""}`}>
+      {addons.map((bag) => <Link key={bag.slug} to="/tote/$slug" params={{ slug: bag.slug }} className="group w-[82%] shrink-0 snap-start text-left sm:w-[48%] lg:w-[32%]">
         <div className="relative aspect-square overflow-hidden bg-secondary">
           <img src={bag.image} alt={bag.name} className="absolute inset-0 aspect-square w-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
           {bag.hoverImage ? <img src={bag.hoverImage} alt={`${bag.name} — lifestyle`} className="absolute inset-0 aspect-square w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" /> : null}
@@ -73,13 +72,9 @@ function ToteCarousel() {
           <p className="mt-1 text-xs text-muted-foreground">{bag.quantity}</p>
           <p className="mt-2 text-sm font-semibold">{bag.price}</p>
         </div>
-      </button>)}
+      </Link>)}
     </div>
     <div className="mt-6 flex gap-2"><Button variant="outline" size="icon" onClick={() => move(-1)} aria-label="Produto anterior"><ChevronLeft /></Button><Button variant="outline" size="icon" onClick={() => move(1)} aria-label="Próximo produto"><ChevronRight /></Button></div>
-    {selected ? <div className="mt-8 border-t border-foreground/15 pt-5">
-      <p className="header-label text-muted-foreground">DETALHES DA BOLSA</p>
-      <p className="mt-2 max-w-xl text-sm leading-relaxed">100% algodão · 54cm x 63cm · bolso interno</p>
-    </div> : null}
   </div>;
 }
 
