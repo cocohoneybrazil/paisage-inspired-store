@@ -246,6 +246,26 @@ function CheckoutPage() {
               </li>
             ))}
           </ul>
+          <div className="mt-5">
+            <p className="text-[10px] font-semibold uppercase text-muted-foreground">Adicione ao pedido</p>
+            <ul className="mt-3 space-y-3">
+              {addons.map((addon) => {
+                const inCart = cart.items.some((item) => item.pack.slug === addon.slug);
+                return (
+                  <li key={addon.slug} className="flex items-center gap-3">
+                    <img src={addon.image} alt={addon.name} className="h-12 w-12 rounded-lg bg-secondary object-cover" />
+                    <div className="flex-1">
+                      <p className="text-xs font-semibold uppercase">{addon.name}</p>
+                      <p className="mt-0.5 text-[11px] text-muted-foreground">{addon.price}</p>
+                    </div>
+                    <Button variant={inCart ? "ghost" : "outline"} size="sm" className="h-8 rounded-lg px-3 text-[10px] font-semibold uppercase" onClick={() => (inCart ? cart.remove(addon.slug) : cart.add(addon.slug))}>
+                      {inCart ? "Adicionada" : "+ Adicionar"}
+                    </Button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
           <dl className="mt-5 space-y-2 text-sm">
             <div className="flex justify-between"><dt className="text-muted-foreground">Subtotal</dt><dd>{formatPrice(cart.subtotal)}</dd></div>
             <div className="flex justify-between"><dt className="text-muted-foreground">Frete{shipping?.freeShipping ? " (grátis)" : ""}</dt><dd>{shipping ? (shipping.price === 0 ? "GRÁTIS" : formatPrice(shipping.price)) : "—"}</dd></div>
