@@ -227,3 +227,13 @@
   line-height: 0.9;
   letter-spacing: 0;
 }
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@utility marquee-track {
+  animation: marquee-scroll 22s linear infinite;
+  width: max-content;
+}
