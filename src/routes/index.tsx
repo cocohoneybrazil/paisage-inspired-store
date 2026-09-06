@@ -76,6 +76,27 @@ function Home() {
         </div>
       </div>
     </section>
+    <section className="border-t border-foreground/15 bg-background">
+      <div className="mx-auto max-w-[1600px] px-6 py-20 md:px-12 md:py-28">
+        <p className="header-label text-muted-foreground">POR QUE COCO HONEY BRONZE</p>
+        <h2 className="mt-6 max-w-4xl text-5xl font-semibold uppercase leading-none md:text-7xl">A escolha consciente</h2>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">Estudos dermatol\u00f3gicos apontam que filtros qu\u00edmicos como oxibenzona e derivados de petr\u00f3leo podem irritar e ressecar a pele. Comparativo com a composi\u00e7\u00e3o comum de bronzeadores tradicionais \u2014 sem citar marcas.</p>
+        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-foreground/15 bg-foreground/15 md:grid-cols-2">
+          <div className="bg-background p-6 md:p-10">
+            <div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full bg-foreground text-background"><Check className="h-4 w-4" /></span><h3 className="header-brand">COCO HONEY BRAZIL</h3></div>
+            <ul className="mt-8 divide-y divide-foreground/15">
+              {[["BASE", "\u00d3leos vegetais de coco e p\u00eassegos"], ["FILTROS", "Sem oxibenzona nem octinoxato"], ["CONSERVANTES", "Sem parabenos"], ["ORIGEM", "100% natural e vegano"], ["HIDRATA\u00c7\u00c3O", "Vitamina E + manteiga de cupua\u00e7u"], ["BRONZE", "Uniforme e duradouro"], ["TESTES", "Dermatologicamente testado"]].map(([label, text]) => <li key={label} className="py-5"><p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p><p className="mt-1.5 text-lg font-semibold">{text}</p></li>)}
+            </ul>
+          </div>
+          <div className="bg-secondary/60 p-6 md:p-10">
+            <div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full border border-foreground/25 text-muted-foreground"><X className="h-4 w-4" /></span><h3 className="header-brand text-muted-foreground">OUTROS BRONZEADORES</h3></div>
+            <ul className="mt-8 divide-y divide-foreground/10">
+              {[["BASE", "\u00d3leo mineral e compostos de petr\u00f3leo"], ["FILTROS", "Oxibenzona e derivados"], ["CONSERVANTES", "Parabenos e conservantes sint\u00e9ticos"], ["ORIGEM", "Ingredientes de origem animal"], ["HIDRATA\u00c7\u00c3O", "Resseca a pele depois do sol"], ["BRONZE", "Irregular, marca manchas"], ["TESTES", "Testado em animais"]].map(([label, text]) => <li key={label} className="py-5"><p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p><p className="mt-1.5 text-lg text-muted-foreground line-through decoration-foreground/40">{text}</p></li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex items-baseline gap-1.5 whitespace-nowrap text-xs font-semibold">{active.comparePrice ? <span className="text-[10px] font-normal text-muted-foreground line-through">{active.comparePrice}</span> : null}{active.price}</p><Button variant="silver" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={() => buyNow()}><ShoppingBag />Comprar</Button></div></div>
     <Footer />
   </div>;
