@@ -173,7 +173,7 @@
   width: 100%;
   color: oklch(1 0 0 / 22%);
   font-family: var(--font-sans);
-  font-size: clamp(2.25rem, 9.5vw, 10rem);
+  font-size: clamp(1.75rem, 8vw, 9rem);
   font-weight: 600;
   line-height: 0.88;
   letter-spacing: 0;
