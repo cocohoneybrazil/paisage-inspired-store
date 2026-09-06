@@ -1,10 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { Check, ShoppingBag, Truck } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import { Check, ChevronLeft, ChevronRight, ShoppingBag, Truck } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
-import { packs } from "@/lib/products";
+import { addons, packs } from "@/lib/products";
 import { formatPrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 
