@@ -64,7 +64,10 @@ function ToteCarousel() {
   return <div>
     <div ref={ref} className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {addons.map((bag) => <button key={bag.slug} onClick={() => setSelected(bag.slug)} className={`group w-[82%] shrink-0 snap-start text-left sm:w-[48%] lg:w-[32%] ${selected === bag.slug ? "ring-1 ring-foreground" : ""}`}>
-        <div className="overflow-hidden bg-secondary"><img src={bag.image} alt={bag.name} className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" /></div>
+        <div className="relative aspect-square overflow-hidden bg-secondary">
+          <img src={bag.image} alt={bag.name} className="absolute inset-0 aspect-square w-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
+          {bag.hoverImage ? <img src={bag.hoverImage} alt={`${bag.name} — lifestyle`} className="absolute inset-0 aspect-square w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" /> : null}
+        </div>
         <div className="mt-4">
           <h3 className="text-sm font-semibold uppercase">{bag.name}</h3>
           <p className="mt-1 text-xs text-muted-foreground">{bag.quantity}</p>

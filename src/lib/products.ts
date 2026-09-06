@@ -2,6 +2,7 @@ import single from "@/assets/coco-honey-bronze-single.png.asset.json";
 import duo from "@/assets/coco-honey-bronze-duo.png.asset.json";
 import trio from "@/assets/coco-honey-bronze-pack-3.png.asset.json";
 import toteCoco from "@/assets/tote-bag-coco.png.asset.json";
+import toteCocoLifestyle from "@/assets/tote-bag-coco-lifestyle.png.asset.json";
 import toteBrazil from "@/assets/tote-bag-brazil.png.asset.json";
 
 export type Pack = {
@@ -13,6 +14,7 @@ export type Pack = {
   comparePrice?: string;
   badge?: string;
   image: string;
+  hoverImage?: string;
 };
 
 export const packs: Pack[] = [
@@ -22,6 +24,6 @@ export const packs: Pack[] = [
 ];
 
 export const addons: Pack[] = [
-  { slug: "tote-bag-coco", shortName: "TOTE", name: "Tote Bag Coco", quantity: "Marrom · algodão", price: "R$ 129,00", image: toteCoco.url },
+  { slug: "tote-bag-coco", shortName: "TOTE", name: "Tote Bag Coco", quantity: "Marrom · algodão", price: "R$ 129,00", image: toteCoco.url, hoverImage: toteCocoLifestyle.url },
   { slug: "tote-bag-brazil", shortName: "TOTE", name: "Tote Bag Brazil", quantity: "Verde e amarela · algodão", price: "R$ 129,00", image: toteBrazil.url },
 ];
