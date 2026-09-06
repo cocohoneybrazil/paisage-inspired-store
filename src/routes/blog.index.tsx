@@ -1,0 +1,8 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { posts } from "@/lib/blog";
+
+export const Route = createFileRoute("/blog/")({ head: () => ({ meta: [{ title: "Journal — COCO Honey Brazil" }, { name: "description", content: "Leituras sobre sol, pele, melanina e beleza consciente." }, { property: "og:title", content: "Journal — COCO Honey Brazil" }, { property: "og:description", content: "Leituras sobre sol, pele, melanina e beleza consciente." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: Blog });
+
+function Blog() { return <div><Header /><main className="mx-auto max-w-[1500px] px-5 py-16 md:px-8 md:py-24"><p className="header-label text-muted-foreground">COCO MAGAZINE</p><h1 className="mt-4 text-6xl font-semibold uppercase md:text-9xl">Journal</h1><div className="mt-16 grid gap-x-10 gap-y-14 md:grid-cols-2">{posts.map((post, index) => <Link key={post.slug} to="/blog/$slug" params={{ slug: post.slug }} className="group border-t border-foreground/20 pt-5"><p className="header-label text-muted-foreground">0{index + 1} · {post.category}</p><h2 className="mt-8 max-w-xl text-3xl font-semibold uppercase leading-tight md:text-5xl">{post.title}</h2><p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p><span className="mt-7 inline-block text-xs font-semibold uppercase underline underline-offset-4">Ler matéria</span></Link>)}</div></main><Footer /></div>; }
