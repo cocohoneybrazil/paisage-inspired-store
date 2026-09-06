@@ -57,6 +57,29 @@ const ingredients: { name: string; tagline: string; benefits: string[] }[] = [
 const ritual = ["Esfolie e hidrate a pele previamente para uma aplicação mais uniforme.", "Agite o frasco antes de usar para manter o brilho uniforme.", "Faça uma concha com a mão, borrife o óleo nela e espalhe uniformemente para evitar respingos no beachwear.", "Reaplique o óleo após períodos prolongados na água ou de suor intenso."];
 const tips = ["Consuma alimentos ricos em betacaroteno, como cenoura, couve e acerola, dentro de uma alimentação equilibrada.", "Evite os horários de radiação mais intensa e reduza o tempo de exposição direta.", "Após o uso, mantenha o frasco em local fresco e escuro, longe da luz solar direta.", "Se o óleo cair diretamente sobre uma peça, enxágue com água e sabão."];
 
+function ToteCarousel() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [selected, setSelected] = useState<string | null>(null);
+  const move = (direction: number) => ref.current?.scrollBy({ left: direction * (ref.current.clientWidth * 0.82), behavior: "smooth" });
+  return <div>
+    <div ref={ref} className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {addons.map((bag) => <button key={bag.slug} onClick={() => setSelected(bag.slug)} className={`group w-[82%] shrink-0 snap-start text-left sm:w-[48%] lg:w-[32%] ${selected === bag.slug ? "ring-1 ring-foreground" : ""}`}>
+        <div className="overflow-hidden bg-secondary"><img src={bag.image} alt={bag.name} className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" /></div>
+        <div className="mt-4">
+          <h3 className="text-sm font-semibold uppercase">{bag.name}</h3>
+          <p className="mt-1 text-xs text-muted-foreground">{bag.quantity}</p>
+          <p className="mt-2 text-sm font-semibold">{bag.price}</p>
+        </div>
+      </button>)}
+    </div>
+    <div className="mt-6 flex gap-2"><Button variant="outline" size="icon" onClick={() => move(-1)} aria-label="Produto anterior"><ChevronLeft /></Button><Button variant="outline" size="icon" onClick={() => move(1)} aria-label="Próximo produto"><ChevronRight /></Button></div>
+    {selected ? <div className="mt-8 border-t border-foreground/15 pt-5">
+      <p className="header-label text-muted-foreground">DETALHES DA BOLSA</p>
+      <p className="mt-2 max-w-xl text-sm leading-relaxed">100% algodão · 54cm x 63cm · bolso interno</p>
+    </div> : null}
+  </div>;
+}
+
 function ProductPage() {
   const search = Route.useSearch();
   const initial = packs.some((pack) => pack.slug === search.pack) ? search.pack : "pack-003";
