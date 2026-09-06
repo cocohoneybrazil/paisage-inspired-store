@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowDown, ShoppingBag, X } from "lucide-react";
+import { ArrowDown, Check, ShoppingBag, X } from "lucide-react";
 import infusion from "@/assets/coco-infusion.png.asset.json";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 import single from "@/assets/coco-honey-bronze-single.png.asset.json";
