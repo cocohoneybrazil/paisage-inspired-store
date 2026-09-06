@@ -66,6 +66,7 @@
   --color-silver-light: var(--silver-light);
   --color-silver-mid: var(--silver-mid);
   --color-silver-dark: var(--silver-dark);
+  --color-photo-backdrop: var(--photo-backdrop);
 }
 
 :root {
@@ -111,6 +112,7 @@
   --silver-light: oklch(0.9 0.006 255);
   --silver-mid: oklch(0.72 0.012 255);
   --silver-dark: oklch(0.45 0.012 255);
+  --photo-backdrop: oklch(0.965 0.004 80);
 }
 
 .dark {
