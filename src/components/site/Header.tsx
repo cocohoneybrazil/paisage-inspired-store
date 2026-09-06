@@ -8,7 +8,7 @@ const nav = [{ to: "/produto", label: "SHOP" }, { to: "/blog", label: "JOURNAL" 
 export function Header({ bagCount = 0, onBagOpen }: { bagCount?: number; onBagOpen?: () => void }) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState(false);
-  return <header className="sticky inset-x-0 top-0 z-40 border-b border-foreground/15 bg-background/90 backdrop-blur-md">
+  return <header className="sticky inset-x-0 top-0 z-40 border-b border-foreground/15 bg-background">
     <div className="mx-auto grid h-16 max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center px-5 md:px-8">
       <Button variant="ghost" size="icon" className="justify-self-start md:hidden" onClick={() => setOpen(true)} aria-label="Abrir menu"><Menu /></Button>
       <nav className="hidden items-center gap-8 md:flex">{nav.map((item) => <Link key={item.to} to={item.to} className="header-label hover:opacity-55">{item.label}</Link>)}</nav>
