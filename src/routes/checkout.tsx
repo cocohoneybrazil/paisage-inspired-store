@@ -49,7 +49,7 @@ const payments = [
 const field = "mt-1 h-11 w-full rounded-lg border border-foreground/25 bg-transparent px-3 text-sm outline-none focus:border-foreground";
 const labelClass = "header-label text-muted-foreground";
 
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+function Field({ label, error, children }: { label: string; error?: string | undefined; children: React.ReactNode }) {
   return (
     <label className="block">
       <span className={labelClass}>{label}</span>
