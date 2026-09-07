@@ -12,7 +12,7 @@ export function Header({ bagCount = 0, onBagOpen }: { bagCount?: number; onBagOp
     <div className="mx-auto grid h-16 max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center px-5 md:px-8">
       <Button variant="ghost" size="icon" className="justify-self-start md:hidden" onClick={() => setOpen(true)} aria-label="Abrir menu"><Menu /></Button>
       <nav className="hidden items-center gap-8 md:flex">{nav.map((item) => <Link key={item.to} to={item.to} className="header-label hover:opacity-55">{item.label}</Link>)}</nav>
-      <Link to="/" className="header-brand whitespace-nowrap">COCO HONEY BRAZIL</Link>
+      <Link to="/" className="header-brand group flex items-center gap-2 whitespace-nowrap">COCO HONEY BRAZIL<img src={sol.url} alt="" className="h-5 w-5 opacity-0 invert transition-opacity duration-300 group-hover:opacity-100" /></Link>
       <div className="flex items-center justify-self-end gap-2">
         <Button variant="ghost" size="icon" onClick={() => setSearch((value) => !value)} aria-label="Buscar"><Search /></Button>
         <Button variant="ghost" size="icon" onClick={onBagOpen} aria-label="Abrir sacola" className="relative"><ShoppingBag />{bagCount > 0 ? <span className="absolute right-0 top-0 grid h-4 min-w-4 place-items-center rounded-full bg-foreground px-1 text-[9px] text-background">{bagCount}</span> : null}</Button>
