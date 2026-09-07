@@ -14,7 +14,7 @@ const aboutLinks = [
 const helpLinks = [
   { to: "/blog/protetor-solar-ciencia-e-controversias", label: "FAQ" },
   { to: "/blog/helioterapia-poder-curativo-do-sol", label: "RASTREAR MEU PEDIDO" },
-  { href: "https://www.cocohoneybrazil.com.br/policies/refund-policy", label: "" },
+  { to: "/trocas", label: "TROCAS E DEVOLUÇÕES" },
 ];
 
 function PixIcon() {

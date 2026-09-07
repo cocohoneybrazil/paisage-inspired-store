@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as ProdutoRouteImport } from './routes/produto'
+import { Route as TrocasRouteImport } from './routes/trocas'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ToteSlugRouteImport } from './routes/tote.$slug'
@@ -26,9 +28,19 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProdutoRoute = ProdutoRouteImport.update({
   id: '/produto',
   path: '/produto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrocasRoute = TrocasRouteImport.update({
+  id: '/trocas',
+  path: '/trocas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -50,7 +62,9 @@ const ToteSlugRoute = ToteSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/produto': typeof ProdutoRoute
+  '/trocas': typeof TrocasRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/tote/$slug': typeof ToteSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -58,7 +72,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/produto': typeof ProdutoRoute
+  '/trocas': typeof TrocasRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/tote/$slug': typeof ToteSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -67,7 +83,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/produto': typeof ProdutoRoute
+  '/trocas': typeof TrocasRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/tote/$slug': typeof ToteSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -75,14 +93,31 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/checkout' | '/produto' | '/blog/$slug' | '/tote/$slug' | '/blog/'
+    | '/'
+    | '/checkout'
+    | '/privacidade'
+    | '/produto'
+    | '/trocas'
+    | '/blog/$slug'
+    | '/tote/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/checkout' | '/produto' | '/blog/$slug' | '/tote/$slug' | '/blog'
+  to:
+    | '/'
+    | '/checkout'
+    | '/privacidade'
+    | '/produto'
+    | '/trocas'
+    | '/blog/$slug'
+    | '/tote/$slug'
+    | '/blog'
   id:
     | '__root__'
     | '/'
     | '/checkout'
+    | '/privacidade'
     | '/produto'
+    | '/trocas'
     | '/blog/$slug'
     | '/tote/$slug'
     | '/blog/'
@@ -91,7 +126,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CheckoutRoute: typeof CheckoutRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
   ProdutoRoute: typeof ProdutoRoute
+  TrocasRoute: typeof TrocasRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ToteSlugRoute: typeof ToteSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -113,11 +150,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/produto': {
       id: '/produto'
       path: '/produto'
       fullPath: '/produto'
       preLoaderRoute: typeof ProdutoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trocas': {
+      id: '/trocas'
+      path: '/trocas'
+      fullPath: '/trocas'
+      preLoaderRoute: typeof TrocasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -147,7 +198,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CheckoutRoute: CheckoutRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
   ProdutoRoute: ProdutoRoute,
+  TrocasRoute: TrocasRoute,
   BlogSlugRoute: BlogSlugRoute,
   ToteSlugRoute: ToteSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
