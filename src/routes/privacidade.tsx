@@ -115,7 +115,7 @@ const sections: { title: string; body: (string | { lead: string; text: string })
     title: "Contato",
     body: [
       "Se você tiver dúvidas sobre nossas práticas de privacidade ou desejar exercer seus direitos, entre em contato pelo telefone +55 47 99203-1609 ou pelo e-mail contato@cocohoneybrazil.com.br.",
-      "COCO HONEY BR BRONZE LTDA — Rua Paulo Schwarzer, 302, Bloco 1, Blumenau SC, 89037-030, Brasil.",
+      "COCO HONEY BRAZIL LTDA — Rua Paulo Schwarzer, 259, Blumenau SC, 89037-030, Brasil.",
     ],
   },
 ];

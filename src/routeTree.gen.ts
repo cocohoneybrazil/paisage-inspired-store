@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as HistoriaRouteImport } from './routes/historia'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as ProdutoRouteImport } from './routes/produto'
 import { Route as TrocasRouteImport } from './routes/trocas'
@@ -26,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const CheckoutRoute = CheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoriaRoute = HistoriaRouteImport.update({
+  id: '/historia',
+  path: '/historia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
@@ -62,6 +68,7 @@ const ToteSlugRoute = ToteSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/historia': typeof HistoriaRoute
   '/privacidade': typeof PrivacidadeRoute
   '/produto': typeof ProdutoRoute
   '/trocas': typeof TrocasRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/historia': typeof HistoriaRoute
   '/privacidade': typeof PrivacidadeRoute
   '/produto': typeof ProdutoRoute
   '/trocas': typeof TrocasRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/historia': typeof HistoriaRoute
   '/privacidade': typeof PrivacidadeRoute
   '/produto': typeof ProdutoRoute
   '/trocas': typeof TrocasRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/checkout'
+    | '/historia'
     | '/privacidade'
     | '/produto'
     | '/trocas'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/checkout'
+    | '/historia'
     | '/privacidade'
     | '/produto'
     | '/trocas'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/checkout'
+    | '/historia'
     | '/privacidade'
     | '/produto'
     | '/trocas'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CheckoutRoute: typeof CheckoutRoute
+  HistoriaRoute: typeof HistoriaRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
   ProdutoRoute: typeof ProdutoRoute
   TrocasRoute: typeof TrocasRoute
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/checkout'
       fullPath: '/checkout'
       preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/historia': {
+      id: '/historia'
+      path: '/historia'
+      fullPath: '/historia'
+      preLoaderRoute: typeof HistoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacidade': {
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CheckoutRoute: CheckoutRoute,
+  HistoriaRoute: HistoriaRoute,
   PrivacidadeRoute: PrivacidadeRoute,
   ProdutoRoute: ProdutoRoute,
   TrocasRoute: TrocasRoute,
