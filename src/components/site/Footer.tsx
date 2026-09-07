@@ -11,10 +11,12 @@ const aboutLinks = [
   { href: "https://wa.me/5547992031609", label: "CONTATO" },
 ];
 
-const helpLinks = [
+type FooterLink = { to?: string; href?: string; label: string };
+
+const helpLinks: FooterLink[] = [
   { to: "/blog/protetor-solar-ciencia-e-controversias", label: "FAQ" },
   { to: "/blog/helioterapia-poder-curativo-do-sol", label: "RASTREAR MEU PEDIDO" },
-  { href: "https://www.cocohoneybrazil.com.br/policies/refund-policy", label: "" },
+  { to: "/trocas", label: "TROCAS E DEVOLUÇÕES" },
 ];
 
 function PixIcon() {
@@ -141,15 +143,15 @@ export function Footer() {
         {/* Legal info */}
         <div className="mt-12 text-center text-[10px] font-medium uppercase leading-relaxed text-muted-foreground md:text-xs">
           <p>CNPJ 53.172.892/0001-74</p>
-          <p className="mt-1">Coco Honey Brazil • Blumenau, SC • Brasil</p>
+          <p className="mt-1">Coco Honey BR Bronze LTDA • Rua Paulo Schwarzer, 302, Bloco 1 • Blumenau, SC • 89037-030 • Brasil</p>
         </div>
 
         {/* Bottom links + copyright */}
         <div className="mt-8 flex flex-col items-center gap-4 border-t border-foreground/10 pt-8 md:flex-row md:justify-between">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] font-semibold uppercase">
-            <a href="https://www.cocohoneybrazil.com.br/policies/privacy-policy" target="_blank" rel="noreferrer" className="hover:opacity-55">Privacidade</a>
+            <Link to="/privacidade" className="hover:opacity-55">Privacidade</Link>
             <a href="https://www.cocohoneybrazil.com.br/policies/terms-of-service" target="_blank" rel="noreferrer" className="hover:opacity-55">Termos</a>
-            <a href="https://www.cocohoneybrazil.com.br/policies/refund-policy" target="_blank" rel="noreferrer" className="hover:opacity-55">Trocas</a>
+            <Link to="/trocas" className="hover:opacity-55">Trocas</Link>
             <a href="https://www.cocohoneybrazil.com.br/policies/shipping-policy" target="_blank" rel="noreferrer" className="hover:opacity-55">Entregas</a>
              <button type="button" className="hover:opacity-55">COOKIES</button>
           </div>
