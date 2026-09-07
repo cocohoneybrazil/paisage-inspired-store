@@ -17,6 +17,14 @@ export function formatPrice(cents: number): string {
   return `R$ ${(cents / 100).toFixed(2).replace(".", ",")}`;
 }
 
+export function installmentText(price: string, times = 3): string {
+  return `ou ${times}x de ${formatPrice(Math.round(parsePrice(price) / times))} sem juros`;
+}
+
+export function installmentShort(price: string, times = 3): string {
+  return `${times}x ${formatPrice(Math.round(parsePrice(price) / times))}`;
+}
+
 function read(): CartLine[] {
   if (typeof window === "undefined") return [];
   try {
