@@ -147,9 +147,9 @@ export function Footer() {
         {/* Bottom links + copyright */}
         <div className="mt-8 flex flex-col items-center gap-4 border-t border-foreground/10 pt-8 md:flex-row md:justify-between">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] font-semibold uppercase">
-            <a href="https://www.cocohoneybrazil.com.br/policies/privacy-policy" target="_blank" rel="noreferrer" className="hover:opacity-55">Privacidade</a>
+            <Link to="/privacidade" className="hover:opacity-55">Privacidade</Link>
             <a href="https://www.cocohoneybrazil.com.br/policies/terms-of-service" target="_blank" rel="noreferrer" className="hover:opacity-55">Termos</a>
-            <a href="https://www.cocohoneybrazil.com.br/policies/refund-policy" target="_blank" rel="noreferrer" className="hover:opacity-55">Trocas</a>
+            <Link to="/trocas" className="hover:opacity-55">Trocas</Link>
             <a href="https://www.cocohoneybrazil.com.br/policies/shipping-policy" target="_blank" rel="noreferrer" className="hover:opacity-55">Entregas</a>
              <button type="button" className="hover:opacity-55">COOKIES</button>
           </div>
