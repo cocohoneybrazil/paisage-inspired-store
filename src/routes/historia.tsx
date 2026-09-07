@@ -53,7 +53,7 @@ function Historia() {
             <p className="text-sm leading-relaxed text-muted-foreground">
               Esta página está reservada para a história da marca. Assim que os textos e as fotos forem definidos, o conteúdo entra aqui.
             </p>
-            <Link to="/produto" className="mt-6 inline-block text-xs font-semibold uppercase underline underline-offset-4">
+            <Link to="/produto" search={{ pack: "pack-003" }} className="mt-6 inline-block text-xs font-semibold uppercase underline underline-offset-4">
               Conhecer o Coco Honey Bronze
             </Link>
           </div>

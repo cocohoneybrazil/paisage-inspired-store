@@ -7,7 +7,7 @@ const shopLinks = [
 ];
 
 const aboutLinks = [
-  { to: "/blog", label: "Our Story" },
+  { to: "/historia", label: "Our Story" },
   { href: "https://wa.me/5547992031609", label: "CONTATO" },
 ];
 
@@ -142,7 +142,7 @@ export function Footer() {
         {/* Legal info */}
         <div className="mt-12 text-center text-[10px] font-medium uppercase leading-relaxed text-muted-foreground md:text-xs">
           <p>CNPJ 53.172.892/0001-74</p>
-          <p className="mt-1">Coco Honey BR Bronze LTDA • Rua Paulo Schwarzer, 302, Bloco 1 • Blumenau, SC • 89037-030 • Brasil</p>
+          <p className="mt-1">Coco Honey Brazil LTDA • Rua Paulo Schwarzer, 259 • Blumenau, SC • 89037-030 • Brasil</p>
         </div>
 
         {/* Bottom links + copyright */}
