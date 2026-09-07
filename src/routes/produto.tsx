@@ -5,7 +5,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { addons, packs } from "@/lib/products";
-import { formatPrice, installmentText, shippingFor, stateForZip, useCart } from "@/lib/cart";
+import { formatPrice, installmentShort, installmentText, shippingFor, stateForZip, useCart } from "@/lib/cart";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 
 function ShippingQuote({ slug }: { slug: string }) {

@@ -11,7 +11,7 @@ import { Footer } from "@/components/site/Footer";
 import { ProductCarousel } from "@/components/site/ProductCarousel";
 import { Button } from "@/components/ui/button";
 import { packs } from "@/lib/products";
-import { formatPrice, installmentText, parsePrice, useCart } from "@/lib/cart";
+import { formatPrice, installmentShort, installmentText, parsePrice, useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
