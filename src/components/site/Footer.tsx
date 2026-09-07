@@ -3,18 +3,18 @@ import { ShieldCheck, Package, CreditCard, RefreshCw, Lock, Instagram } from "lu
 
 const shopLinks = [
   { to: "/produto", label: "Bronze" },
-  { to: "/produto", label: "Collections" },
+  { to: "/produto", label: "JOURNAL" },
 ];
 
 const aboutLinks = [
   { to: "/blog", label: "Our Story" },
-  { href: "https://wa.me/5547992031609", label: "Contact" },
+  { href: "https://wa.me/5547992031609", label: "CONTATO" },
 ];
 
 const helpLinks = [
   { to: "/blog/protetor-solar-ciencia-e-controversias", label: "FAQ" },
-  { to: "/blog/helioterapia-poder-curativo-do-sol", label: "Shipping" },
-  { href: "https://www.cocohoneybrazil.com.br/policies/refund-policy", label: "Returns" },
+  { to: "/blog/helioterapia-poder-curativo-do-sol", label: "RASTREAR MEU PEDIDO" },
+  { href: "https://www.cocohoneybrazil.com.br/policies/refund-policy", label: "" },
 ];
 
 function PixIcon() {
@@ -56,7 +56,7 @@ export function Footer() {
       <div className="mx-auto max-w-[1600px] px-5 py-14 md:px-8 md:py-20">
         {/* Brand + tagline */}
         <div className="text-center">
-          <p className="text-3xl font-semibold uppercase tracking-[0.04em] md:text-5xl">COCO HONEY</p>
+          <p className="text-3xl font-semibold uppercase tracking-[0.04em] md:text-5xl">COCO HONEY BRAZIL</p>
           <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground md:text-xs">THE MAGIC POTION OF SUMMER</p>
         </div>
 
@@ -113,7 +113,7 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
               { icon: ShieldCheck, label: "COMPRA SEGURA" },
-              { icon: Package, label: "ENVIO BRASIL" },
+               { icon: Package, label: "ENVIO PARA TODO BRASIL" },
               { icon: CreditCard, label: "PAGAMENTO SEGURO" },
               { icon: RefreshCw, label: "TROCAS E DEVOLUÇÕES" },
             ].map(({ icon: Icon, label }) => (
@@ -151,7 +151,7 @@ export function Footer() {
             <a href="https://www.cocohoneybrazil.com.br/policies/terms-of-service" target="_blank" rel="noreferrer" className="hover:opacity-55">Termos</a>
             <a href="https://www.cocohoneybrazil.com.br/policies/refund-policy" target="_blank" rel="noreferrer" className="hover:opacity-55">Trocas</a>
             <a href="https://www.cocohoneybrazil.com.br/policies/shipping-policy" target="_blank" rel="noreferrer" className="hover:opacity-55">Entregas</a>
-            <button type="button" className="hover:opacity-55">Cookies</button>
+             <button type="button" className="hover:opacity-55">COOKIES</button>
           </div>
           <p className="text-[10px] font-semibold uppercase text-muted-foreground">© 2026 COCO HONEY BRAZIL</p>
         </div>
