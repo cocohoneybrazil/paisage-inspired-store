@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import sol from "@/assets/sol-white.png.asset.json";
 
 const nav = [{ to: "/", label: "HOME" }, { to: "/produto", label: "SHOP" }, { to: "/blog", label: "JOURNAL" }, { to: "/historia", label: "HISTÓRIA" }] as const;
 
