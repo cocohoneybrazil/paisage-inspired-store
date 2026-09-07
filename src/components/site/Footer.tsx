@@ -19,26 +19,26 @@ const helpLinks: FooterLink[] = [
   { to: "/trocas", label: "TROCAS E DEVOLUÇÕES" },
 ];
 
-function PixIcon() {
-  return (
-    <svg viewBox="0 0 48 48" className="h-6 w-6" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="48" height="48" rx="6" fill="#32BCAD" />
-      <path d="M33.07 14.53l-3.6-3.6a2.3 2.3 0 00-3.26 0L24 17.14l-2.21-2.21a2.3 2.3 0 00-3.26 0l-3.6 3.6a2.3 2.3 0 000 3.26l2.21 2.21-5.4 5.4a2.3 2.3 0 000 3.26l3.6 3.6a2.3 2.3 0 003.26 0L24 33.86l2.21 2.21a2.3 2.3 0 003.26 0l3.6-3.6a2.3 2.3 0 000-3.26l-2.21-2.21 5.4-5.4a2.3 2.3 0 000-3.26v-.01z" fill="#fff" />
-    </svg>
-  );
-}
+import visaLogo from "@/assets/brands/visa.svg";
+import mastercardLogo from "@/assets/brands/mastercard.svg";
+import amexLogo from "@/assets/brands/amex.svg";
+import eloLogo from "@/assets/brands/elo.svg";
+import hipercardLogo from "@/assets/brands/hipercard.svg";
+import pixLogo from "@/assets/brands/pix.svg";
 
-function CardFlag({ brand }: { brand: string }) {
-  const colors: Record<string, string> = {
-    Visa: "#1A1F71",
-    Mastercard: "#EB001B",
-    Amex: "#016FD0",
-    Elo: "#FFCB05",
-    Hiper: "#B8262C",
-  };
+const paymentBrands = [
+  { name: "Visa", logo: visaLogo },
+  { name: "Mastercard", logo: mastercardLogo },
+  { name: "American Express", logo: amexLogo },
+  { name: "Elo", logo: eloLogo },
+  { name: "Hipercard", logo: hipercardLogo },
+  { name: "Pix", logo: pixLogo },
+];
+
+function CardFlag({ name, logo }: { name: string; logo: string }) {
   return (
-    <div className="flex h-8 items-center justify-center rounded-md border border-foreground/10 bg-white px-2 text-[10px] font-bold uppercase tracking-wider" style={{ color: colors[brand] || "#000" }}>
-      {brand}
+    <div className="flex h-8 w-14 items-center justify-center overflow-hidden rounded-md border border-foreground/10 bg-white px-1.5">
+      <img src={logo} alt={`Bandeira ${name}`} title={name} className="max-h-6 w-full object-contain" loading="lazy" />
     </div>
   );
 }
@@ -129,10 +129,9 @@ export function Footer() {
         {/* Payment methods + security seals */}
         <div className="mt-8 flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="flex flex-wrap items-center justify-center gap-2">
-            {["Visa", "Mastercard", "Amex", "Elo", "Hiper"].map((brand) => (
-              <CardFlag key={brand} brand={brand} />
+            {paymentBrands.map((brand) => (
+              <CardFlag key={brand.name} name={brand.name} logo={brand.logo} />
             ))}
-            <PixIcon />
             <div className="flex h-8 items-center gap-1.5 rounded-md border border-foreground/10 bg-white px-3 text-[10px] font-semibold uppercase">
               <Lock className="h-3.5 w-3.5" /> SSL
             </div>
