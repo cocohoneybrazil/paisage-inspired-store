@@ -11,7 +11,9 @@ const aboutLinks = [
   { href: "https://wa.me/5547992031609", label: "CONTATO" },
 ];
 
-const helpLinks = [
+type FooterLink = { to?: string; href?: string; label: string };
+
+const helpLinks: FooterLink[] = [
   { to: "/blog/protetor-solar-ciencia-e-controversias", label: "FAQ" },
   { to: "/blog/helioterapia-poder-curativo-do-sol", label: "RASTREAR MEU PEDIDO" },
   { to: "/trocas", label: "TROCAS E DEVOLUÇÕES" },
