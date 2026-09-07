@@ -6,7 +6,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { addons } from "@/lib/products";
-import { brazilianStates, formatPrice, parsePrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
+import { brazilianStates, formatPrice, installmentShort, parsePrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -43,8 +43,7 @@ const addressSchema = z.object({
 
 const payments = [
   { id: "pix", label: "Pix", note: "Aprovação imediata. O código será enviado por e-mail." },
-  { id: "card", label: "Cartão de crédito", note: "Em até 6x sem juros. Os dados do cartão são pedidos na etapa de pagamento seguro." },
-  { id: "boleto", label: "Boleto bancário", note: "Compensação em até 3 dias úteis." },
+  { id: "card", label: "Cartão de crédito", note: "Em até 3x sem juros. Os dados do cartão são pedidos na etapa de pagamento seguro." },
 ] as const;
 
 const field = "mt-1 h-11 w-full rounded-lg border border-foreground/25 bg-transparent px-3 text-sm outline-none focus:border-foreground";
@@ -192,7 +191,7 @@ function CheckoutPage() {
                       <div key={addon.slug} className={`rounded-lg border p-3 transition-colors ${inCart ? "border-foreground" : "border-foreground/25"}`}>
                         <img src={addon.image} alt={addon.name} className="aspect-square w-full rounded-md bg-secondary object-cover" />
                         <p className="mt-3 text-sm font-semibold uppercase">{addon.name}</p>
-                        <p className="mt-1 text-xs text-muted-foreground">{addon.quantity} · {addon.price}</p>
+                        <p className="mt-1 text-xs text-muted-foreground">{addon.quantity} · {addon.price} · {installmentShort(addon.price)} sem juros</p>
                         <Button variant={inCart ? "outline" : "silver"} className="mt-3 h-10 w-full rounded-lg text-[10px] font-semibold uppercase" onClick={() => (inCart ? cart.remove(addon.slug) : cart.add(addon.slug))}>
                           {inCart ? "Remover" : "Adicionar"}
                         </Button>
@@ -256,7 +255,7 @@ function CheckoutPage() {
                     <img src={addon.image} alt={addon.name} className="h-12 w-12 rounded-lg bg-secondary object-cover" />
                     <div className="flex-1">
                       <p className="text-xs font-semibold uppercase">{addon.name}</p>
-                      <p className="mt-0.5 text-[11px] text-muted-foreground">{addon.price}</p>
+                      <p className="mt-0.5 text-[11px] text-muted-foreground">{addon.price} · {installmentShort(addon.price)} sem juros</p>
                     </div>
                     <Button variant={inCart ? "ghost" : "outline"} size="sm" className="h-8 rounded-lg px-3 text-[10px] font-semibold uppercase" onClick={() => (inCart ? cart.remove(addon.slug) : cart.add(addon.slug))}>
                       {inCart ? "Adicionada" : "+ Adicionar"}
