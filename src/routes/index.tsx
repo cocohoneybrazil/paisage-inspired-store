@@ -51,7 +51,7 @@ function Home() {
     <main>
       <section className="relative flex min-h-[calc(92svh-4rem)] items-end overflow-hidden bg-photo-backdrop">
         <img src={infusion.url} alt="Bolsa COCO INFUSION com óleo dourado" className="absolute inset-0 h-full w-full object-contain object-center md:hidden" />
-        <img src={heroDesktop.url} alt="COCO HONEY — ingredientes naturais, vegano, cruelty-free" className="absolute inset-0 hidden h-full w-full object-cover object-center md:block" />
+        <div className="absolute inset-0 hidden md:block" style={{ backgroundColor: "#DFE3EC" }}><img src={heroDesktop.url} alt="COCO HONEY — ingredientes naturais, vegano, cruelty-free" className="h-full w-full object-contain object-center" /></div>
         <h1 className="sr-only">COCO Honey Brazil</h1>
         <a href="#packs" aria-label="Conhecer os packs" className="absolute bottom-7 left-1/2 -translate-x-1/2 text-foreground"><ArrowDown className="h-6 w-6" /></a>
       </section>
