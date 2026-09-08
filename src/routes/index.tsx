@@ -11,7 +11,7 @@ import { Footer } from "@/components/site/Footer";
 import { ProductCarousel } from "@/components/site/ProductCarousel";
 import { ReviewsSection } from "@/components/site/Reviews";
 import { Button } from "@/components/ui/button";
-import { packs } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
 import { formatPrice, installmentShort, installmentText, parsePrice, useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/")({
@@ -26,6 +26,7 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const navigate = useNavigate();
+  const { packs } = useCatalog();
   const cart = useCart();
   const [bagOpen, setBagOpen] = useState(false);
   const [selected, setSelected] = useState("pack-003");

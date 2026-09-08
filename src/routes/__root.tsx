@@ -7,10 +7,12 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useMemo, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CatalogContext, buildCatalog, fetchLiveProducts, type LiveProduct } from "../lib/catalog";
+import { shopifyConfigured } from "../lib/shopify";
 
 function NotFoundComponent() {
   return (
@@ -73,6 +75,18 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  // Preço e disponibilidade vêm da Storefront API. Se a chamada falhar, o site continua
+  // renderizando com o catálogo estático em vez de quebrar.
+  loader: async (): Promise<{ live: LiveProduct[] | null }> => {
+    if (!shopifyConfigured) return { live: null };
+    try {
+      return { live: await fetchLiveProducts() };
+    } catch (error) {
+      console.error("Falha ao carregar o catálogo da Shopify", error);
+      return { live: null };
+    }
+  },
+  staleTime: 5 * 60 * 1000,
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -121,11 +135,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { live } = Route.useLoaderData();
+  const catalog = useMemo(() => buildCatalog(live), [live]);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <CatalogContext.Provider value={catalog}>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </CatalogContext.Provider>
     </QueryClientProvider>
   );
 }

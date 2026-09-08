@@ -4,13 +4,14 @@ import { Check, ChevronLeft, ChevronRight, ShoppingBag, Truck } from "lucide-rea
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
-import { addons, packs } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
 import { formatPrice, installmentShort, installmentText, shippingFor, stateForZip, useCart } from "@/lib/cart";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 import { ReviewsSection, Stars } from "@/components/site/Reviews";
 import { reviewStats } from "@/lib/reviews";
 
 function ShippingQuote({ slug }: { slug: string }) {
+  const { packs } = useCatalog();
   const [zip, setZip] = useState("");
   const [result, setResult] = useState<ReturnType<typeof shippingFor> | "invalid" | null>(null);
   const quote = () => {
@@ -60,6 +61,7 @@ const ritual = ["Esfolie e hidrate a pele previamente para uma aplicação mais 
 const tips = ["Consuma alimentos ricos em betacaroteno, como cenoura, couve e acerola, dentro de uma alimentação equilibrada.", "Evite os horários de radiação mais intensa e reduza o tempo de exposição direta.", "Após o uso, mantenha o frasco em local fresco e escuro, longe da luz solar direta.", "Se o óleo cair diretamente sobre uma peça, enxágue com água e sabão."];
 
 function ToteCarousel() {
+  const { addons } = useCatalog();
   const ref = useRef<HTMLDivElement>(null);
   const move = (direction: number) => ref.current?.scrollBy({ left: direction * (ref.current.clientWidth * 0.82), behavior: "smooth" });
   return <div>
@@ -83,11 +85,12 @@ function ToteCarousel() {
 
 function ProductPage() {
   const search = Route.useSearch();
+  const { packs } = useCatalog();
   const initial = packs.some((pack) => pack.slug === search.pack) ? search.pack : "pack-003";
   const [selected, setSelected] = useState(initial);
   const navigate = useNavigate();
   const cart = useCart();
-  const active = useMemo(() => packs.find((pack) => pack.slug === selected) ?? packs[0], [selected]);
+  const active = useMemo(() => packs.find((pack) => pack.slug === selected) ?? packs[0], [packs, selected]);
   if (!active) return null;
   const add = () => cart.add(selected);
   const buyNow = () => { cart.add(selected); navigate({ to: "/checkout" }); };
@@ -98,7 +101,7 @@ function ProductPage() {
         <div className="flex px-6 py-12 md:px-12 lg:sticky lg:top-16 lg:min-h-[calc(100vh-4rem)] lg:items-center lg:px-16"><div className="w-full"><p className="header-label text-muted-foreground">COCO HONEY BRONZE · 62 ML</p><h1 className="mt-5 text-5xl font-semibold uppercase leading-none md:text-7xl">{active.name}</h1><img src={script.url} alt="The secret ingredient is always love" className="mt-6 h-auto w-full max-w-md" /><a href="#avaliacoes" className="mt-6 flex items-center gap-2 text-xs text-muted-foreground"><Stars rating={reviewStats.average} /><span className="underline underline-offset-4">{reviewStats.average.toFixed(1)} · {reviewStats.total} avaliações</span></a><p className="mt-5 max-w-xl leading-relaxed text-muted-foreground">Óleo acelerador de bronzeado natural e vegano. Textura leve, aplicação uniforme, resistente à água e ao suor.</p>
           <div className="mt-8 grid grid-cols-3 gap-2">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} className="h-auto rounded-lg px-2 py-3" onClick={() => setSelected(pack.slug)}><span><span className="block text-xs font-semibold">PACK {pack.shortName}</span><span className="mt-1 block text-[10px] font-normal">{pack.price}</span></span></Button>)}</div>
           <div className="mt-8 flex items-end justify-between"><div>{active.comparePrice ? <p className="text-sm text-muted-foreground line-through">{active.comparePrice}</p> : null}<p className="text-3xl font-semibold">{active.price}</p><p className="mt-1 text-xs text-muted-foreground">{installmentText(active.price)}</p></div>{active.badge ? <span className="header-label">{active.badge}</span> : null}</div>
-          <Button variant="silver" className="mt-6 h-14 w-full rounded-lg text-xs font-semibold uppercase" onClick={add}><ShoppingBag />Adicionar à sacola</Button>
+          <Button variant="silver" className="mt-6 h-14 w-full rounded-lg text-xs font-semibold uppercase" onClick={add} disabled={active.soldOut}><ShoppingBag />{active.soldOut ? "Esgotado" : "Adicionar à sacola"}</Button>
           <ShippingQuote slug={selected} />
           <div className="mt-8 grid grid-cols-2 gap-3 text-xs">{["Natural", "Vegano", "Cruelty free", "Sem conservantes"].map((item) => <span key={item} className="flex items-center gap-2 border-t border-foreground/15 pt-3"><Check className="h-3 w-3" />{item}</span>)}</div>
         </div></div>
@@ -110,7 +113,7 @@ function ProductPage() {
       <ReviewsSection compact />
       <section className="mx-auto max-w-[1500px] px-6 py-20 md:px-8"><p className="header-label text-muted-foreground">PERGUNTAS FREQUENTES</p><div className="mt-8 divide-y divide-foreground/15 border-y border-foreground/15">{[["Possui fator de proteção solar?", "Não. É um acelerador de bronzeado sem FPS."], ["É resistente à água e ao suor?", "Sim, mas recomendamos reaplicar após períodos prolongados na água."], ["É autobronzeador?", "Não. É um acelerador que atua durante a exposição solar."]].map(([question, answer]) => <details key={question} className="group py-5"><summary className="cursor-pointer list-none font-semibold uppercase">{question}</summary><p className="mt-3 max-w-2xl text-sm text-muted-foreground">{answer}</p></details>)}</div></section>
     </main>
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex flex-col items-end whitespace-nowrap text-xs font-semibold"><span className="flex items-baseline gap-1.5">{active.comparePrice ? <span className="text-[10px] font-normal text-muted-foreground line-through">{active.comparePrice}</span> : null}{active.price}</span><span className="text-[9px] font-normal text-muted-foreground">{installmentShort(active.price)} sem juros</span></p><Button variant="silver" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={buyNow}><ShoppingBag />Comprar</Button></div></div>
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex flex-col items-end whitespace-nowrap text-xs font-semibold"><span className="flex items-baseline gap-1.5">{active.comparePrice ? <span className="text-[10px] font-normal text-muted-foreground line-through">{active.comparePrice}</span> : null}{active.price}</span><span className="text-[9px] font-normal text-muted-foreground">{installmentShort(active.price)} sem juros</span></p><Button variant="silver" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={buyNow} disabled={active.soldOut}><ShoppingBag />{active.soldOut ? "Esgotado" : "Comprar"}</Button></div></div>
     <Footer />
   </div>;
 }
