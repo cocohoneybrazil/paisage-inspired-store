@@ -9,6 +9,7 @@ import sol from "@/assets/sol-white.png.asset.json";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ProductCarousel } from "@/components/site/ProductCarousel";
+import { ReviewsSection } from "@/components/site/Reviews";
 import { Button } from "@/components/ui/button";
 import { packs } from "@/lib/products";
 import { formatPrice, installmentShort, installmentText, parsePrice, useCart } from "@/lib/cart";
@@ -100,6 +101,7 @@ function Home() {
         </div>
       </div>
     </section>
+    <ReviewsSection />
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex flex-col items-end whitespace-nowrap text-xs font-semibold"><span className="flex items-baseline gap-1.5">{active.comparePrice ? <span className="text-[10px] font-normal text-muted-foreground line-through">{active.comparePrice}</span> : null}{active.price}</span><span className="text-[9px] font-normal text-muted-foreground">{installmentShort(active.price)} sem juros</span></p><Button variant="silver" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={() => buyNow()}><ShoppingBag />Comprar</Button></div></div>
     <Footer />
   </div>;
