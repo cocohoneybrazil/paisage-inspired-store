@@ -9,6 +9,7 @@ import sol from "@/assets/sol-white.png.asset.json";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ProductCarousel } from "@/components/site/ProductCarousel";
+import { ReviewsSection } from "@/components/site/Reviews";
 import { Button } from "@/components/ui/button";
 import { packs } from "@/lib/products";
 import { formatPrice, installmentShort, installmentText, parsePrice, useCart } from "@/lib/cart";
