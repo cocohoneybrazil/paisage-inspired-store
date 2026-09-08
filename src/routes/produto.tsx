@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { addons, packs } from "@/lib/products";
 import { formatPrice, installmentShort, installmentText, shippingFor, stateForZip, useCart } from "@/lib/cart";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
+import { ReviewsSection, Stars } from "@/components/site/Reviews";
+import { reviewStats } from "@/lib/reviews";
 
 function ShippingQuote({ slug }: { slug: string }) {
   const [zip, setZip] = useState("");
