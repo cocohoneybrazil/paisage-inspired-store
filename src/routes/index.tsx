@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowDown, Check, ShoppingBag, X } from "lucide-react";
-import infusion from "@/assets/coco-infusion.png.asset.json";
+import heroMobile from "@/assets/coco-head-mobile.jpg.asset.json";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 import single from "@/assets/coco-honey-bronze-single.png.asset.json";
 import heroDesktop from "@/assets/coco-head.jpg.asset.json";
@@ -50,7 +50,7 @@ function Home() {
     {bagOpen ? <div className="fixed inset-0 z-50"><button className="absolute inset-0 w-full bg-foreground/25" onClick={() => setBagOpen(false)} aria-label="Fechar sacola" /><aside className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-background"><div className="flex h-16 items-center justify-between border-b border-foreground/15 px-6"><span className="header-label">SUA SACOLA ({cart.count})</span><Button variant="ghost" size="icon" onClick={() => setBagOpen(false)} aria-label="Fechar sacola"><X /></Button></div>{cart.items.length ? <><ul className="flex-1 divide-y divide-foreground/15 overflow-y-auto px-6">{cart.items.map((item) => <li key={item.pack.slug} className="flex gap-4 py-5"><img src={item.pack.image} alt={item.pack.name} className="h-20 w-20 rounded-lg bg-secondary object-cover" /><div className="flex-1"><p className="text-sm font-semibold uppercase">{item.pack.name}</p><p className="mt-1 text-xs text-muted-foreground">{item.pack.quantity} · {item.qty}x</p><button className="mt-2 text-[10px] uppercase underline underline-offset-4 text-muted-foreground" onClick={() => cart.remove(item.pack.slug)}>Remover</button></div><p className="text-sm font-semibold">{formatPrice(parsePrice(item.pack.price) * item.qty)}</p></li>)}</ul><div className="border-t border-foreground/15 px-6 py-5"><div className="flex items-center justify-between text-sm"><span className="text-muted-foreground">Subtotal</span><span className="font-semibold">{formatPrice(cart.subtotal)}</span></div><Button variant="silver" className="mt-4 h-12 w-full rounded-lg text-xs font-semibold uppercase" onClick={() => { setBagOpen(false); navigate({ to: "/checkout" }); }}>Finalizar compra</Button></div></> : <div className="flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center"><ShoppingBag className="h-8 w-8 text-muted-foreground" /><p className="text-sm text-muted-foreground">Sua sacola está vazia — por enquanto.</p></div>}</aside></div> : null}
     <main>
       <section className="relative flex min-h-[calc(92svh-4rem)] items-end overflow-hidden bg-photo-backdrop">
-        <img src={infusion.url} alt="Bolsa COCO INFUSION com óleo dourado" className="absolute inset-0 h-full w-full object-contain object-center sm:hidden" />
+        <img src={heroMobile.url} alt="COCO INFUSION — Vitamin Complex Nº 01" className="absolute inset-0 h-full w-full object-cover object-center sm:hidden" />
         <div className="absolute inset-0 hidden sm:block" style={{ backgroundColor: "#DFE3EC" }}><img src={heroDesktop.url} alt="COCO HONEY — ingredientes naturais, vegano, cruelty-free" className="h-full w-full object-contain object-center" /></div>
         <h1 className="sr-only">COCO Honey Brazil</h1>
         <a href="#packs" aria-label="Conhecer os packs" className="absolute bottom-7 left-1/2 -translate-x-1/2 text-foreground"><ArrowDown className="h-6 w-6" /></a>
