@@ -2,10 +2,11 @@ import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { packs } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
 import { installmentText } from "@/lib/cart";
 
 export function ProductCarousel() {
+  const { packs } = useCatalog();
   const ref = useRef<HTMLDivElement>(null);
   const move = (direction: number) => ref.current?.scrollBy({ left: direction * (ref.current.clientWidth * 0.82), behavior: "smooth" });
   return <div>

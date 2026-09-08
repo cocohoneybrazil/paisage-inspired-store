@@ -9,6 +9,10 @@ import toteBrazilBack from "@/assets/tote-bag-brazil-back.png.asset.json";
 
 export type Pack = {
   slug: string;
+  /** Handle do produto na Shopify — chave de ligação com a Storefront API. */
+  handle: string;
+  /** Variante padrão; é o que vai para o carrinho da Shopify. */
+  variantId: string;
   shortName: string;
   name: string;
   quantity: string;
@@ -17,15 +21,18 @@ export type Pack = {
   badge?: string;
   image: string;
   hoverImage?: string;
+  soldOut?: boolean;
 };
 
+// Preço e disponibilidade daqui são apenas o estado conhecido do catálogo: em runtime
+// eles são sobrescritos pelos valores reais da Storefront API (ver lib/catalog.ts).
 export const packs: Pack[] = [
-  { slug: "pack-001", shortName: "001", name: "Pack 001", quantity: "1 óleo · 62 ml", price: "R$ 119,00", image: single.url },
-  { slug: "pack-002", shortName: "002", name: "Pack 002", quantity: "2 óleos · 124 ml", price: "R$ 226,10", comparePrice: "R$ 238,00", badge: "5% OFF NO COMBO", image: duo.url },
-  { slug: "pack-003", shortName: "003", name: "Pack 003", quantity: "3 óleos · 186 ml + Sun Bag", price: "R$321,30", comparePrice: "R$ 357,00", badge: "10% OFF + SUN BAG + FRETE GRÁTIS", image: trio.url },
+  { slug: "pack-001", handle: "coco-honey-bronze-pack-001", variantId: "gid://shopify/ProductVariant/47928069488890", shortName: "001", name: "Pack 001", quantity: "1 óleo · 62 ml", price: "R$ 119,00", image: single.url },
+  { slug: "pack-002", handle: "coco-honey-bronze-pack-002", variantId: "gid://shopify/ProductVariant/47900491809018", shortName: "002", name: "Pack 002", quantity: "2 óleos · 124 ml", price: "R$ 226,00", comparePrice: "R$ 238,00", badge: "5% OFF NO COMBO", image: duo.url },
+  { slug: "pack-003", handle: "coco-honey-bronze-pack-003", variantId: "gid://shopify/ProductVariant/47900491841786", shortName: "003", name: "Pack 003", quantity: "3 óleos · 186 ml + Sun Bag", price: "R$ 321,00", comparePrice: "R$ 357,00", badge: "10% OFF + SUN BAG + FRETE GRÁTIS", image: trio.url },
 ];
 
 export const addons: Pack[] = [
-  { slug: "tote-bag-coco", shortName: "TOTE", name: "Tote Bag Coco", quantity: "Marrom · algodão", price: "R$ 129,00", image: toteCoco.url, hoverImage: toteCocoBack.url },
-  { slug: "tote-bag-brazil", shortName: "TOTE", name: "Tote Bag Brazil", quantity: "Verde e amarela · algodão", price: "R$ 129,00", image: toteBrazil.url, hoverImage: toteBrazilBack.url },
+  { slug: "tote-bag-coco", handle: "tote-bag-coco", variantId: "gid://shopify/ProductVariant/48258134114554", shortName: "TOTE", name: "Tote Bag Coco", quantity: "Marrom · algodão", price: "R$ 129,00", image: toteCoco.url, hoverImage: toteCocoBack.url },
+  { slug: "tote-bag-brazil", handle: "tote-bag-brazil", variantId: "gid://shopify/ProductVariant/48258081227002", shortName: "TOTE", name: "Tote Bag Brazil", quantity: "Verde e amarela · algodão", price: "R$ 129,00", image: toteBrazil.url, hoverImage: toteBrazilBack.url },
 ];

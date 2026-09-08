@@ -3,7 +3,8 @@ import { ShoppingBag, ArrowLeft } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
-import { addons, packs } from "@/lib/products";
+import { addons } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
 import { useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/tote/$slug")({
@@ -25,7 +26,8 @@ export const Route = createFileRoute("/tote/$slug")({
 
 function TotePage() {
   const { slug } = Route.useParams();
-  const bag = addons.find((item) => item.slug === slug);
+  const catalog = useCatalog();
+  const bag = catalog.addons.find((item) => item.slug === slug);
   const cart = useCart();
   if (!bag) throw notFound();
 
@@ -53,8 +55,8 @@ function TotePage() {
               <li>Bolso interno</li>
             </ul>
             <p className="mt-8 text-3xl font-semibold">{bag.price}</p>
-            <Button variant="silver" className="mt-6 h-14 w-full rounded-lg text-xs font-semibold uppercase" onClick={() => cart.add(bag.slug)}>
-              <ShoppingBag />Adicionar à sacola
+            <Button variant="silver" className="mt-6 h-14 w-full rounded-lg text-xs font-semibold uppercase" onClick={() => cart.add(bag.slug)} disabled={bag.soldOut}>
+              <ShoppingBag />{bag.soldOut ? "Esgotado" : "Adicionar à sacola"}
             </Button>
             <div className="mt-6 grid grid-cols-2 gap-3 text-xs">
               {["100% algodão", "Bolso interno", "Alças resistentes", "Edição limitada"].map((item) => (

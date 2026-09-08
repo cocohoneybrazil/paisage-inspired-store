@@ -1,29 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-import { addons, packs, type Pack } from "@/lib/products";
+import { useCatalog } from "@/lib/catalog";
+import { parsePrice } from "@/lib/price";
+import type { Pack } from "@/lib/products";
 
-const catalog = [...packs, ...addons];
+export { formatAmount, formatPrice, installmentShort, installmentText, parsePrice } from "@/lib/price";
 
 export type CartLine = { slug: string; qty: number };
 export type CartItem = { pack: Pack; qty: number };
 
 const KEY = "coco-cart";
 const EVENT = "coco-cart-change";
-
-export function parsePrice(value: string): number {
-  return Math.round(Number(value.replace(/[^\d,]/g, "").replace(",", ".")) * 100);
-}
-
-export function formatPrice(cents: number): string {
-  return `R$ ${(cents / 100).toFixed(2).replace(".", ",")}`;
-}
-
-export function installmentText(price: string, times = 3): string {
-  return `ou ${times}x de ${formatPrice(Math.round(parsePrice(price) / times))} sem juros`;
-}
-
-export function installmentShort(price: string, times = 3): string {
-  return `${times}x ${formatPrice(Math.round(parsePrice(price) / times))}`;
-}
 
 function read(): CartLine[] {
   if (typeof window === "undefined") return [];
@@ -35,7 +21,7 @@ function read(): CartLine[] {
       .filter((line): line is CartLine =>
         typeof line === "object" && line !== null &&
         typeof (line as CartLine).slug === "string" && typeof (line as CartLine).qty === "number")
-      .filter((line) => catalog.some((pack) => pack.slug === line.slug) && line.qty > 0)
+      .filter((line) => line.qty > 0)
       .map((line) => ({ slug: line.slug, qty: Math.min(Math.round(line.qty), 20) }));
   } catch {
     return [];
@@ -109,6 +95,7 @@ export function subtotalOf(items: CartItem[]) {
 }
 
 export function useCart() {
+  const { items: catalog } = useCatalog();
   const [lines, setLines] = useState<CartLine[]>([]);
 
   useEffect(() => {
