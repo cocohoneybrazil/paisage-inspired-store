@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import gabrielaPhoto from "@/assets/gabriela.jpg.asset.json";
+import philippePhoto from "@/assets/philippe-godinho.jpg.asset.json";
 
 export const Route = createFileRoute("/historia")({
   head: () => ({
@@ -75,22 +77,38 @@ function Historia() {
             <article className="border-t border-foreground/20 pt-5 md:col-span-2">
               <p className="header-label text-muted-foreground">03</p>
               <h2 className="mt-6 text-3xl font-semibold uppercase leading-tight md:text-4xl">Do nosso verão para o seu</h2>
-              <div className="mt-4 grid gap-6 text-sm leading-relaxed text-muted-foreground md:grid-cols-2 md:gap-12">
-                <div className="space-y-4">
-                  <p>
-                    Gabriela e Philippe cresceram com o mar por perto.
-                  </p>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                Gabriela e Philippe cresceram com o mar por perto.
+              </p>
+              <div className="mt-10 grid gap-14 md:grid-cols-2 md:gap-12">
+                <div>
+                  <img
+                    src={gabrielaPhoto.url}
+                    alt="Retrato de Gabriela, cofundadora da Coco Honey Brazil"
+                    className="aspect-square w-full object-cover grayscale"
+                  />
+                  <p className="header-label mt-4 text-foreground">Gabriela</p>
+                  <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
                   <p>
                     Para Gabriela, praia sempre foi sinônimo de liberdade, banho de mar, esporte, amigos e aquele equilíbrio entre cuidar do corpo e nunca abrir mão de um bom doce. Dona do Romarinho, um cachorro que era de rua e que, para ela, é o mais fofo do mundo.
                   </p>
+                  </div>
                 </div>
-                <div className="space-y-4">
+                <div>
+                  <img
+                    src={philippePhoto.url}
+                    alt="Retrato de Philippe Godinho, cofundador da Coco Honey Brazil"
+                    className="aspect-square w-full object-cover grayscale"
+                  />
+                  <p className="header-label mt-4 text-foreground">Philippe Godinho</p>
+                  <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
                   <p>
                     Para Philippe, desde pequeno, acostumado a frequentar a praia. Com o avô pescador, teve desde cedo o contato com o mar.
                   </p>
                   <p>
                     Nas férias, alugava cadeira e guarda-sol no litoral de Santa Catarina. Nas horas vagas, atividade física e praia são os melhores remédios. E amigos que, até hoje, são sua família.
                   </p>
+                  </div>
                 </div>
               </div>
               <div className="mt-8 border-t border-foreground/15 pt-6 text-sm leading-relaxed text-muted-foreground md:col-span-2">
