@@ -28,7 +28,7 @@ function Historia() {
             <p className="header-label text-muted-foreground">COCO HONEY BRAZIL</p>
             <h1 className="mt-5 text-5xl font-semibold uppercase leading-none md:text-8xl">Nossa história</h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              A gente envazou o verão. 
+              A gente envasou o verão.
 
 
               A Coco nasceu da paixão, de um sonho de entregar a melhor experiência para os amigos e de transformar o cuidado com a pele em um ritual de autoestima.
