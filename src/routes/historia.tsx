@@ -28,7 +28,7 @@ function Historia() {
             <p className="header-label text-muted-foreground">COCO HONEY BRAZIL</p>
             <h1 className="mt-5 text-5xl font-semibold uppercase leading-none md:text-8xl">Nossa história</h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              A gente envazou o verão. 
+              A gente envasou o verão.
 
 
               A Coco nasceu da paixão, de um sonho de entregar a melhor experiência para os amigos e de transformar o cuidado com a pele em um ritual de autoestima.
@@ -67,7 +67,7 @@ function Historia() {
               <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
                 <p className="text-lg font-medium uppercase tracking-wide text-foreground">Sexy. Leal. Expressivo.</p>
                 <p>
-                  Sexy, porque o verão também é sobre se sentir bem na própria pele, se sentir desejada por você mesmo.
+                  Sexy, porque o verão também é sobre se sentir bem na própria pele, se sentir desejada por você mesma.
                 </p>
                 <p>
                   Leal, porque acreditamos em relações verdadeiras — com nossos amigos, nossa comunidade e com aquilo que escolhemos colocar na pele. E o cheirinho você vai ver, não te abandona haha.
@@ -107,7 +107,7 @@ function Historia() {
                   <p className="header-label mt-4 text-foreground">Philippe Godinho</p>
                   <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
                   <p>
-                    Para Philippe, desde pequeno, acostumado a frequentar a praia. Com o avô pescador, teve desde cedo o contato com o mar.
+                    Philippe cresceu frequentando a praia. Com o avô pescador, teve desde cedo o contato com o mar.
                   </p>
                   <p>
                     Nas férias, alugava cadeira e guarda-sol no litoral de Santa Catarina. Nas horas vagas, atividade física e praia são os melhores remédios. E amigos que, até hoje, são sua família.
