@@ -67,7 +67,7 @@ function Historia() {
               <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
                 <p className="text-lg font-medium uppercase tracking-wide text-foreground">Sexy. Leal. Expressivo.</p>
                 <p>
-                  Sexy, porque o verão também é sobre se sentir bem na própria pele, se sentir desejada por você mesmo.
+                  Sexy, porque o verão também é sobre se sentir bem na própria pele, se sentir desejada por você mesma.
                 </p>
                 <p>
                   Leal, porque acreditamos em relações verdadeiras — com nossos amigos, nossa comunidade e com aquilo que escolhemos colocar na pele. E o cheirinho você vai ver, não te abandona haha.
@@ -107,7 +107,7 @@ function Historia() {
                   <p className="header-label mt-4 text-foreground">Philippe Godinho</p>
                   <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
                   <p>
-                    Para Philippe, desde pequeno, acostumado a frequentar a praia. Com o avô pescador, teve desde cedo o contato com o mar.
+                    Philippe cresceu frequentando a praia. Com o avô pescador, teve desde cedo o contato com o mar.
                   </p>
                   <p>
                     Nas férias, alugava cadeira e guarda-sol no litoral de Santa Catarina. Nas horas vagas, atividade física e praia são os melhores remédios. E amigos que, até hoje, são sua família.
