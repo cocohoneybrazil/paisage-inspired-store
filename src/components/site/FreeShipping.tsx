@@ -1,7 +1,7 @@
-import { Check, Truck } from "lucide-react";
+import { Check, Sparkles, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCatalog } from "@/lib/catalog";
-import { FREE_SHIPPING_THRESHOLD, formatPrice, parsePrice, useCart } from "@/lib/cart";
+import { FREE_SHIPPING_THRESHOLD, cheaperCombination, formatPrice, parsePrice, useCart } from "@/lib/cart";
 
 /**
  * Barra de progresso até o frete grátis. O valor que falta aparece em reais em vez de
@@ -32,12 +32,49 @@ export function FreeShippingBar({ className = "" }: { className?: string }) {
 }
 
 /**
+ * Avisa quando os mesmos frascos sairiam mais barato em outra combinação de packs —
+ * dois Pack 001 custam R$ 238, e os mesmos dois frascos saem por R$ 226 no Pack 002.
+ * Deixar o cliente pagar a mais sem avisar é o tipo de coisa que ele descobre depois.
+ */
+export function SavingsNudge({ className = "" }: { className?: string }) {
+  const cart = useCart();
+  const { packs } = useCatalog();
+
+  const better = cheaperCombination(cart.items, packs);
+  if (!better) return null;
+
+  const description = better.lines
+    .map((line) => (line.qty > 1 ? `${line.qty}× ${line.pack.name}` : line.pack.name))
+    .join(" + ");
+
+  const swap = () => {
+    for (const pack of packs) cart.setQty(pack.slug, 0);
+    for (const line of better.lines) cart.add(line.pack.slug, line.qty);
+  };
+
+  return (
+    <div className={`flex items-center gap-4 border border-foreground bg-secondary/60 p-3 ${className}`}>
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-foreground/25"><Sparkles className="h-4 w-4" /></span>
+      <div className="min-w-0 flex-1">
+        <p className="text-sm font-semibold uppercase">Os mesmos {better.bottles} frascos por menos</p>
+        <p className="mt-0.5 text-xs text-muted-foreground">Trocando para {description}, você economiza {formatPrice(better.saving)}</p>
+      </div>
+      <Button variant="silver" size="sm" className="h-9 shrink-0 rounded-lg px-4 text-[10px] font-semibold uppercase" onClick={swap}>Trocar</Button>
+    </div>
+  );
+}
+
+/**
  * Empurra quem está com o Pack 001 para o Pack 002 — a troca que fecha a régua sozinha.
  * Só aparece quando ela de fato resolve: com o Pack 001 na sacola e o frete ainda pago.
  */
 export function UpgradeNudge({ className = "" }: { className?: string }) {
   const cart = useCart();
   const { packs } = useCatalog();
+
+  // Economizar vem antes de gastar mais: se a sacola já tem uma combinação melhor
+  // disponível, quem fala é a SavingsNudge.
+  if (cheaperCombination(cart.items, packs)) return null;
 
   const single = cart.items.find((item) => item.pack.slug === "pack-001");
   const duo = packs.find((pack) => pack.slug === "pack-002");
