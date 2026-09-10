@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useCatalog } from "@/lib/catalog";
-import { parsePrice } from "@/lib/price";
+import { formatPrice, parsePrice } from "@/lib/price";
 import type { Pack } from "@/lib/products";
 
 export { formatAmount, formatPrice, installmentShort, installmentText, parsePrice } from "@/lib/price";
@@ -91,6 +91,21 @@ export function shippingFor(state: string, items: CartItem[]) {
   if (!zone) return null;
   const freeShipping = subtotalOf(items) >= FREE_SHIPPING_THRESHOLD;
   return { ...zone, price: freeShipping ? 0 : zone.price, freeShipping };
+}
+
+/**
+ * Preço por frasco. É o que torna a escada de descontos verificável pelo cliente:
+ * "5% OFF" é uma alegação, "R$ 113,00 por frasco" é um número que ele confere sozinho.
+ * Não faz sentido no Pack 001, onde o preço do pack já é o preço do frasco.
+ */
+export function perBottle(pack: Pack): string | null {
+  if (pack.bottles <= 1) return null;
+  return formatPrice(Math.round(parsePrice(pack.price) / pack.bottles));
+}
+
+/** Se o pack sozinho já passa da régua do frete grátis. */
+export function hasFreeShipping(pack: Pack): boolean {
+  return parsePrice(pack.price) >= FREE_SHIPPING_THRESHOLD;
 }
 
 export type PackLine = { pack: Pack; qty: number };
