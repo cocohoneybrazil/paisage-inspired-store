@@ -32,8 +32,8 @@ export async function storefront<T>(
 }
 
 const CART_CREATE = `
-  mutation CocoCartCreate($lines: [CartLineInput!]!) {
-    cartCreate(input: { lines: $lines, buyerIdentity: { countryCode: BR } }) {
+  mutation CocoCartCreate($lines: [CartLineInput!]!, $email: String) {
+    cartCreate(input: { lines: $lines, buyerIdentity: { countryCode: BR, email: $email } }) {
       cart { id checkoutUrl }
       userErrors { field message }
     }
@@ -47,12 +47,21 @@ type CartCreateResult = {
   } | null;
 };
 
-/** Cria um Cart real na Shopify e devolve a URL do checkout hospedado. */
+/**
+ * Cria um Cart real na Shopify e devolve a URL do checkout hospedado.
+ *
+ * Quando o cliente já deixou o e-mail no popup, ele vai junto: o checkout abre
+ * identificado e, se a pessoa desistir no meio, a Shopify registra um checkout
+ * abandonado com contato — que é o que torna a recuperação possível. Sem isso, quem
+ * desiste antes de digitar o e-mail some sem deixar rastro.
+ */
 export async function createCheckoutUrl(
   lines: { variantId: string; qty: number }[],
+  email?: string,
 ): Promise<string> {
   const data = await storefront<CartCreateResult>(CART_CREATE, {
     lines: lines.map((line) => ({ merchandiseId: line.variantId, quantity: line.qty })),
+    email: email ?? null,
   });
 
   const result = data.cartCreate;
@@ -85,4 +94,23 @@ export async function subscribeEmail(email: string): Promise<void> {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body,
   });
+}
+
+const EMAIL_KEY = "coco-email";
+
+/** Guarda o e-mail que o cliente deixou no popup, para o checkout já abrir identificado. */
+export function rememberEmail(email: string) {
+  try {
+    window.localStorage.setItem(EMAIL_KEY, email);
+  } catch {
+    // Navegação privada: seguimos sem lembrar, o checkout pede o e-mail do mesmo jeito.
+  }
+}
+
+export function rememberedEmail(): string | undefined {
+  try {
+    return window.localStorage.getItem(EMAIL_KEY) ?? undefined;
+  } catch {
+    return undefined;
+  }
 }
