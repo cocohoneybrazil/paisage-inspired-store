@@ -31,7 +31,7 @@ export type Pack = {
 export const packs: Pack[] = [
   { slug: "pack-001", bottles: 1, handle: "coco-honey-bronze-pack-001", variantId: "gid://shopify/ProductVariant/47928069488890", shortName: "001", name: "Pack 001", quantity: "1 óleo · 62 ml", price: "R$ 119,00", image: single.url },
   { slug: "pack-002", bottles: 2, handle: "coco-honey-bronze-pack-002", variantId: "gid://shopify/ProductVariant/47900491809018", shortName: "002", name: "Pack 002", quantity: "2 óleos · 124 ml", price: "R$ 226,00", comparePrice: "R$ 238,00", badge: "5% OFF NO COMBO", image: duo.url },
-  { slug: "pack-003", bottles: 3, handle: "coco-honey-bronze-pack-003", variantId: "gid://shopify/ProductVariant/47900491841786", shortName: "003", name: "Pack 003", quantity: "3 óleos · 186 ml + Sun Bag", price: "R$ 321,00", comparePrice: "R$ 357,00", badge: "10% OFF + SUN BAG + FRETE GRÁTIS", image: trio.url },
+  { slug: "pack-003", bottles: 3, handle: "coco-honey-bronze-pack-003", variantId: "gid://shopify/ProductVariant/47900491841786", shortName: "003", name: "Pack 003", quantity: "3 óleos · 186 ml + Sun Bag", price: "R$ 321,00", comparePrice: "R$ 357,00", badge: "10% OFF + SUN BAG", image: trio.url },
 ];
 
 export const addons: Pack[] = [
