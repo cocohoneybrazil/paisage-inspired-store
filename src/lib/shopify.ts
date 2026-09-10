@@ -61,3 +61,28 @@ export async function createCheckoutUrl(
   if (!result?.cart) throw new Error("Não foi possível criar o carrinho na Shopify");
   return result.cart.checkoutUrl;
 }
+
+/**
+ * Cadastra o e-mail como contato de marketing na Shopify, pelo mesmo endereço que o
+ * formulário de newsletter da loja usa. A resposta vem opaca (o navegador bloqueia a
+ * leitura entre domínios diferentes), então não há como confirmar daqui se o contato
+ * entrou — quem chama isto não deve prometer nada ao cliente com base no retorno.
+ */
+export async function subscribeEmail(email: string): Promise<void> {
+  if (!domain) throw new Error("Storefront API não configurada");
+
+  const body = new URLSearchParams({
+    form_type: "customer",
+    utf8: "✓",
+    "contact[email]": email,
+    "contact[tags]": "newsletter,popup-site",
+    "contact[accepts_marketing]": "true",
+  });
+
+  await fetch(`https://${domain}/contact`, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body,
+  });
+}
