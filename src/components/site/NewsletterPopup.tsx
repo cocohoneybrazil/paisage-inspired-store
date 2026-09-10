@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { rememberContact, subscribeContact } from "@/lib/shopify";
 
 const KEY = "coco-newsletter";
-const DELAY = 30_000;
+const DELAY = 15_000;
 const COUPON = "HONEYBRONZE";
 /** Fração da superfície raspada que basta para revelar o resto sozinho. */
 const REVEAL_AT = 0.45;
