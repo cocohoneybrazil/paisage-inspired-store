@@ -5,6 +5,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { useCatalog } from "@/lib/catalog";
+import { FreeShippingBar, UpgradeNudge } from "@/components/site/FreeShipping";
 import { createCheckoutUrl } from "@/lib/shopify";
 import { formatPrice, installmentShort, parsePrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
 
@@ -69,7 +70,10 @@ function CheckoutPage() {
         <div>
           <h1 className="text-5xl font-semibold uppercase leading-none md:text-6xl">Sua sacola</h1>
 
-          <ul className="mt-10 divide-y divide-foreground/15 border-y border-foreground/15">
+          <FreeShippingBar className="mt-8" />
+          <UpgradeNudge className="mt-5" />
+
+          <ul className="mt-8 divide-y divide-foreground/15 border-y border-foreground/15">
             {cart.items.map((item) => (
               <li key={item.pack.slug} className="flex gap-4 py-5">
                 <img src={item.pack.image} alt={item.pack.name} className="h-24 w-24 rounded-lg bg-secondary object-cover" />
