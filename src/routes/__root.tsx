@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CatalogContext, buildCatalog, fetchLiveProducts, type LiveProduct } from "../lib/catalog";
 import { shopifyConfigured } from "../lib/shopify";
+import { NewsletterPopup } from "../components/site/NewsletterPopup";
 
 function NotFoundComponent() {
   return (
@@ -143,6 +144,7 @@ function RootComponent() {
       <CatalogContext.Provider value={catalog}>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
+        <NewsletterPopup />
       </CatalogContext.Provider>
     </QueryClientProvider>
   );
