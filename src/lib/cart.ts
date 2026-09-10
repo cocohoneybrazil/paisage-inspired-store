@@ -86,7 +86,10 @@ export function stateForZip(zip: string): string | null {
 export function shippingFor(state: string, items: CartItem[]) {
   const zone = zoneForState(state);
   if (!zone) return null;
-  const freeShipping = items.some((item) => item.pack.slug === "pack-003") || subtotalOf(items) >= 30000;
+  // Espelha a regra automática da Shopify: frete grátis a partir de R$ 299 no subtotal.
+  // O Pack 003 sozinho (R$ 321) já passa desse valor, então a promessa de frete grátis
+  // nele se cumpre por essa mesma regra.
+  const freeShipping = subtotalOf(items) >= 29900;
   return { ...zone, price: freeShipping ? 0 : zone.price, freeShipping };
 }
 
