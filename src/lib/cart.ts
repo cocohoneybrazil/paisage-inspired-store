@@ -83,13 +83,13 @@ export function stateForZip(zip: string): string | null {
   return null;
 }
 
+/** Espelha a regra automática da Shopify: frete grátis a partir de R$ 199 no subtotal. */
+export const FREE_SHIPPING_THRESHOLD = 19900;
+
 export function shippingFor(state: string, items: CartItem[]) {
   const zone = zoneForState(state);
   if (!zone) return null;
-  // Espelha a regra automática da Shopify: frete grátis a partir de R$ 299 no subtotal.
-  // O Pack 003 sozinho (R$ 321) já passa desse valor, então a promessa de frete grátis
-  // nele se cumpre por essa mesma regra.
-  const freeShipping = subtotalOf(items) >= 29900;
+  const freeShipping = subtotalOf(items) >= FREE_SHIPPING_THRESHOLD;
   return { ...zone, price: freeShipping ? 0 : zone.price, freeShipping };
 }
 
