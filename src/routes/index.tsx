@@ -41,9 +41,9 @@ function Home() {
         {[0, 1, 2].map((i) => <div key={i} className="flex items-center gap-8 px-6 text-[11px] font-semibold uppercase tracking-[0.22em]">
           <span>WELCOME SUMMER</span>
           <img src={sol.url} alt="" className="h-3.5 w-3.5" />
-          <span>FRETE GRÁTIS NO PACK003</span>
+          <span>FRETE GRÁTIS ACIMA DE R$ 199</span>
           <img src={sol.url} alt="" className="h-3.5 w-3.5" />
-          <span>10%OFF NA PRIMEIRA COMPRA</span>
+          <span>10% OFF NA PRIMEIRA COMPRA</span>
           <img src={sol.url} alt="" className="h-3.5 w-3.5" />
         </div>)}
       </div>
