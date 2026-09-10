@@ -6,7 +6,7 @@ import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { useCatalog } from "@/lib/catalog";
 import { FreeShippingBar, SavingsNudge, UpgradeNudge } from "@/components/site/FreeShipping";
-import { createCheckoutUrl, rememberedEmail } from "@/lib/shopify";
+import { createCheckoutUrl, rememberedContact } from "@/lib/shopify";
 import { formatPrice, installmentShort, parsePrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/checkout")({
@@ -41,7 +41,7 @@ function CheckoutPage() {
     setError(null);
     setLoading(true);
     try {
-      window.location.href = await createCheckoutUrl(cart.items.map((item) => ({ variantId: item.pack.variantId, qty: item.qty })), rememberedEmail());
+      window.location.href = await createCheckoutUrl(cart.items.map((item) => ({ variantId: item.pack.variantId, qty: item.qty })), rememberedContact());
     } catch (cause) {
       console.error("Falha ao criar o checkout na Shopify", cause);
       setError("Não conseguimos abrir o pagamento agora. Tente de novo em instantes.");

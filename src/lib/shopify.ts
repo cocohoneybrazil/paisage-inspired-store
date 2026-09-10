@@ -32,8 +32,8 @@ export async function storefront<T>(
 }
 
 const CART_CREATE = `
-  mutation CocoCartCreate($lines: [CartLineInput!]!, $email: String) {
-    cartCreate(input: { lines: $lines, buyerIdentity: { countryCode: BR, email: $email } }) {
+  mutation CocoCartCreate($lines: [CartLineInput!]!, $email: String, $phone: String) {
+    cartCreate(input: { lines: $lines, buyerIdentity: { countryCode: BR, email: $email, phone: $phone } }) {
       cart { id checkoutUrl }
       userErrors { field message }
     }
@@ -57,11 +57,12 @@ type CartCreateResult = {
  */
 export async function createCheckoutUrl(
   lines: { variantId: string; qty: number }[],
-  email?: string,
+  contact: Contact = {},
 ): Promise<string> {
   const data = await storefront<CartCreateResult>(CART_CREATE, {
     lines: lines.map((line) => ({ merchandiseId: line.variantId, quantity: line.qty })),
-    email: email ?? null,
+    email: contact.email ?? null,
+    phone: contact.phone ?? null,
   });
 
   const result = data.cartCreate;
@@ -71,22 +72,31 @@ export async function createCheckoutUrl(
   return result.cart.checkoutUrl;
 }
 
-/**
- * Cadastra o e-mail como contato de marketing na Shopify, pelo mesmo endereço que o
- * formulário de newsletter da loja usa. A resposta vem opaca (o navegador bloqueia a
- * leitura entre domínios diferentes), então não há como confirmar daqui se o contato
- * entrou — quem chama isto não deve prometer nada ao cliente com base no retorno.
- */
-export async function subscribeEmail(email: string): Promise<void> {
-  if (!domain) throw new Error("Storefront API não configurada");
+export type Contact = { email?: string; phone?: string };
 
+/**
+ * Cadastra o contato na Shopify pelo mesmo endereço que o formulário de newsletter da
+ * loja usa. A resposta vem opaca (o navegador bloqueia a leitura entre domínios
+ * diferentes), então não há como confirmar daqui se entrou — quem chama isto não deve
+ * prometer nada ao cliente com base no retorno.
+ *
+ * A etiqueta de WhatsApp só vai quando existe telefone, e telefone só chega aqui quando
+ * a pessoa marcou o aceite no popup. É essa etiqueta que vai permitir separar, no dia em
+ * que o canal existir, quem autorizou de quem nunca autorizou.
+ */
+export async function subscribeContact({ email, phone }: Contact): Promise<void> {
+  if (!domain) throw new Error("Storefront API não configurada");
+  if (!email && !phone) return;
+
+  const tags = ["newsletter", "popup-site", ...(phone ? ["whatsapp-optin"] : [])];
   const body = new URLSearchParams({
     form_type: "customer",
     utf8: "✓",
-    "contact[email]": email,
-    "contact[tags]": "newsletter,popup-site",
+    "contact[tags]": tags.join(","),
     "contact[accepts_marketing]": "true",
   });
+  if (email) body.set("contact[email]", email);
+  if (phone) body.set("contact[phone]", phone);
 
   await fetch(`https://${domain}/contact`, {
     method: "POST",
@@ -96,21 +106,32 @@ export async function subscribeEmail(email: string): Promise<void> {
   });
 }
 
-const EMAIL_KEY = "coco-email";
+const CONTACT_KEY = "coco-contact";
 
-/** Guarda o e-mail que o cliente deixou no popup, para o checkout já abrir identificado. */
-export function rememberEmail(email: string) {
+/**
+ * Guarda o contato deixado no popup para o checkout já abrir identificado — e, se a
+ * pessoa desistir no meio, virar um checkout abandonado com contato em vez de sumir.
+ */
+export function rememberContact(contact: Contact) {
   try {
-    window.localStorage.setItem(EMAIL_KEY, email);
+    const merged = { ...rememberedContact(), ...contact };
+    window.localStorage.setItem(CONTACT_KEY, JSON.stringify(merged));
   } catch {
-    // Navegação privada: seguimos sem lembrar, o checkout pede o e-mail do mesmo jeito.
+    // Navegação privada: seguimos sem lembrar, o checkout pede os dados do mesmo jeito.
   }
 }
 
-export function rememberedEmail(): string | undefined {
+export function rememberedContact(): Contact {
   try {
-    return window.localStorage.getItem(EMAIL_KEY) ?? undefined;
+    const raw = window.localStorage.getItem(CONTACT_KEY);
+    const parsed: unknown = raw ? JSON.parse(raw) : null;
+    if (typeof parsed !== "object" || parsed === null) return {};
+    const { email, phone } = parsed as Contact;
+    return {
+      ...(typeof email === "string" ? { email } : {}),
+      ...(typeof phone === "string" ? { phone } : {}),
+    };
   } catch {
-    return undefined;
+    return {};
   }
 }
