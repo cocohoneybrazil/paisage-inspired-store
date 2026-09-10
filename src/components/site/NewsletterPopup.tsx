@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouterState } from "@tanstack/react-router";
 import { Check, Copy, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { subscribeEmail } from "@/lib/shopify";
+import { rememberEmail, subscribeEmail } from "@/lib/shopify";
 
 const KEY = "coco-newsletter";
 const DELAY = 30_000;
@@ -62,6 +62,7 @@ export function NewsletterPopup() {
     }
     setError(null);
     setSending(true);
+    rememberEmail(trimmed);
     try {
       await subscribeEmail(trimmed);
     } catch (cause) {
