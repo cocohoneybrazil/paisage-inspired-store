@@ -5,7 +5,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { useCatalog } from "@/lib/catalog";
-import { FreeShippingBar, UpgradeNudge } from "@/components/site/FreeShipping";
+import { FreeShippingBar, SavingsNudge, UpgradeNudge } from "@/components/site/FreeShipping";
 import { createCheckoutUrl } from "@/lib/shopify";
 import { formatPrice, installmentShort, parsePrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
 
@@ -71,6 +71,7 @@ function CheckoutPage() {
           <h1 className="text-5xl font-semibold uppercase leading-none md:text-6xl">Sua sacola</h1>
 
           <FreeShippingBar className="mt-8" />
+          <SavingsNudge className="mt-5" />
           <UpgradeNudge className="mt-5" />
 
           <ul className="mt-8 divide-y divide-foreground/15 border-y border-foreground/15">

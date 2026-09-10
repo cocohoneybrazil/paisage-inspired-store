@@ -93,6 +93,44 @@ export function shippingFor(state: string, items: CartItem[]) {
   return { ...zone, price: freeShipping ? 0 : zone.price, freeShipping };
 }
 
+export type PackLine = { pack: Pack; qty: number };
+
+/**
+ * Encontra a combinação de packs mais barata para a mesma quantidade de frascos.
+ *
+ * O preço por frasco cai conforme o pack cresce (R$ 119, R$ 113 e R$ 107), então pegar
+ * sempre o maior pack possível já dá o resultado ótimo — não precisa testar combinações.
+ * Existe para impedir que alguém pague R$ 238 em dois Pack 001 quando os mesmos dois
+ * frascos saem por R$ 226 no Pack 002.
+ */
+export function cheaperCombination(items: CartItem[], packs: Pack[]) {
+  const bottles = items.reduce((total, item) => total + item.pack.bottles * item.qty, 0);
+  if (bottles === 0) return null;
+
+  const current = items
+    .filter((item) => item.pack.bottles > 0)
+    .reduce((total, item) => total + parsePrice(item.pack.price) * item.qty, 0);
+
+  const bySize = [...packs].filter((pack) => pack.bottles > 0 && !pack.soldOut).sort((a, b) => b.bottles - a.bottles);
+  if (bySize.length === 0) return null;
+
+  const lines: PackLine[] = [];
+  let left = bottles;
+  for (const pack of bySize) {
+    const qty = Math.floor(left / pack.bottles);
+    if (qty > 0) {
+      lines.push({ pack, qty });
+      left -= qty * pack.bottles;
+    }
+  }
+  if (left > 0) return null; // sem pack de 1 frasco disponível, não dá para fechar a conta
+
+  const best = lines.reduce((total, line) => total + parsePrice(line.pack.price) * line.qty, 0);
+  if (best >= current) return null;
+
+  return { lines, bottles, saving: current - best };
+}
+
 export function subtotalOf(items: CartItem[]) {
   return items.reduce((total, item) => total + parsePrice(item.pack.price) * item.qty, 0);
 }
