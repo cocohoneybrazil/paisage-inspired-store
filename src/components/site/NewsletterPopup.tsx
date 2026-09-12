@@ -110,8 +110,13 @@ export function NewsletterPopup() {
   const allowed = !pathname.startsWith("/checkout");
 
   useEffect(() => {
-    if (!allowed || alreadySeen()) return;
-    const timer = window.setTimeout(() => setOpen(true), DELAY);
+    if (!allowed) return;
+    // ?popup=1 abre na hora, mesmo para quem já viu. Sem isso não há como conferir o
+    // popup duas vezes no mesmo navegador — o registro de "já viu" é justamente o que
+    // impede a pessoa de ser importunada de novo.
+    const forced = new URLSearchParams(window.location.search).has("popup");
+    if (!forced && alreadySeen()) return;
+    const timer = window.setTimeout(() => setOpen(true), forced ? 0 : DELAY);
     return () => window.clearTimeout(timer);
   }, [allowed]);
 
