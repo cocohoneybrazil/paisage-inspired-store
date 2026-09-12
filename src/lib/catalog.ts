@@ -9,6 +9,8 @@ export type LiveProduct = {
   price: string;
   compareAtPrice: string | null;
   availableForSale: boolean;
+  /** Fotos do produto na Shopify, na ordem em que estão no painel. */
+  images: string[];
 };
 
 export type Catalog = { packs: Pack[]; addons: Pack[]; items: Pack[] };
@@ -18,6 +20,7 @@ const CATALOG_QUERY = `
     products(first: 50) {
       nodes {
         handle
+        images(first: 3) { nodes { url } }
         variants(first: 1) {
           nodes {
             id
@@ -35,6 +38,7 @@ type CatalogResult = {
   products: {
     nodes: {
       handle: string;
+      images: { nodes: { url: string }[] };
       variants: {
         nodes: {
           id: string;
@@ -59,6 +63,7 @@ export async function fetchLiveProducts(): Promise<LiveProduct[]> {
         price: variant.price.amount,
         compareAtPrice: variant.compareAtPrice?.amount ?? null,
         availableForSale: variant.availableForSale,
+        images: product.images.nodes.map((image) => image.url),
       },
     ];
   });
@@ -76,6 +81,17 @@ function withLiveData(pack: Pack, live: LiveProduct | undefined): Pack {
   if (compareAt && Number(compareAt) > Number(live.price))
     merged.comparePrice = formatAmount(compareAt);
   else delete merged.comparePrice;
+
+  // A foto vem da Shopify quando o produto tem uma: é lá que a equipe troca imagem, e é de
+  // lá que ela sai em alta resolução. Ou as duas fotos vêm da Shopify, ou nenhuma vem —
+  // misturar a principal de lá com a de hover daqui produziria um par que não combina.
+  const [front, back] = live.images;
+  if (front) {
+    merged.image = front;
+    if (back) merged.hoverImage = back;
+    else delete merged.hoverImage;
+  }
+
   return merged;
 }
 
