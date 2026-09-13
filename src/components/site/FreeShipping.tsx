@@ -59,7 +59,7 @@ export function SavingsNudge({ className = "" }: { className?: string }) {
         <p className="text-sm font-semibold uppercase">Os mesmos {better.bottles} frascos por menos</p>
         <p className="mt-0.5 text-xs text-muted-foreground">Trocando para {description}, você economiza {formatPrice(better.saving)}</p>
       </div>
-      <Button variant="silver" size="sm" className="h-9 shrink-0 rounded-lg px-4 text-[10px] font-semibold uppercase" onClick={swap}>Trocar</Button>
+      <Button variant="brand" size="sm" className="h-9 shrink-0 rounded-lg px-4 text-[10px] font-semibold uppercase" onClick={swap}>Trocar</Button>
     </div>
   );
 }
@@ -98,7 +98,7 @@ export function UpgradeNudge({ className = "" }: { className?: string }) {
         <p className="mt-0.5 text-xs text-muted-foreground">{duo.quantity} · por mais {formatPrice(difference)}</p>
         <p className="mt-1 text-xs font-semibold">e o frete sai de graça</p>
       </div>
-      <Button variant="silver" size="sm" className="h-9 shrink-0 rounded-lg px-4 text-[10px] font-semibold uppercase" onClick={swap}>Trocar</Button>
+      <Button variant="brand" size="sm" className="h-9 shrink-0 rounded-lg px-4 text-[10px] font-semibold uppercase" onClick={swap}>Trocar</Button>
     </div>
   );
 }

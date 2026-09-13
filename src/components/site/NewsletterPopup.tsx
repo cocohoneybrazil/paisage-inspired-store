@@ -188,7 +188,7 @@ export function NewsletterPopup() {
                 {copied ? <><Check className="h-3.5 w-3.5" />Copiado</> : <><Copy className="h-3.5 w-3.5" />Copiar</>}
               </span>
             </button>
-            <Button variant="silver" className="mt-4 h-12 w-full rounded-lg text-xs font-semibold uppercase" onClick={close}>Continuar comprando</Button>
+            <Button variant="brand" className="mt-4 h-12 w-full rounded-lg text-xs font-semibold uppercase" onClick={close}>Continuar comprando</Button>
           </div>
         ) : (
           <div>
@@ -233,7 +233,7 @@ export function NewsletterPopup() {
                   <span>Quero receber novidades da Coco Honey no WhatsApp.</span>
                 </label>
                 {error ? <p className="mt-2 text-xs text-destructive">{error}</p> : null}
-                <Button variant="silver" className="mt-4 h-12 w-full rounded-lg text-xs font-semibold uppercase" onClick={() => void submit()} disabled={sending}>
+                <Button variant="brand" className="mt-4 h-12 w-full rounded-lg text-xs font-semibold uppercase" onClick={() => void submit()} disabled={sending}>
                   {sending ? "Enviando" : "Quero meu presente"}
                 </Button>
                 <p className="mt-4 text-[11px] leading-relaxed text-muted-foreground">
