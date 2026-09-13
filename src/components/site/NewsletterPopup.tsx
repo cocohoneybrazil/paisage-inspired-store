@@ -200,8 +200,8 @@ export function NewsletterPopup() {
             <div className="mt-6">
               <ScratchCard revealed={revealed} onReveal={() => setRevealed(true)}>
                 <div>
-                  <p className="text-4xl font-semibold leading-none">10% OFF</p>
-                  <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">no seu primeiro pedido</p>
+                  <p className="text-4xl font-semibold leading-none">10%</p>
+                  <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">de desconto no seu primeiro pedido</p>
                 </div>
               </ScratchCard>
               {revealed ? null : (

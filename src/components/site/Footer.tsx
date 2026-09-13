@@ -3,11 +3,11 @@ import { ShieldCheck, Package, CreditCard, RefreshCw, Lock, Instagram } from "lu
 
 const shopLinks = [
   { to: "/produto", label: "Bronze" },
-  { to: "/produto", label: "JOURNAL" },
+  { to: "/blog", label: "DIÁRIO" },
 ];
 
 const aboutLinks = [
-  { to: "/historia", label: "Our Story" },
+  { to: "/historia", label: "NOSSA HISTÓRIA" },
   { href: "https://wa.me/5547992031609", label: "CONTATO" },
 ];
 
@@ -59,13 +59,13 @@ export function Footer() {
         {/* Brand + tagline */}
         <div className="text-center">
           <p className="text-3xl font-semibold uppercase tracking-[0.04em] md:text-5xl">COCO HONEY BRAZIL</p>
-          <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground md:text-xs">THE MAGIC POTION OF SUMMER</p>
+          <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground md:text-xs">A POÇÃO MÁGICA DO VERÃO</p>
         </div>
 
         {/* Navigation columns */}
         <div className="mt-12 grid gap-10 sm:grid-cols-2 md:grid-cols-4 md:gap-8">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Shop</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Loja</p>
             <ul className="mt-5 space-y-3">
               {shopLinks.map((link) => (
                 <li key={link.label}>
@@ -75,7 +75,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">About</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Sobre</p>
             <ul className="mt-5 space-y-3">
               {aboutLinks.map((link) => (
                 <li key={link.label}>
@@ -89,7 +89,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Help</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Ajuda</p>
             <ul className="mt-5 space-y-3">
               {helpLinks.map((link) => (
                 <li key={link.label}>
@@ -103,7 +103,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Social</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Redes</p>
             <a href="https://www.instagram.com/cocohoneybrazil/" target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold uppercase hover:opacity-55">
               <Instagram className="h-4 w-4" /> Instagram
             </a>
