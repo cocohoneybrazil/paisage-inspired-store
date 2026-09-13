@@ -55,7 +55,7 @@ function TotePage() {
               <li>Bolso interno</li>
             </ul>
             <p className="mt-8 text-3xl font-semibold">{bag.price}</p>
-            <Button variant="silver" className="mt-6 h-14 w-full rounded-lg text-xs font-semibold uppercase" onClick={() => cart.add(bag.slug)} disabled={bag.soldOut}>
+            <Button variant="brand" className="mt-6 h-14 w-full rounded-lg text-xs font-semibold uppercase" onClick={() => cart.add(bag.slug)} disabled={bag.soldOut}>
               <ShoppingBag />{bag.soldOut ? "Esgotado" : "Adicionar à sacola"}
             </Button>
             <div className="mt-6 grid grid-cols-2 gap-3 text-xs">

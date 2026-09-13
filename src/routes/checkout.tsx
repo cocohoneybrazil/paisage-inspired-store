@@ -133,7 +133,7 @@ function CheckoutPage() {
             <div className="flex justify-between"><dt className="text-muted-foreground">Frete{shipping?.freeShipping ? " (grátis)" : " estimado"}</dt><dd>{shipping ? (shipping.price === 0 ? "GRÁTIS" : formatPrice(shipping.price)) : "—"}</dd></div>
             <div className="flex justify-between border-t border-foreground/20 pt-3 text-lg font-semibold"><dt>Total</dt><dd>{formatPrice(total)}</dd></div>
           </dl>
-          <Button variant="silver" className="mt-8 h-14 w-full rounded-lg text-xs font-semibold uppercase" onClick={goToPayment} disabled={loading}>
+          <Button variant="brand" className="mt-8 h-14 w-full rounded-lg text-xs font-semibold uppercase" onClick={goToPayment} disabled={loading}>
             {loading ? <Loader2 className="animate-spin" /> : <Lock />}
             {loading ? "Abrindo pagamento" : "Ir para o pagamento"}
           </Button>

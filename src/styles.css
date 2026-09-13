@@ -108,7 +108,14 @@
   --accent-foreground: oklch(0.99 0.005 85);
   --primary: oklch(0.24 0.08 244);
   --primary-foreground: oklch(0.98 0.006 85);
-  --script-blue: oklch(0.57 0.2 250);
+  /* O azul do lettering "the secret ingredient is always love". O valor antigo,
+     oklch(0.57 0.2 250), estourava o gamut do sRGB e era cortado para um azul
+     eletrico -- nada a ver com o original. */
+  --script-blue: #4a8fd0;
+  /* Preenchimento do botao. Um degrau mais escuro de proposito: o rotulo e 12px
+     em caixa alta, e sobre o azul claro o branco so alcanca 3,4:1. Neste tom da 4,5:1. */
+  --script-blue-deep: #3a7ab8;
+  --script-blue-darker: #2f6494;
   --silver-light: oklch(0.9 0.006 255);
   --silver-mid: oklch(0.72 0.012 255);
   --silver-dark: oklch(0.45 0.012 255);
@@ -202,6 +209,20 @@
 
   &:hover {
     filter: brightness(1.06);
+  }
+}
+
+/* Botao principal da loja. Fundo chapado, sem gradiente: azul saturado com
+   degrade fica datado, e o degrade do silver-button existia para simular metal.
+   O silver-button segue definido logo acima -- e o caminho de volta se este teste
+   nao vingar. */
+@utility brand-button {
+  border: 1px solid var(--script-blue-darker);
+  background: var(--script-blue-deep);
+  box-shadow: 0 3px 10px color-mix(in oklab, var(--script-blue-deep) 32%, transparent);
+
+  &:hover {
+    background: var(--script-blue-darker);
   }
 }
 

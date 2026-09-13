@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import gabrielaPhoto from "@/assets/gabriela.jpg.asset.json";
-import philippePhoto from "@/assets/philippe-godinho.jpg.asset.json";
+import gabrielaPhoto from "@/assets/gabriela.jpg";
+import philippePhoto from "@/assets/philippe-godinho.jpg";
 
 export const Route = createFileRoute("/historia")({
   head: () => ({
@@ -87,7 +87,7 @@ function Historia() {
               <div className="mt-10 grid gap-14 md:grid-cols-2 md:gap-12">
                 <div>
                   <img
-                    src={gabrielaPhoto.url}
+                    src={gabrielaPhoto}
                     alt="Retrato de Gabriela, cofundadora da Coco Honey Brazil"
                     className="aspect-square w-full object-cover grayscale"
                   />
@@ -100,7 +100,7 @@ function Historia() {
                 </div>
                 <div>
                   <img
-                    src={philippePhoto.url}
+                    src={philippePhoto}
                     alt="Retrato de Philippe Godinho, cofundador da Coco Honey Brazil"
                     className="aspect-square w-full object-cover grayscale"
                   />
