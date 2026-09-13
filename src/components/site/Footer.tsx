@@ -59,7 +59,7 @@ export function Footer() {
         {/* Brand + tagline */}
         <div className="text-center">
           <p className="text-3xl font-semibold uppercase tracking-[0.04em] md:text-5xl">COCO HONEY BRAZIL</p>
-          <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground md:text-xs">A POÇÃO MÁGICA DO VERÃO</p>
+          <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground md:text-xs">THE MAGIC POTION OF SUMMER</p>
         </div>
 
         {/* Navigation columns */}
