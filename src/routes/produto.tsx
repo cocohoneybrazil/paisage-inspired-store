@@ -62,22 +62,38 @@ const tips = ["Consuma alimentos ricos em betacaroteno, como cenoura, couve e ac
 
 function ToteCarousel() {
   const { addons } = useCatalog();
+  const cart = useCart();
   const ref = useRef<HTMLDivElement>(null);
   const move = (direction: number) => ref.current?.scrollBy({ left: direction * (ref.current.clientWidth * 0.82), behavior: "smooth" });
   return <div>
     <div ref={ref} className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      {addons.map((bag) => <Link key={bag.slug} to="/tote/$slug" params={{ slug: bag.slug }} className="group w-[82%] shrink-0 snap-start text-left sm:w-[48%] lg:w-[32%]">
-        <div className="relative aspect-square overflow-hidden bg-secondary">
-          <img src={bag.image} alt={bag.name} className="absolute inset-0 aspect-square w-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
-          {bag.hoverImage ? <img src={bag.hoverImage} alt={`${bag.name} — lifestyle`} className="absolute inset-0 aspect-square w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" /> : null}
-        </div>
-        <div className="mt-4">
-          <h3 className="text-sm font-semibold uppercase">{bag.name}</h3>
-          <p className="mt-1 text-xs text-muted-foreground">{bag.quantity}</p>
-          <p className="mt-2 text-sm font-semibold">{bag.price}</p>
-          <p className="mt-0.5 text-[10px] text-muted-foreground">{installmentText(bag.price)}</p>
-        </div>
-      </Link>)}
+      {addons.map((bag) => {
+        const inCart = cart.items.some((item) => item.pack.slug === bag.slug);
+        return <div key={bag.slug} className="w-[82%] shrink-0 snap-start text-left sm:w-[48%] lg:w-[32%]">
+          {/* O link envolve so a imagem e o texto: botao dentro de link nao e HTML valido,
+              e o clique de adicionar acabaria navegando para a pagina da bolsa. */}
+          <Link to="/tote/$slug" params={{ slug: bag.slug }} className="group block">
+            <div className="relative aspect-square overflow-hidden bg-secondary">
+              <img src={bag.image} alt={bag.name} className="absolute inset-0 aspect-square w-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
+              {bag.hoverImage ? <img src={bag.hoverImage} alt={`${bag.name} — lifestyle`} className="absolute inset-0 aspect-square w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" /> : null}
+            </div>
+            <div className="mt-4">
+              <h3 className="text-sm font-semibold uppercase">{bag.name}</h3>
+              <p className="mt-1 text-xs text-muted-foreground">{bag.quantity}</p>
+              <p className="mt-2 text-sm font-semibold">{bag.price}</p>
+              <p className="mt-0.5 text-[10px] text-muted-foreground">{installmentText(bag.price)}</p>
+            </div>
+          </Link>
+          <Button
+            variant={inCart ? "outline" : "brand"}
+            className="mt-4 h-11 w-full rounded-lg text-[10px] font-semibold uppercase"
+            disabled={!inCart && bag.soldOut}
+            onClick={() => (inCart ? cart.remove(bag.slug) : cart.add(bag.slug))}
+          >
+            {inCart ? "Remover" : <><ShoppingBag />{bag.soldOut ? "Esgotado" : "Adicionar à sacola"}</>}
+          </Button>
+        </div>;
+      })}
     </div>
     <div className="mt-6 flex gap-2"><Button variant="outline" size="icon" onClick={() => move(-1)} aria-label="Produto anterior"><ChevronLeft /></Button><Button variant="outline" size="icon" onClick={() => move(1)} aria-label="Próximo produto"><ChevronRight /></Button></div>
   </div>;
