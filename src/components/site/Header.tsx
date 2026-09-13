@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import sol from "@/assets/sol-white.png.asset.json";
 
-const nav = [{ to: "/", label: "INÍCIO" }, { to: "/produto", label: "LOJA" }, { to: "/blog", label: "DIÁRIO" }, { to: "/historia", label: "HISTÓRIA" }] as const;
+const nav = [{ to: "/", label: "INÍCIO" }, { to: "/produto", label: "LOJA" }, { to: "/blog", label: "BLOG" }, { to: "/historia", label: "HISTÓRIA" }] as const;
 
 export function Header({ bagCount = 0, onBagOpen }: { bagCount?: number; onBagOpen?: () => void }) {
   const [open, setOpen] = useState(false);

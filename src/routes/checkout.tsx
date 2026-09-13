@@ -103,7 +103,7 @@ function CheckoutPage() {
                     <img src={addon.image} alt={addon.name} className="aspect-square w-full rounded-md bg-secondary object-cover" />
                     <p className="mt-3 text-sm font-semibold uppercase">{addon.name}</p>
                     <p className="mt-1 text-xs text-muted-foreground">{addon.quantity} · {addon.price} · {installmentShort(addon.price)} sem juros</p>
-                    <Button variant={inCart ? "outline" : "silver"} className="mt-3 h-10 w-full rounded-lg text-[10px] font-semibold uppercase" disabled={!inCart && addon.soldOut} onClick={() => (inCart ? cart.remove(addon.slug) : cart.add(addon.slug))}>
+                    <Button variant={inCart ? "outline" : "brand"} className="mt-3 h-10 w-full rounded-lg text-[10px] font-semibold uppercase" disabled={!inCart && addon.soldOut} onClick={() => (inCart ? cart.remove(addon.slug) : cart.add(addon.slug))}>
                       {inCart ? "Remover" : addon.soldOut ? "Esgotado" : "Adicionar"}
                     </Button>
                   </div>
