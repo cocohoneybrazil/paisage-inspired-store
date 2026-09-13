@@ -3,7 +3,7 @@ import { ShieldCheck, Package, CreditCard, RefreshCw, Lock, Instagram } from "lu
 
 const shopLinks = [
   { to: "/produto", label: "Bronze" },
-  { to: "/blog", label: "DIÁRIO" },
+  { to: "/blog", label: "BLOG" },
 ];
 
 const aboutLinks = [
@@ -14,7 +14,6 @@ const aboutLinks = [
 type FooterLink = { to?: string; href?: string; label: string };
 
 const helpLinks: FooterLink[] = [
-  { to: "/blog/protetor-solar-ciencia-e-controversias", label: "FAQ" },
   { to: "/blog/helioterapia-poder-curativo-do-sol", label: "RASTREAR MEU PEDIDO" },
   { to: "/trocas", label: "TROCAS E DEVOLUÇÕES" },
 ];

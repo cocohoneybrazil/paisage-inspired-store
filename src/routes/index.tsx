@@ -44,7 +44,7 @@ function Home() {
           <img src={sol.url} alt="" className="h-3.5 w-3.5" />
           <span>FRETE GRÁTIS ACIMA DE R$ 199</span>
           <img src={sol.url} alt="" className="h-3.5 w-3.5" />
-          <span>10% DE DESCONTO NA PRIMEIRA COMPRA</span>
+          <span>10% OFF NA PRIMEIRA COMPRA</span>
           <img src={sol.url} alt="" className="h-3.5 w-3.5" />
         </div>)}
       </div>
@@ -104,7 +104,7 @@ function Home() {
       </div>
     </section>
     <ReviewsSection />
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "silver" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex flex-col items-end whitespace-nowrap text-xs font-semibold"><span className="flex items-baseline gap-1.5">{active.comparePrice ? <span className="text-[10px] font-normal text-muted-foreground line-through">{active.comparePrice}</span> : null}{active.price}</span><span className="text-[9px] font-normal text-muted-foreground">{installmentShort(active.price)} sem juros</span></p><Button variant="brand" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={() => buyNow()}><ShoppingBag />Comprar</Button></div></div>
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "brand" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex flex-col items-end whitespace-nowrap text-xs font-semibold"><span className="flex items-baseline gap-1.5">{active.comparePrice ? <span className="text-[10px] font-normal text-muted-foreground line-through">{active.comparePrice}</span> : null}{active.price}</span><span className="text-[9px] font-normal text-muted-foreground">{installmentShort(active.price)} sem juros</span></p><Button variant="brand" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={() => buyNow()}><ShoppingBag />Comprar</Button></div></div>
     <Footer />
   </div>;
 }
