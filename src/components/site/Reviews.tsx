@@ -24,8 +24,10 @@ function ReviewCard({ index }: { index: number }) {
 export function VideoWall() {
   const ref = useRef<HTMLDivElement>(null);
   return <div ref={ref} className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-    {reviewVideos.map((video) => <figure key={video.id} className="w-[62%] shrink-0 snap-start sm:w-[38%] lg:w-[23%]">
-      <div className="relative aspect-[9/16] overflow-hidden rounded-xl bg-secondary">
+    {reviewVideos.map((video) => <figure key={video.id} className="h-[25svh] shrink-0 snap-start sm:h-[24svh]">
+      {/* A altura manda e a largura segue a proporcao. Ao contrario, um card de 23% de
+          largura numa tela de 1920 virava 746px de video vertical sozinho. */}
+      <div className="relative h-full aspect-[9/16] overflow-hidden rounded-xl bg-secondary">
         {video.src
           ? <video src={video.src} poster={video.poster} controls playsInline className="h-full w-full object-cover" />
           : <div className="flex h-full w-full flex-col items-center justify-center gap-3 border border-dashed border-foreground/25 text-muted-foreground">
@@ -40,10 +42,10 @@ export function VideoWall() {
 
 export function ReviewsSection({ compact = false }: { compact?: boolean }) {
   return <section id="avaliacoes" className="screen-section border-t border-foreground/15 bg-background">
-    <div className="mx-auto max-w-[1600px] px-6 py-20 md:px-12 md:py-28">
+    <div className="mx-auto max-w-[1600px] section-pad px-6 md:px-12">
       <p className="header-label text-muted-foreground">AVALIAÇÕES REAIS</p>
-      <h2 className="mt-6 max-w-4xl display-1 font-semibold uppercase leading-none">Quem usa, conta</h2>
-      <div className="mt-10 flex flex-wrap items-end gap-x-10 gap-y-6 border-y border-foreground/15 py-7">
+      <h2 className="mt-4 max-w-4xl display-1 font-semibold uppercase leading-none">Quem usa, conta</h2>
+      <div className="mt-6 flex flex-wrap items-end gap-x-10 gap-y-5 border-y border-foreground/15 py-5">
         <div><p className="display-2 font-semibold leading-none">{reviewStats.average.toFixed(1)}</p><div className="mt-3"><Stars rating={reviewStats.average} /></div><p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{reviewStats.total} avaliações verificadas</p></div>
         <ul className="min-w-56 flex-1 space-y-1.5">
           {reviewStats.breakdown.map((row) => <li key={row.star} className="flex items-center gap-3 text-[11px] text-muted-foreground">
@@ -56,12 +58,19 @@ export function ReviewsSection({ compact = false }: { compact?: boolean }) {
           <a href="https://wa.me/5547992031609" target="_blank" rel="noreferrer">Enviar minha avaliação</a>
         </Button>
       </div>
-      <div className="mt-14">
+      <div className="mt-6">
         <p className="header-label text-muted-foreground">EM VÍDEO</p>
         <div className="mt-6"><VideoWall /></div>
       </div>
-      <div className={`mt-16 grid gap-8 md:grid-cols-2 ${compact ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
-        {reviews.slice(0, compact ? 4 : 6).map((_, index) => <ReviewCard key={index} index={index} />)}
+      {/* Carrossel e nao grade: empilhados, seis cartoes passavam de 2.000px de altura no
+          celular e a secao virava uma rolagem longa. Na horizontal o conteudo e o mesmo e
+          a secao cabe na tela. */}
+      <div className="mt-6 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {reviews.slice(0, compact ? 4 : 6).map((_, index) => (
+          <div key={index} className="w-[84%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]">
+            <ReviewCard index={index} />
+          </div>
+        ))}
       </div>
     </div>
   </section>;

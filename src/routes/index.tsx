@@ -60,21 +60,21 @@ function Home() {
       </section>
       <section id="packs" className="screen-section border-b border-foreground/15 bg-background">
         <div className="mx-auto grid max-w-[1600px] lg:grid-cols-2">
-          <div className="flex items-center px-6 py-16 md:px-12 lg:px-16"><div className="max-w-xl"><p className="header-label text-muted-foreground">MAIS VENDIDO · MELHOR CUSTO-BENEFÍCIO</p><h2 className="mt-6 display-1 font-semibold uppercase leading-none">Bronze pro verão inteiro</h2><p className="mt-8 text-lg leading-relaxed text-muted-foreground">Coco Honey Bronze · óleo acelerador · 3 un · 186 ml · 10% de desconto + Sun Bag. Três vidros de 62 ml para segurar o bronze da primeira praia até o último feriado — e a Sun Bag CHB de brinde.</p><ul className="mt-8 divide-y divide-foreground/15 border-y border-foreground/15">{["10% de desconto no combo + Sun Bag CHB", "Frete grátis", "186 ml — cerca de 3 meses de uso", "Fórmula natural e vegana, sem oxibenzona"].map((benefit) => <li key={benefit} className="py-4 text-sm font-medium">{benefit}</li>)}</ul><div className="mt-8 flex flex-wrap items-center gap-5"><span className="text-sm text-muted-foreground line-through">{featured.comparePrice}</span><span className="text-2xl font-semibold">{featured.price}</span><span className="text-sm text-muted-foreground">{installmentText(featured.price)}</span></div><div className="mt-5 flex flex-wrap items-center gap-5"><Button variant="brand" size="lg" className="h-12 rounded-lg px-7 text-xs font-semibold uppercase" onClick={() => add()}><ShoppingBag />Quero o Pack 003</Button><Link to="/produto" search={{ pack: featured.slug }} className="text-xs font-semibold uppercase underline underline-offset-4">Ver detalhes</Link></div></div></div>
-          <Link to="/produto" search={{ pack: featured.slug }} className="block overflow-hidden bg-secondary"><img src={featured.image} alt="Pack 003 Coco Honey Bronze com três óleos" className="aspect-square h-full w-full object-cover" /></Link>
+          <div className="section-pad flex items-center px-6 md:px-12 lg:px-16"><div className="max-w-xl"><p className="header-label text-muted-foreground">MAIS VENDIDO · MELHOR CUSTO-BENEFÍCIO</p><h2 className="mt-4 display-1 font-semibold uppercase leading-none">Bronze pro verão inteiro</h2><p className="mt-5 text-[clamp(0.95rem,1.1vw,1.125rem)] leading-relaxed text-muted-foreground">Coco Honey Bronze · óleo acelerador · 3 un · 186 ml · 10% de desconto + Sun Bag. Três vidros de 62 ml para segurar o bronze da primeira praia até o último feriado — e a Sun Bag CHB de brinde.</p><ul className="mt-5 divide-y divide-foreground/15 border-y border-foreground/15">{["10% de desconto no combo + Sun Bag CHB", "Frete grátis", "186 ml — cerca de 3 meses de uso", "Fórmula natural e vegana, sem oxibenzona"].map((benefit) => <li key={benefit} className="py-2.5 text-sm font-medium">{benefit}</li>)}</ul><div className="mt-5 flex flex-wrap items-center gap-5"><span className="text-sm text-muted-foreground line-through">{featured.comparePrice}</span><span className="text-2xl font-semibold">{featured.price}</span><span className="text-sm text-muted-foreground">{installmentText(featured.price)}</span></div><div className="mt-4 flex flex-wrap items-center gap-5"><Button variant="brand" size="lg" className="h-12 rounded-lg px-7 text-xs font-semibold uppercase" onClick={() => add()}><ShoppingBag />Quero o Pack 003</Button><Link to="/produto" search={{ pack: featured.slug }} className="text-xs font-semibold uppercase underline underline-offset-4">Ver detalhes</Link></div></div></div>
+          <Link to="/produto" search={{ pack: featured.slug }} className="block overflow-hidden bg-secondary"><img src={featured.image} alt="Pack 003 Coco Honey Bronze com três óleos" className="h-[36svh] w-full object-cover lg:h-screen-section" /></Link>
         </div>
       </section>
-      <section className="screen-section mx-auto flex max-w-[1600px] flex-col justify-center px-5 py-20 md:px-8 md:py-28">
-        <div className="mb-10 flex items-end justify-between gap-6"><div><p className="header-label text-muted-foreground">TODOS OS PACKS</p><h2 className="mt-3 display-1 font-semibold uppercase">Escolha o seu</h2></div><Link to="/produto" search={{ pack: "pack-001" }} className="hidden text-xs font-semibold uppercase underline underline-offset-4 sm:block">Ver detalhes</Link></div>
+      <section className="screen-section section-pad mx-auto flex max-w-[1600px] flex-col justify-center px-5 md:px-8">
+        <div className="mb-6 flex items-end justify-between gap-6"><div><p className="header-label text-muted-foreground">TODOS OS PACKS</p><h2 className="mt-3 display-1 font-semibold uppercase">Escolha o seu</h2></div><Link to="/produto" search={{ pack: "pack-001" }} className="hidden text-xs font-semibold uppercase underline underline-offset-4 sm:block">Ver detalhes</Link></div>
         <ProductCarousel />
       </section>
       <section className="screen-section grid border-y border-foreground/15 lg:grid-cols-2">
-         <div className="flex items-center px-6 py-20 md:px-12 lg:px-16"><div className="mx-auto max-w-xl"><p className="header-label text-muted-foreground">PACK 001 · ÓLEO ACELERADOR · 62 ML</p><h2 className="mt-6 display-1 font-semibold uppercase leading-none">Coco Honey Bronze</h2><img src={script.url} alt="The secret ingredient is always love" className="mt-8 h-auto w-full max-w-lg object-contain" /><div className="mt-9 space-y-5 text-base leading-relaxed text-muted-foreground"><p>Nosso óleo acelerador combina a magia brasileira em uma composição natural e vegana para um bronzeado duradouro e saudável. A MAGIC POTION leva como essência a sua sensualidade no aroma, se tornando um óleo expressivo e leal, despertando desejo e poder. Transformando cuidado com a pele em um ritual de autoestima. Tem quem diga que é afrodisíaco.</p><p>A fórmula desliza facilmente, proporciona aplicação uniforme, tem rápida absorção e resiste à água e ao suor sem deixar resíduos oleosos.</p><p className="text-sm">Óleo de urucum, buriti, coco, cenoura, aloe vera e amêndoas doce, e vitamina E.</p></div><div className="mt-9 flex flex-wrap items-center gap-5"><Button variant="brand" size="lg" className="h-12 rounded-lg px-7 text-xs font-semibold uppercase" onClick={() => add("pack-001")}><ShoppingBag />Adicionar Pack 001</Button><Link to="/produto" search={{ pack: "pack-001" }} className="text-xs font-semibold uppercase underline underline-offset-4">Comprar agora</Link><span className="text-lg font-semibold">{packs[0]?.price}</span>{packs[0] ? <span className="text-xs text-muted-foreground">{installmentText(packs[0].price)}</span> : null}</div></div></div>
-        <img src={single} alt="Frasco Coco Honey Bronze" loading="lazy" className="min-h-[65svh] h-full w-full bg-secondary object-cover" />
+         <div className="section-pad flex items-center px-6 md:px-12 lg:px-16"><div className="mx-auto max-w-xl"><p className="header-label text-muted-foreground">PACK 001 · ÓLEO ACELERADOR · 62 ML</p><h2 className="mt-4 display-1 font-semibold uppercase leading-none">Coco Honey Bronze</h2><img src={script.url} alt="The secret ingredient is always love" className="mt-8 h-auto w-full max-w-lg object-contain" /><div className="mt-5 space-y-3 text-[clamp(0.9rem,1vw,1rem)] leading-relaxed text-muted-foreground"><p>Nosso óleo acelerador combina a magia brasileira em uma composição natural e vegana para um bronzeado duradouro e saudável. A MAGIC POTION leva como essência a sua sensualidade no aroma, se tornando um óleo expressivo e leal, despertando desejo e poder. Transformando cuidado com a pele em um ritual de autoestima. Tem quem diga que é afrodisíaco.</p><p>A fórmula desliza facilmente, proporciona aplicação uniforme, tem rápida absorção e resiste à água e ao suor sem deixar resíduos oleosos.</p><p className="text-sm">Óleo de urucum, buriti, coco, cenoura, aloe vera e amêndoas doce, e vitamina E.</p></div><div className="mt-5 flex flex-wrap items-center gap-5"><Button variant="brand" size="lg" className="h-12 rounded-lg px-7 text-xs font-semibold uppercase" onClick={() => add("pack-001")}><ShoppingBag />Adicionar Pack 001</Button><Link to="/produto" search={{ pack: "pack-001" }} className="text-xs font-semibold uppercase underline underline-offset-4">Comprar agora</Link><span className="text-lg font-semibold">{packs[0]?.price}</span>{packs[0] ? <span className="text-xs text-muted-foreground">{installmentText(packs[0].price)}</span> : null}</div></div></div>
+        <img src={single} alt="Frasco Coco Honey Bronze" loading="lazy" className="h-[38svh] w-full bg-secondary object-cover lg:h-screen-section" />
       </section>
     </main>
     <section className="screen-section border-t border-foreground/15 bg-background text-foreground">
-      <div className="mx-auto max-w-[1600px] px-6 py-20 md:px-12 md:py-28">
+      <div className="mx-auto max-w-[1600px] section-pad px-6 md:px-12">
         <p className="header-label text-muted-foreground">O QUE A COCO HONEY DESPERTA</p>
         <h2 className="mt-6 max-w-4xl font-serif display-serif italic leading-[0.95]">Desejo e poder, com saúde e proteção</h2>
         <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-12">
@@ -83,23 +83,33 @@ function Home() {
       </div>
     </section>
     <section className="screen-section border-t border-foreground/15 bg-background">
-      <div className="mx-auto max-w-[1600px] px-6 py-20 md:px-12 md:py-28">
+      <div className="mx-auto max-w-[1600px] section-pad px-6 md:px-12">
         <p className="header-label text-muted-foreground">POR QUE COCO HONEY BRONZE</p>
         <h2 className="mt-6 max-w-4xl display-1 font-semibold uppercase leading-none">A escolha consciente</h2>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">Estudos dermatológicos apontam que filtros químicos como oxibenzona e derivados de petróleo podem irritar e ressecar a pele. Comparativo com a composição comum de bronzeadores tradicionais — sem citar marcas.</p>
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-foreground/15 bg-foreground/15 md:grid-cols-2">
-          <div className="bg-background p-6 md:p-10">
-            <div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full bg-foreground text-background"><Check className="h-4 w-4" /></span><h3 className="header-brand">COCO HONEY BRAZIL</h3></div>
-            <ul className="mt-8 divide-y divide-foreground/15">
-              {[["BASE", "Óleos vegetais naturais"], ["FILTROS", "Sem oxibenzona nem octinoxato"], ["CONSERVANTES", "Sem parabenos"], ["ORIGEM", "Natural e vegano"], ["HIDRATAÇÃO", "Vitamina E + Aloe Vera + Amêndoas doce"], ["BRONZE", "Uniforme e duradouro"], ["TESTES", "Dermatologicamente testado"]].map(([label, text]) => <li key={label} className="py-5"><p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p><p className="mt-1.5 text-lg font-semibold">{text}</p></li>)}
-            </ul>
+        <p className="mt-5 hidden max-w-2xl text-base leading-relaxed text-muted-foreground sm:block">Estudos dermatológicos apontam que filtros químicos como oxibenzona e derivados de petróleo podem irritar e ressecar a pele. Comparativo com a composição comum de bronzeadores tradicionais — sem citar marcas.</p>
+        {/* Tabela comparativa de verdade: uma linha por atributo, os dois lados lado a lado.
+            Antes eram duas colunas de sete itens que, no celular, viravam catorze blocos
+            empilhados -- e comparar exigia rolar de um lado ao outro de memoria. */}
+        <div className="mt-6 overflow-hidden rounded-2xl border border-foreground/15">
+          <div className="grid grid-cols-2 divide-x divide-foreground/15 border-b border-foreground/15">
+            <div className="flex items-center gap-2 bg-background px-3 py-2.5 md:px-6"><span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-foreground text-background"><Check className="h-3 w-3" /></span><h3 className="header-brand text-[10px] md:text-xs">COCO HONEY</h3></div>
+            <div className="flex items-center gap-2 bg-secondary/60 px-3 py-2.5 md:px-6"><span className="grid h-5 w-5 shrink-0 place-items-center rounded-full border border-foreground/25 text-muted-foreground"><X className="h-3 w-3" /></span><h3 className="header-brand text-[10px] text-muted-foreground md:text-xs">OUTROS</h3></div>
           </div>
-          <div className="bg-secondary/60 p-6 md:p-10">
-            <div className="flex items-center gap-3"><span className="grid h-8 w-8 place-items-center rounded-full border border-foreground/25 text-muted-foreground"><X className="h-4 w-4" /></span><h3 className="header-brand text-muted-foreground">OUTROS BRONZEADORES</h3></div>
-            <ul className="mt-8 divide-y divide-foreground/10">
-              {[["BASE", "Óleo mineral e compostos de petróleo"], ["FILTROS", "Oxibenzona e derivados"], ["CONSERVANTES", "Parabenos e conservantes sintéticos"], ["ORIGEM", "Ingredientes de origem animal"], ["HIDRATAÇÃO", "Resseca a pele depois do sol"], ["BRONZE", "Irregular, marca manchas"], ["TESTES", "Testado em animais"]].map(([label, text]) => <li key={label} className="py-5"><p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p><p className="mt-1.5 text-lg text-muted-foreground line-through decoration-foreground/40">{text}</p></li>)}
-            </ul>
-          </div>
+          {([["BASE", "Óleos vegetais naturais", "Óleo mineral e derivados de petróleo"],
+             ["FILTROS", "Sem oxibenzona nem octinoxato", "Oxibenzona e derivados"],
+             ["CONSERVANTES", "Sem parabenos", "Parabenos e sintéticos"],
+             ["ORIGEM", "Natural e vegano", "Ingredientes de origem animal"],
+             ["HIDRATAÇÃO", "Vitamina E, aloe vera e amêndoas", "Resseca a pele depois do sol"],
+             ["BRONZE", "Uniforme e duradouro", "Irregular, marca manchas"],
+             ["TESTES", "Dermatologicamente testado", "Testado em animais"]] as const).map(([label, nosso, outros]) => (
+            <div key={label} className="border-t border-foreground/15 first:border-t-0">
+              <p className="px-3 pt-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-muted-foreground md:px-6 md:pt-3 md:text-[10px]">{label}</p>
+              <div className="grid grid-cols-2 divide-x divide-foreground/15">
+                <p className="px-3 pb-2 pt-0.5 text-[13px] font-semibold leading-snug md:px-6 md:pb-3 md:text-base">{nosso}</p>
+                <p className="px-3 pb-2 pt-0.5 text-[13px] leading-snug text-muted-foreground line-through decoration-foreground/40 md:px-6 md:pb-3 md:text-base">{outros}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
