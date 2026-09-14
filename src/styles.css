@@ -233,6 +233,16 @@
   min-height: calc(100svh - var(--header-h));
 }
 
+/* Respiro vertical que escala com a ALTURA da janela, nao com a largura. Num iPhone SE
+   um py-20 fixo gastava 160px dos 490px uteis -- um terco da tela so em ar. */
+@utility section-pad { padding-block: clamp(1.75rem, 5svh, 7rem); }
+
+/* Altura util de uma tela, para limitar imagem sem depender de proporcao fixa. */
+/* Menos 2px: a secao desenha borda em cima e embaixo, e uma imagem com exatamente a altura
+   util empurrava o total para 891px numa tela de 890px. */
+@utility h-screen-section { height: calc(100svh - var(--header-h) - 2px); }
+@utility max-h-screen-section { max-height: calc(100svh - var(--header-h)); }
+
 /* Tipografia de display fluida. Substitui o salto text-5xl/md:text-7xl por uma curva
    continua: o extremo de cima e o mesmo de antes, o de baixo e menor, que e o que faz
    caber em tela de 375px sem mudar a identidade. */
