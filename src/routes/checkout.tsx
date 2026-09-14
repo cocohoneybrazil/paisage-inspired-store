@@ -1,13 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Loader2, Lock, Minus, Plus, RefreshCw, Trash2, Truck } from "lucide-react";
+import { Loader2, Lock, Minus, Plus, RefreshCw, ShoppingBag, Trash2, Truck } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer, PaymentFlags } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { useCatalog } from "@/lib/catalog";
 import { FreeShippingBar, SavingsNudge, UpgradeNudge } from "@/components/site/FreeShipping";
 import { createCheckoutUrl, rememberedContact } from "@/lib/shopify";
-import { FREE_SHIPPING_THRESHOLD, formatPrice, installmentShort, installmentText, parsePrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
+import { Stars } from "@/components/site/Reviews";
+import { reviewStats } from "@/lib/reviews";
+import { deliveryWindow, FREE_SHIPPING_THRESHOLD, formatPrice, installmentShort, installmentText, parsePrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -120,9 +122,14 @@ function CheckoutPage() {
             <input inputMode="numeric" maxLength={9} placeholder="Seu CEP" value={zip} onChange={(event) => setZip(event.target.value)} className={`${field} max-w-40`} />
             {zip.replace(/\D/g, "").length === 8 && !shipping ? <p className="mt-3 text-xs text-destructive">CEP inválido. Confira os 8 dígitos.</p> : null}
             {shipping ? (
-              <div className="mt-3 flex items-center justify-between rounded-lg border border-foreground/25 px-4 py-3 text-sm">
-                <span>{shipping.label} · <span className="text-muted-foreground">{shipping.days}</span></span>
-                <span className="font-semibold">{shipping.price === 0 ? "GRÁTIS" : formatPrice(shipping.price)}</span>
+              <div className="mt-3 rounded-lg border border-foreground/25 px-4 py-3">
+                {/* A data vem primeiro: a pergunta real de quem consulta o frete num produto
+                    de verão é "dá tempo para a viagem?", e contagem de dias não responde. */}
+                <div className="flex items-center justify-between text-sm">
+                  <span>Chega {deliveryWindow(shipping.days) ?? shipping.days}</span>
+                  <span className="font-semibold">{shipping.price === 0 ? "GRÁTIS" : formatPrice(shipping.price)}</span>
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">{shipping.label} · {shipping.days}</p>
               </div>
             ) : null}
             <p className="mt-3 text-xs text-muted-foreground">O valor definitivo do frete é calculado no checkout, a partir do endereço completo.</p>
@@ -144,11 +151,16 @@ function CheckoutPage() {
             {loading ? "Abrindo pagamento" : "Ir para o pagamento"}
           </Button>
           {error ? <p className="mt-3 text-xs text-destructive">{error}</p> : null}
+          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+            <Stars rating={reviewStats.average} />
+            <span>{reviewStats.average.toFixed(1).replace(".", ",")} · {reviewStats.total} avaliações</span>
+          </div>
           <PaymentFlags className="mt-5 justify-center" />
           <ul className="mt-5 space-y-2 text-xs text-muted-foreground">
             <li className="flex items-start gap-2"><Lock className="mt-0.5 h-3.5 w-3.5 shrink-0" />Pagamento no ambiente seguro da Shopify. Pix com aprovação imediata ou cartão em até 3x sem juros.</li>
             <li className="flex items-start gap-2"><RefreshCw className="mt-0.5 h-3.5 w-3.5 shrink-0" />7 dias para desistir da compra, como manda o Código de Defesa do Consumidor.</li>
             <li className="flex items-start gap-2"><Truck className="mt-0.5 h-3.5 w-3.5 shrink-0" />Enviamos para todo o Brasil, com código de rastreio.</li>
+            <li className="flex items-start gap-2"><ShoppingBag className="mt-0.5 h-3.5 w-3.5 shrink-0" />Sua sacola fica guardada neste navegador. Dá para pensar e voltar depois.</li>
           </ul>
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
             Endereço e dados de entrega são preenchidos no pagamento — sem precisar criar conta.
