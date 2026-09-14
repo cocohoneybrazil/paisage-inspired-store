@@ -120,6 +120,9 @@
   --silver-mid: oklch(0.72 0.012 255);
   --silver-dark: oklch(0.45 0.012 255);
   --photo-backdrop: oklch(0.946 0.005 350);
+  /* Altura real do cabecalho fixo: h-16 mais a borda de 1px. Fica como token para o
+     calculo de altura de secao nao repetir um numero magico em cada arquivo. */
+  --header-h: calc(4rem + 1px);
 }
 
 .dark {
@@ -216,6 +219,27 @@
    degrade fica datado, e o degrade do silver-button existia para simular metal.
    O silver-button segue definido logo acima -- e o caminho de volta se este teste
    nao vingar. */
+/**
+ * Secao que ocupa pelo menos a tela inteira abaixo do cabecalho.
+ *
+ * min-height, nao height: garante que nenhuma secao fique menor que a tela -- que era o
+ * problema -- sem cortar conteudo que seja legitimamente mais alto. Travar a altura
+ * esconderia botao de compra em tela pequena, que e pior que rolar.
+ *
+ * svh e nao vh: no celular, vh mede a janela com a barra do navegador recolhida, entao a
+ * secao fica mais alta que a tela no momento em que a pessoa chega nela.
+ */
+@utility screen-section {
+  min-height: calc(100svh - var(--header-h));
+}
+
+/* Tipografia de display fluida. Substitui o salto text-5xl/md:text-7xl por uma curva
+   continua: o extremo de cima e o mesmo de antes, o de baixo e menor, que e o que faz
+   caber em tela de 375px sem mudar a identidade. */
+@utility display-1 { font-size: clamp(2.25rem, 5.5vw, 4.5rem); }
+@utility display-2 { font-size: clamp(2rem, 4.5vw, 3.75rem); }
+@utility display-serif { font-size: clamp(2.25rem, 6vw, 6rem); }
+
 @utility brand-button {
   border: 1px solid var(--script-blue-darker);
   background: var(--script-blue-deep);

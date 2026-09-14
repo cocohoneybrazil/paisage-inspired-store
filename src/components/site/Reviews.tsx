@@ -39,12 +39,12 @@ export function VideoWall() {
 }
 
 export function ReviewsSection({ compact = false }: { compact?: boolean }) {
-  return <section id="avaliacoes" className="border-t border-foreground/15 bg-background">
+  return <section id="avaliacoes" className="screen-section border-t border-foreground/15 bg-background">
     <div className="mx-auto max-w-[1600px] px-6 py-20 md:px-12 md:py-28">
       <p className="header-label text-muted-foreground">AVALIAÇÕES REAIS</p>
-      <h2 className="mt-6 max-w-4xl text-5xl font-semibold uppercase leading-none md:text-7xl">Quem usa, conta</h2>
+      <h2 className="mt-6 max-w-4xl display-1 font-semibold uppercase leading-none">Quem usa, conta</h2>
       <div className="mt-10 flex flex-wrap items-end gap-x-10 gap-y-6 border-y border-foreground/15 py-7">
-        <div><p className="text-5xl font-semibold leading-none">{reviewStats.average.toFixed(1)}</p><div className="mt-3"><Stars rating={reviewStats.average} /></div><p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{reviewStats.total} avaliações verificadas</p></div>
+        <div><p className="display-2 font-semibold leading-none">{reviewStats.average.toFixed(1)}</p><div className="mt-3"><Stars rating={reviewStats.average} /></div><p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{reviewStats.total} avaliações verificadas</p></div>
         <ul className="min-w-56 flex-1 space-y-1.5">
           {reviewStats.breakdown.map((row) => <li key={row.star} className="flex items-center gap-3 text-[11px] text-muted-foreground">
             <span className="w-8">{row.star}★</span>
