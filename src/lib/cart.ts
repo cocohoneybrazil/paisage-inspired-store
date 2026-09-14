@@ -86,6 +86,43 @@ export function stateForZip(zip: string): string | null {
 /** Espelha a regra automática da Shopify: frete grátis a partir de R$ 199 no subtotal. */
 export const FREE_SHIPPING_THRESHOLD = 19900;
 
+/**
+ * Soma dias úteis a partir de hoje, pulando sábado e domingo. Feriado não entra: não
+ * vale manter uma tabela de feriados nacionais e estaduais só para a estimativa do
+ * carrinho, e errar para mais seria pior — o prazo definitivo é o da transportadora.
+ */
+function addBusinessDays(from: Date, days: number): Date {
+  const date = new Date(from);
+  let left = days;
+  while (left > 0) {
+    date.setDate(date.getDate() + 1);
+    const weekday = date.getDay();
+    if (weekday !== 0 && weekday !== 6) left -= 1;
+  }
+  return date;
+}
+
+/** "18 de setembro" — sem ano, porque a estimativa nunca cruza a virada em prazo útil. */
+function dayAndMonth(date: Date): string {
+  return date.toLocaleDateString("pt-BR", { day: "numeric", month: "long" });
+}
+
+/**
+ * Transforma "2 a 5 dias úteis" em "entre 18 e 23 de setembro". Data responde à pergunta
+ * que a pessoa está realmente fazendo — dá tempo para a viagem? — e contagem de dias não.
+ * Conta a partir do primeiro dia útil depois de hoje, somando o prazo de manuseio.
+ */
+export function deliveryWindow(days: string, handlingDays = 2, today = new Date()): string | null {
+  const range = days.match(/(\d+)\s*a\s*(\d+)/);
+  if (!range?.[1] || !range[2]) return null;
+  const first = addBusinessDays(today, handlingDays + Number(range[1]));
+  const last = addBusinessDays(today, handlingDays + Number(range[2]));
+  const sameMonth = first.getMonth() === last.getMonth();
+  return sameMonth
+    ? `entre ${first.getDate()} e ${dayAndMonth(last)}`
+    : `entre ${dayAndMonth(first)} e ${dayAndMonth(last)}`;
+}
+
 export function shippingFor(state: string, items: CartItem[]) {
   const zone = zoneForState(state);
   if (!zone) return null;

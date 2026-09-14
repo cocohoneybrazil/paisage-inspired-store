@@ -5,7 +5,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { useCatalog } from "@/lib/catalog";
-import { formatPrice, hasFreeShipping, installmentShort, installmentText, perBottle, shippingFor, stateForZip, useCart } from "@/lib/cart";
+import { deliveryWindow, formatPrice, hasFreeShipping, installmentShort, installmentText, perBottle, shippingFor, stateForZip, useCart } from "@/lib/cart";
 import script from "@/assets/secret-ingredient-script-transparent.png.asset.json";
 import { ReviewsSection, Stars } from "@/components/site/Reviews";
 import { reviewStats } from "@/lib/reviews";
@@ -28,9 +28,12 @@ function ShippingQuote({ slug }: { slug: string }) {
       </div>
       {result === "invalid" ? <p className="mt-3 text-xs text-destructive">CEP inválido. Confira os 8 dígitos.</p> : null}
       {result && result !== "invalid" ? (
-        <div className="mt-3 flex items-center justify-between rounded-lg border border-foreground/25 px-4 py-3 text-sm">
-          <span>{result.label} · <span className="text-muted-foreground">{result.days}</span></span>
-          <span className="font-semibold">{result.price === 0 ? "GRÁTIS" : formatPrice(result.price)}</span>
+        <div className="mt-3 rounded-lg border border-foreground/25 px-4 py-3">
+          <div className="flex items-center justify-between text-sm">
+            <span>Chega {deliveryWindow(result.days) ?? result.days}</span>
+            <span className="font-semibold">{result.price === 0 ? "GRÁTIS" : formatPrice(result.price)}</span>
+          </div>
+          <p className="mt-1 text-xs text-muted-foreground">{result.label} · {result.days}</p>
         </div>
       ) : null}
     </div>
