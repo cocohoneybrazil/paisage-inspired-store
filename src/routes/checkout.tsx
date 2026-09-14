@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Loader2, Lock, Minus, Plus, Trash2, Truck } from "lucide-react";
+import { Loader2, Lock, Minus, Plus, RefreshCw, Trash2, Truck } from "lucide-react";
 import { Header } from "@/components/site/Header";
-import { Footer } from "@/components/site/Footer";
+import { Footer, PaymentFlags } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { useCatalog } from "@/lib/catalog";
 import { FreeShippingBar, SavingsNudge, UpgradeNudge } from "@/components/site/FreeShipping";
 import { createCheckoutUrl, rememberedContact } from "@/lib/shopify";
-import { formatPrice, installmentShort, parsePrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
+import { FREE_SHIPPING_THRESHOLD, formatPrice, installmentShort, installmentText, parsePrice, shippingFor, stateForZip, useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -34,6 +34,9 @@ function CheckoutPage() {
   const [error, setError] = useState<string | null>(null);
 
   const state = stateForZip(zip);
+  // O frete ja e gratis pelo subtotal, mesmo sem CEP: a barra de progresso diz isso no
+  // topo da pagina, e o resumo dizer "estimado --" ao lado contradiz a propria loja.
+  const freeBySubtotal = cart.subtotal >= FREE_SHIPPING_THRESHOLD;
   const shipping = useMemo(() => (state ? shippingFor(state, cart.items) : null), [state, cart.items]);
   const total = cart.subtotal + (shipping?.price ?? 0);
 
@@ -130,16 +133,25 @@ function CheckoutPage() {
           <p className={labelClass}>RESUMO</p>
           <dl className="mt-5 space-y-2 text-sm">
             <div className="flex justify-between"><dt className="text-muted-foreground">Subtotal</dt><dd>{formatPrice(cart.subtotal)}</dd></div>
-            <div className="flex justify-between"><dt className="text-muted-foreground">Frete{shipping?.freeShipping ? " (grátis)" : " estimado"}</dt><dd>{shipping ? (shipping.price === 0 ? "GRÁTIS" : formatPrice(shipping.price)) : "—"}</dd></div>
+            <div className="flex justify-between"><dt className="text-muted-foreground">Frete{shipping?.freeShipping || freeBySubtotal ? "" : " estimado"}</dt><dd>{shipping ? (shipping.price === 0 ? "GRÁTIS" : formatPrice(shipping.price)) : freeBySubtotal ? "GRÁTIS" : "—"}</dd></div>
             <div className="flex justify-between border-t border-foreground/20 pt-3 text-lg font-semibold"><dt>Total</dt><dd>{formatPrice(total)}</dd></div>
           </dl>
+          {/* A parcela fica junto do total porque e por ela que se decide: quem olha o
+              carrinho quer saber quanto sai por mes, nao quanto sai de uma vez. */}
+          <p className="mt-2 text-right text-xs text-muted-foreground">{installmentText(formatPrice(total))}</p>
           <Button variant="brand" className="mt-8 h-14 w-full rounded-lg text-xs font-semibold uppercase" onClick={goToPayment} disabled={loading}>
             {loading ? <Loader2 className="animate-spin" /> : <Lock />}
             {loading ? "Abrindo pagamento" : "Ir para o pagamento"}
           </Button>
           {error ? <p className="mt-3 text-xs text-destructive">{error}</p> : null}
+          <PaymentFlags className="mt-5 justify-center" />
+          <ul className="mt-5 space-y-2 text-xs text-muted-foreground">
+            <li className="flex items-start gap-2"><Lock className="mt-0.5 h-3.5 w-3.5 shrink-0" />Pagamento no ambiente seguro da Shopify. Pix com aprovação imediata ou cartão em até 3x sem juros.</li>
+            <li className="flex items-start gap-2"><RefreshCw className="mt-0.5 h-3.5 w-3.5 shrink-0" />7 dias para desistir da compra, como manda o Código de Defesa do Consumidor.</li>
+            <li className="flex items-start gap-2"><Truck className="mt-0.5 h-3.5 w-3.5 shrink-0" />Enviamos para todo o Brasil, com código de rastreio.</li>
+          </ul>
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-            O pagamento acontece no ambiente seguro da Shopify: Pix com aprovação imediata ou cartão de crédito em até 3x sem juros. Endereço e dados de entrega são preenchidos lá — sem precisar criar conta.
+            Endereço e dados de entrega são preenchidos no pagamento — sem precisar criar conta.
           </p>
         </aside>
       </main>

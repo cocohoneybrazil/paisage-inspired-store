@@ -42,6 +42,15 @@ function CardFlag({ name, logo }: { name: string; logo: string }) {
   );
 }
 
+/** Bandeiras aceitas. Vive aqui porque o rodape ja carrega os logos; a sacola reusa. */
+export function PaymentFlags({ className = "" }: { className?: string }) {
+  return (
+    <div className={`flex flex-wrap gap-1.5 ${className}`}>
+      {paymentBrands.map((brand) => <CardFlag key={brand.name} name={brand.name} logo={brand.logo} />)}
+    </div>
+  );
+}
+
 function AnvisaSeal() {
   return (
     <div className="flex items-center gap-2 rounded-md border border-foreground/10 bg-white px-3 py-1.5">
