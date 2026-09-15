@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import cocoHead from "@/assets/coco-head.jpg";
 import { ShieldCheck, Package, CreditCard, RefreshCw, Lock, Instagram } from "lucide-react";
 
 const shopLinks = [
@@ -67,7 +66,6 @@ export function Footer() {
       <div className="mx-auto max-w-[1600px] px-5 py-14 md:px-8 md:py-20">
         {/* Brand + tagline */}
         <div className="text-center">
-          <img src={cocoHead} alt="COCO HONEY — ingredientes naturais, vegano, cruelty-free" loading="lazy" className="mx-auto mb-10 w-full max-w-4xl object-contain" />
           <p className="text-3xl font-semibold uppercase tracking-[0.04em] md:text-5xl">COCO HONEY BRAZIL</p>
           <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground md:text-xs">THE MAGIC POTION OF SUMMER</p>
         </div>
