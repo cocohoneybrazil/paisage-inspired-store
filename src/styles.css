@@ -108,14 +108,13 @@
   --accent-foreground: oklch(0.99 0.005 85);
   --primary: oklch(0.24 0.08 244);
   --primary-foreground: oklch(0.98 0.006 85);
-  /* O azul do lettering "the secret ingredient is always love". O valor antigo,
-     oklch(0.57 0.2 250), estourava o gamut do sRGB e era cortado para um azul
-     eletrico -- nada a ver com o original. */
-  --script-blue: #4a8fd0;
-  /* Preenchimento do botao. Um degrau mais escuro de proposito: o rotulo e 12px
-     em caixa alta, e sobre o azul claro o branco so alcanca 3,4:1. Neste tom da 4,5:1. */
-  --script-blue-deep: #3a7ab8;
-  --script-blue-darker: #2f6494;
+  /* Azul lido direto do vetor do lettering "the secret ingredient is always love".
+     Antes era estimado a olho a partir de uma imagem; agora vem do arquivo. */
+  --script-blue: #228bc4;
+  /* Preenchimento do botao. Dois degraus mais escuro de proposito: o rotulo e 12px em
+     caixa alta, e sobre o azul do lettering o branco so alcanca 3,78:1. Neste da 4,61:1. */
+  --script-blue-deep: #1f7cae;
+  --script-blue-darker: #1a698f;
   --silver-light: oklch(0.9 0.006 255);
   --silver-mid: oklch(0.72 0.012 255);
   --silver-dark: oklch(0.45 0.012 255);
