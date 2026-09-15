@@ -17,7 +17,7 @@ export function Header({ bagCount = 0, onBagOpen }: { bagCount?: number; onBagOp
         {/* O nome sai e o sol entra no lugar dele. O texto continua no DOM, so invisivel:
             e ele que da nome ao link para leitor de tela e para o buscador. */}
         <span className="transition-opacity duration-300 group-hover:opacity-0">COCO HONEY BRAZIL</span>
-        <img src={sol} alt="" aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <img src={sol} alt="" aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       </Link>
       <div className="flex items-center justify-self-end gap-2">
         <Button variant="ghost" size="icon" onClick={() => setSearch((value) => !value)} aria-label="Buscar"><Search /></Button>
