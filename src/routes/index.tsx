@@ -5,8 +5,8 @@ import heroMobile from "@/assets/coco-head-mobile.jpg";
 import heroMobileVideo from "@/assets/coco-head-mobile.mp4";
 import script from "@/assets/script.svg";
 import single from "@/assets/coco-honey-bronze-single.png";
-import heroDesktop from "@/assets/coco-head.jpg";
 import sol from "@/assets/sol.svg";
+import { HeroRotator } from "@/components/site/HeroRotator";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ProductCarousel } from "@/components/site/ProductCarousel";
@@ -57,7 +57,7 @@ function Home() {
         {/* poster e a imagem que ja existia: aparece no primeiro quadro enquanto o video
             carrega, e fica como unica coisa visivel em quem tem economia de dados ligada. */}
         <video src={heroMobileVideo} poster={heroMobile} autoPlay muted loop playsInline preload="metadata" aria-label="COCO INFUSION — Vitamin Complex Nº 01" className="absolute inset-0 h-full w-full object-cover object-center sm:hidden" />
-        <div className="absolute inset-0 hidden sm:block" style={{ backgroundColor: "#24A8E5" }}><img src={heroDesktop} alt="Coco Honey Bronze em dose tripla — Pack 003 com 10% OFF, frete grátis e Sun Bag CHB" className="h-full w-full object-contain object-center" /></div>
+        <HeroRotator />
         <h1 className="sr-only">COCO Honey Brazil</h1>
         <a href="#packs" aria-label="Conhecer os packs" className="absolute bottom-7 left-1/2 -translate-x-1/2 text-foreground"><ArrowDown className="h-6 w-6" /></a>
       </section>
