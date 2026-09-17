@@ -5,7 +5,7 @@ import { Header } from "@/components/site/Header";
 import { Footer, PaymentFlags } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { useCatalog } from "@/lib/catalog";
-import { FreeShippingBar, SavingsNudge, UpgradeNudge } from "@/components/site/FreeShipping";
+import { FreeShippingBar, SavingsNudge, SunBagLadder, UpgradeNudge } from "@/components/site/FreeShipping";
 import { createCheckoutUrl, rememberedContact } from "@/lib/shopify";
 import { Stars } from "@/components/site/Reviews";
 import { reviewStats } from "@/lib/reviews";
@@ -78,6 +78,7 @@ function CheckoutPage() {
           <FreeShippingBar className="mt-8" />
           <SavingsNudge className="mt-5" />
           <UpgradeNudge className="mt-5" />
+          <SunBagLadder className="mt-5" />
 
           <ul className="mt-8 divide-y divide-foreground/15 border-y border-foreground/15">
             {cart.items.map((item) => (
