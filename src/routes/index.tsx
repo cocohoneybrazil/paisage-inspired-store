@@ -57,7 +57,7 @@ function Home() {
         {/* poster e a imagem que ja existia: aparece no primeiro quadro enquanto o video
             carrega, e fica como unica coisa visivel em quem tem economia de dados ligada. */}
         <video src={heroMobileVideo} poster={heroMobile} autoPlay muted loop playsInline preload="metadata" aria-label="COCO INFUSION — Vitamin Complex Nº 01" className="absolute inset-0 h-full w-full object-cover object-center sm:hidden" />
-        <div className="absolute inset-0 hidden sm:block" style={{ backgroundColor: "#DEE5ED" }}><img src={heroDesktop} alt="COCO HONEY — ingredientes naturais, vegano, cruelty-free" className="h-full w-full object-contain object-center" /></div>
+        <div className="absolute inset-0 hidden sm:block" style={{ backgroundColor: "#24A8E5" }}><img src={heroDesktop} alt="Coco Honey Bronze em dose tripla — Pack 003 com 10% OFF, frete grátis e Sun Bag CHB" className="h-full w-full object-contain object-center" /></div>
         <h1 className="sr-only">COCO Honey Brazil</h1>
         <a href="#packs" aria-label="Conhecer os packs" className="absolute bottom-7 left-1/2 -translate-x-1/2 text-foreground"><ArrowDown className="h-6 w-6" /></a>
       </section>
@@ -88,7 +88,7 @@ function Home() {
     <section className="border-t border-foreground/15 bg-background">
       <div className="mx-auto max-w-[1600px] px-6 py-20 md:px-12 md:py-28">
         <p className="header-label text-muted-foreground">POR QUE COCO HONEY BRONZE</p>
-        <h2 className="mt-6 max-w-4xl text-5xl font-semibold uppercase leading-none md:text-7xl">A escolha consciente</h2>
+        <h2 className="mt-6 max-w-4xl text-[2.4rem] font-semibold uppercase leading-none sm:text-5xl md:text-7xl">A escolha consciente</h2>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">Estudos dermatológicos apontam que filtros químicos como oxibenzona e derivados de petróleo podem irritar e ressecar a pele. Comparativo com a composição comum de bronzeadores tradicionais — sem citar marcas.</p>
         <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-foreground/15 bg-foreground/15 md:grid-cols-2">
           <div className="bg-background p-6 md:p-10">
@@ -107,7 +107,7 @@ function Home() {
       </div>
     </section>
     <ReviewsSection />
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-3 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-2"><div className="flex gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "brand" : "outline"} size="sm" className="rounded-lg px-2" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex flex-col items-end whitespace-nowrap text-xs font-semibold"><span className="flex items-baseline gap-1.5">{active.comparePrice ? <span className="text-[10px] font-normal text-muted-foreground line-through">{active.comparePrice}</span> : null}{active.price}</span><span className="text-[9px] font-normal text-muted-foreground">{installmentShort(active.price)} sem juros</span></p><Button variant="brand" className="h-10 rounded-lg px-3 text-[10px] uppercase" onClick={() => buyNow()}><ShoppingBag />Comprar</Button></div></div>
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/20 bg-background/95 px-2 pb-[max(.6rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"><div className="flex items-center gap-1.5"><div className="flex shrink-0 gap-1">{packs.map((pack) => <Button key={pack.slug} variant={pack.slug === selected ? "brand" : "outline"} size="sm" className="rounded-lg px-1.5" onClick={() => setSelected(pack.slug)}>{pack.shortName}</Button>)}</div><p className="ml-auto flex min-w-0 flex-col items-end whitespace-nowrap text-xs font-semibold"><span className="flex items-baseline gap-1.5">{active.comparePrice ? <span className="hidden text-[10px] font-normal text-muted-foreground line-through min-[380px]:inline">{active.comparePrice}</span> : null}{active.price}</span><span className="text-[9px] font-normal text-muted-foreground">{installmentShort(active.price)} sem juros</span></p><Button variant="brand" className="h-10 shrink-0 rounded-lg px-2.5 text-[10px] uppercase" onClick={() => buyNow()}><ShoppingBag />Comprar</Button></div></div>
     <Footer />
   </div>;
 }

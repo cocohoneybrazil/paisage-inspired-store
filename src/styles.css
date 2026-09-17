@@ -171,6 +171,17 @@
     scroll-behavior: smooth;
   }
 
+  /* Titulo em caixa alta em portugues gera palavra comprida — INGREDIENTES,
+     PERSONALIDADE. Quando uma delas passa da largura da coluna, ela empurra a
+     pagina inteira e o celular ganha rolagem lateral. Aqui ela quebra em vez
+     de vazar; so age quando nao cabe, entao nada muda onde ja cabia. */
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
   button,
   a {
     cursor: pointer;
