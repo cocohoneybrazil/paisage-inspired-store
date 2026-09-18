@@ -7,9 +7,9 @@ import philippePhoto from "@/assets/philippe-godinho.jpg";
 export const Route = createFileRoute("/historia")({
   head: () => ({
     meta: [
-      { title: "Nossa história — COCO HONEY BRAZIL" },
+      { title: "Nossa história — COCOHONEYBRAZIL" },
       { name: "description", content: "A história da COCO HONEY BRAZIL: como nasceu uma marca feita para unir sol, bronze e uma vida saudável, criada por Gabriela e Philippe em Santa Catarina." },
-      { property: "og:title", content: "Nossa história — COCO HONEY BRAZIL" },
+      { property: "og:title", content: "Nossa história — COCOHONEYBRAZIL" },
       { property: "og:description", content: "A história da COCO HONEY BRAZIL: como nasceu uma marca feita para unir sol, bronze e uma vida saudável, criada por Gabriela e Philippe em Santa Catarina." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

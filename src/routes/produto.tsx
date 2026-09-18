@@ -43,9 +43,9 @@ function ShippingQuote({ slug }: { slug: string }) {
 export const Route = createFileRoute("/produto")({
   validateSearch: (search: Record<string, unknown>) => ({ pack: typeof search["pack"] === "string" ? search["pack"] : "pack-003" }),
   head: () => ({ meta: [
-    { title: "Coco Honey Bronze — Packs e detalhes" },
+    { title: "Packs e detalhes — COCOHONEYBRAZIL" },
     { name: "description", content: "Escolha seu pack de Coco Honey Bronze e conheça fórmula, ingredientes e ritual de uso." },
-    { property: "og:title", content: "Coco Honey Bronze — Packs e detalhes" },
+    { property: "og:title", content: "Packs e detalhes — COCOHONEYBRAZIL" },
     { property: "og:description", content: "Óleo acelerador natural, vegano e resistente à água." },
     { property: "og:type", content: "product" }, { name: "twitter:card", content: "summary_large_image" },
   ] }), component: ProductPage,

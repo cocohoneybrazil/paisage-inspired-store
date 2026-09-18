@@ -14,9 +14,9 @@ import { deliveryWindow, FREE_SHIPPING_THRESHOLD, formatPrice, installmentShort,
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Sua sacola — Coco Honey Brazil" },
+      { title: "Sua sacola — COCOHONEYBRAZIL" },
       { name: "description", content: "Revise sua sacola Coco Honey Bronze e finalize o pedido no checkout seguro." },
-      { property: "og:title", content: "Sua sacola — Coco Honey Brazil" },
+      { property: "og:title", content: "Sua sacola — COCOHONEYBRAZIL" },
       { property: "og:description", content: "Revise sua sacola Coco Honey Bronze e finalize o pedido com entrega para todo o Brasil." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

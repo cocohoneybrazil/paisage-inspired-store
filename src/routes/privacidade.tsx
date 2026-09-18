@@ -5,9 +5,9 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/privacidade")({
   head: () => ({
     meta: [
-      { title: "Política de Privacidade — COCO Honey Brazil" },
+      { title: "Política de Privacidade — COCOHONEYBRAZIL" },
       { name: "description", content: "Como a COCO HONEY BRAZIL coleta, usa e protege suas informações pessoais." },
-      { property: "og:title", content: "Política de Privacidade — COCO Honey Brazil" },
+      { property: "og:title", content: "Política de Privacidade — COCOHONEYBRAZIL" },
       { property: "og:description", content: "Como a COCO HONEY BRAZIL coleta, usa e protege suas informações pessoais." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

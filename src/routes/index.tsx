@@ -18,9 +18,9 @@ import { formatPrice, installmentShort, installmentText, parsePrice, useCart } f
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: "COCO Honey Brazil — Tanning Oil" },
+    { title: "COCOHONEYBRAZIL — Tanning Oil" },
     { name: "description", content: "Coco Honey Bronze: óleo acelerador natural e vegano para uma pele dourada e luminosa." },
-    { property: "og:title", content: "COCO Honey Brazil — Tanning Oil" },
+    { property: "og:title", content: "COCOHONEYBRAZIL — Tanning Oil" },
     { property: "og:description", content: "A magia brasileira em um tanning oil natural, vegano e resistente à água." },
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
   ] }), component: Home,

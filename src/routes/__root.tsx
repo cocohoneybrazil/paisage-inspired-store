@@ -92,10 +92,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "COCO Honey Brazil" },
+      { title: "COCOHONEYBRAZIL" },
       { name: "description", content: "COCO Honey Brazil — beleza solar brasileira." },
       { name: "author", content: "COCO Honey Brazil" },
-      { property: "og:title", content: "COCO Honey Brazil" },
+      { property: "og:title", content: "COCOHONEYBRAZIL" },
       { property: "og:description", content: "Beleza solar brasileira." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -111,7 +111,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&display=swap",
       },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      // O SVG e quem manda nos navegadores atuais: e o sol vetorial, nitido em
+      // qualquer tamanho, e troca de preto para branco em quem usa tema escuro —
+      // silhueta preta na barra escura simplesmente some.
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.png", type: "image/png", sizes: "32x32" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,

@@ -5,9 +5,9 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/trocas")({
   head: () => ({
     meta: [
-      { title: "Trocas e Devoluções — COCO Honey Brazil" },
+      { title: "Trocas e Devoluções — COCOHONEYBRAZIL" },
       { name: "description", content: "Política de trocas, devoluções e reembolso da COCO HONEY BRAZIL, conforme o Código de Defesa do Consumidor." },
-      { property: "og:title", content: "Trocas e Devoluções — COCO Honey Brazil" },
+      { property: "og:title", content: "Trocas e Devoluções — COCOHONEYBRAZIL" },
       { property: "og:description", content: "Política de trocas, devoluções e reembolso da COCO HONEY BRAZIL, conforme o Código de Defesa do Consumidor." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

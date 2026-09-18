@@ -12,9 +12,9 @@ export const Route = createFileRoute("/tote/$slug")({
     const bag = addons.find((item) => item.slug === params.slug);
     return {
       meta: [
-        { title: bag ? `${bag.name} — COCO HONEY BRAZIL` : "Tote Bag — COCO HONEY BRAZIL" },
+        { title: bag ? `${bag.name} — COCOHONEYBRAZIL` : "Tote Bag — COCOHONEYBRAZIL" },
         { name: "description", content: "Tote Bag COCO HONEY BRAZIL · 100% algodão · 54cm x 63cm · bolso interno." },
-        { property: "og:title", content: bag ? `${bag.name} — COCO HONEY BRAZIL` : "Tote Bag — COCO HONEY BRAZIL" },
+        { property: "og:title", content: bag ? `${bag.name} — COCOHONEYBRAZIL` : "Tote Bag — COCOHONEYBRAZIL" },
         { property: "og:description", content: "Tote Bag COCO HONEY BRAZIL · 100% algodão · 54cm x 63cm · bolso interno." },
         { property: "og:type", content: "product" },
         { name: "twitter:card", content: "summary_large_image" },
