@@ -45,8 +45,6 @@ function Home() {
           <img src={sol} alt="" className="h-3.5 w-3.5 invert" />
           <span>FRETE GRÁTIS ACIMA DE R$ 199</span>
           <img src={sol} alt="" className="h-3.5 w-3.5 invert" />
-          <span>10% OFF NA PRIMEIRA COMPRA</span>
-          <img src={sol} alt="" className="h-3.5 w-3.5 invert" />
         </div>)}
       </div>
     </div>
