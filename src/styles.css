@@ -265,6 +265,7 @@
 }
 
 @utility marquee-track {
-  animation: marquee-scroll 22s linear infinite;
+  /* 88 s para o deslocamento maior manter os mesmos ~40 px/s de antes. */
+  animation: marquee-scroll 88s linear infinite;
   width: max-content;
 }

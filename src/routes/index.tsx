@@ -40,7 +40,11 @@ function Home() {
   return <div className="min-h-screen bg-background pb-20 text-foreground md:pb-0">
     <div className="overflow-hidden bg-black py-2.5 text-white">
       <div className="marquee-track flex whitespace-nowrap">
-        {[0, 1, 2].map((i) => <div key={i} className="flex items-center gap-8 px-6 text-[11px] font-semibold uppercase tracking-[0.22em]">
+        {/* A animacao desloca -50% da largura da faixa, entao o numero de copias
+            precisa ser par e metade delas tem que cobrir sozinha a tela mais larga.
+            Com tres copias o ciclo terminava no meio da segunda e sobrava vao vazio
+            a direita: 551 px em 1440, mais de 1000 px em telas maiores. */}
+        {Array.from({ length: 12 }, (_, i) => <div key={i} className="flex items-center gap-8 px-6 text-[11px] font-semibold uppercase tracking-[0.22em]">
           <span>WELCOME SUMMER</span>
           <img src={sol} alt="" className="h-3.5 w-3.5 invert" />
           <span>FRETE GRÁTIS ACIMA DE R$ 199</span>
