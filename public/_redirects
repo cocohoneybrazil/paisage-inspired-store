@@ -1,0 +1,43 @@
+# Endereços que o Google indexou na vitrine antiga da Shopify.
+# A Cloudflare lê este arquivo na borda, antes do Worker rodar.
+# Ordem importa: a primeira regra que casar vence, então o específico
+# vem antes do curinga.
+
+# --- produtos ---
+/products/coco-honey-bronze-pack-001   /produto?pack=pack-001   301
+/products/coco-honey-bronze-pack-002   /produto?pack=pack-002   301
+/products/coco-honey-bronze-pack-003   /produto?pack=pack-003   301
+/products/tote-bag-coco                /tote/tote-bag-coco      301
+/products/tote-bag-brazil              /tote/tote-bag-brazil    301
+
+# --- blog: os cinco textos batem um a um com os do site novo ---
+/blogs/novidades/helioterapia-o-poder-curativo-do-sol-para-a-saude-e-bem-estar                                      /blog/helioterapia-poder-curativo-do-sol       301
+/blogs/novidades/protetor-solar-heroi-ou-vilao-desvendando-os-atritos-entre-a-ciencia-e-a-real-protecao-contra-o-cancer-de-pele   /blog/protetor-solar-ciencia-e-controversias   301
+/blogs/novidades/melanina-e-vitamina-d-como-ativar-naturalmente-e-potencializar-a-saude-com-alimentos-certos        /blog/melanina-vitamina-d-alimentacao          301
+/blogs/novidades/os-beneficios-de-apostar-em-cosmeticos-naturais-e-veganos-para-a-sua-pele-e-o-planeta              /blog/cosmeticos-naturais-e-veganos            301
+/blogs/novidades/bronzeado-como-a-pele-dourada-eleva-a-percepcao-de-beleza-e-autoestima                             /blog/bronzeado-beleza-autoestima              301
+
+# --- coleção e páginas ---
+/collections/oleo-bronzeador    /produto                 301
+/pages/oleo-bronzeador-cocohoney /produto?pack=pack-003  301
+/pages/bronzeadores             /produto                 301
+/pages/beneficios-do-oleo       /produto                 301
+
+# --- páginas de sistema da Shopify ---
+/cart                  /checkout      301
+/account                /             301
+/account/login          /             301
+/account/register       /             301
+/search                 /produto      301
+/policies/privacy-policy    /privacidade   301
+/policies/refund-policy     /trocas        301
+/policies/terms-of-service  /trocas        301
+/policies/shipping-policy   /trocas        301
+
+# --- rede de segurança: o que eu nao mapeei nao morre em erro ---
+/products/*      /produto   301
+/collections/*   /produto   301
+/blogs/*         /blog      301
+/pages/*         /          301
+/policies/*      /trocas    301
+/account/*       /          301
