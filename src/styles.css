@@ -178,7 +178,16 @@
   h1,
   h2,
   h3 {
+    /* Segura a palavra que nao cabe na coluna, sem hifenizar: a hifenizacao
+       quebrava titulo curto que cabia numa linha propria — VERAO INTEI-RO. */
     overflow-wrap: break-word;
+  }
+
+  p {
+    /* Justificado sem hifenizacao abre rios de espaco em coluna estreita, e em
+       portugues as palavras sao longas. Os dois andam juntos ou nenhum dos dois.
+       Paragrafo de uma linha so nao e afetado: justify nao mexe na ultima linha. */
+    text-align: justify;
     hyphens: auto;
   }
 

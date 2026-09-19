@@ -58,7 +58,7 @@ function Home() {
       <section className="relative flex min-h-[calc(92svh-4rem)] items-end overflow-hidden bg-photo-backdrop">
         {/* poster e a imagem que ja existia: aparece no primeiro quadro enquanto o video
             carrega, e fica como unica coisa visivel em quem tem economia de dados ligada. */}
-        <video src={heroMobileVideo} poster={heroMobile} autoPlay muted loop playsInline preload="metadata" aria-label="COCO INFUSION — Vitamin Complex Nº 01" className="absolute inset-0 h-full w-full object-cover object-center sm:hidden" />
+        <video ref={(el) => { if (!el) return; el.muted = true; el.setAttribute("muted", ""); el.play().catch(() => {}); }} src={heroMobileVideo} poster={heroMobile} autoPlay muted loop playsInline preload="auto" aria-label="COCO INFUSION — Vitamin Complex Nº 01" className="absolute inset-0 h-full w-full object-cover object-center sm:hidden" />
         <HeroRotator />
         <h1 className="sr-only">COCO Honey Brazil</h1>
         <a href="#packs" aria-label="Conhecer os packs" className="absolute bottom-7 left-1/2 -translate-x-1/2 text-foreground"><ArrowDown className="h-6 w-6" /></a>
