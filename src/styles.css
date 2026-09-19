@@ -191,6 +191,15 @@
     hyphens: auto;
   }
 
+  /* Onde o desenho ja escolheu um alinhamento, ele manda. A regra acima e do
+     elemento e por isso vencia o alinhamento herdado do container — foi o que
+     quebrou o centralizado do rodape. */
+  .text-center p,
+  .text-left p,
+  .text-right p {
+    text-align: inherit;
+  }
+
   button,
   a {
     cursor: pointer;
